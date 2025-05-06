@@ -1,7 +1,7 @@
 import { SquareTerminalIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-export const Nanokvm = () => {
+export const MSPkvm = () => {
   const { t } = useTranslation();
 
   function openTerminal() {
@@ -14,7 +14,7 @@ export const Nanokvm = () => {
       onClick={openTerminal}
     >
       <SquareTerminalIcon size={14} />
-      <span>{t('terminal.nanokvm')}</span>
+      <span>{t('terminal.mspkvm')}</span>
     </div>
   );
 };

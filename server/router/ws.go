@@ -3,8 +3,8 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 
-	"NanoKVM-Server/middleware"
-	"NanoKVM-Server/service/ws"
+	"MSPKVM-Server/middleware"
+	"MSPKVM-Server/service/ws"
 )
 
 func wsRouter(r *gin.Engine) {

@@ -29,20 +29,20 @@ const nl = {
       cancel: 'Annuleren',
       loginButtonText: 'Inloggen',
       tips: {
-        reset1: 'Om de wachtwoorden opnieuw in te stellen, houdt u de BOOT-knop op de NanoKVM 10 seconden lang ingedrukt.',
+        reset1: 'Om de wachtwoorden opnieuw in te stellen, houdt u de BOOT-knop op de MSPKVM 10 seconden lang ingedrukt.',
         reset2: 'Voor gedetailleerde stappen kunt u dit document raadplegen:',
         reset3: 'Standaard webaccount:',
         reset4: 'Standaard SSH-account:',
         change1: 'Houd er rekening mee dat deze actie de volgende wachtwoorden zal wijzigen:',
         change2: 'Web login wachtwoord',
         change3: 'Systeem root-wachtwoord (SSH-inlogwachtwoord)',
-        change4: 'Om de wachtwoorden opnieuw in te stellen, houdt u de BOOT-knop op de NanoKVM ingedrukt.'
+        change4: 'Om de wachtwoorden opnieuw in te stellen, houdt u de BOOT-knop op de MSPKVM ingedrukt.'
       }
     },
     wifi: {
       title: 'Wifi',
-      description: 'Wifi configureren voor NanoKVM',
-      success: 'Controleer de netwerkstatus van NanoKVM en bezoek het nieuwe IP-adres.',
+      description: 'Wifi configureren voor MSPKVM',
+      success: 'Controleer de netwerkstatus van MSPKVM en bezoek het nieuwe IP-adres.',
       failed: 'De bewerking is mislukt. Probeer het opnieuw.',
       confirmBtn: 'Ok',
       finishBtn: 'Gereed'
@@ -96,18 +96,18 @@ const nl = {
         'In sommige systemen is het noodzakelijk om de virtuele schijf op de externe host uit te werpen voordat het image wordt gekoppeld.',
       tips: {
         title: 'Hoe te uploaden',
-        usb1: 'Verbind de NanoKVM met uw computer via USB.',
+        usb1: 'Verbind de MSPKVM met uw computer via USB.',
         usb2: 'Zorg ervoor dat de virtuele schijf is gekoppeld (Instellingen - Virtuele schijf).',
         usb3: 'Open de virtuele schijf op uw computer en kopieer het imagebestand naar de hoofdmap van de virtuele schijf.',
-        scp1: 'Zorg ervoor dat de NanoKVM en uw computer zich in hetzelfde lokale netwerk bevinden.',
-        scp2: 'Open een terminal op uw computer en gebruik het SCP-commando om het imagebestand te uploaden naar de /data directory op de NanoKVM.',
-        scp3: 'Voorbeeld: scp uw-image-pad root@uw-nanokvm-ip:/data',
+        scp1: 'Zorg ervoor dat de MSPKVM en uw computer zich in hetzelfde lokale netwerk bevinden.',
+        scp2: 'Open een terminal op uw computer en gebruik het SCP-commando om het imagebestand te uploaden naar de /data directory op de MSPKVM.',
+        scp3: 'Voorbeeld: scp uw-image-pad root@uw-mspkvm-ip:/data',
         tfCard: 'TF-kaart',
         tf1: 'Deze methode wordt ondersteund op Linux-systemen',
-        tf2: 'Haal de TF-kaart uit de NanoKVM (voor de VOLLEDIGE versie, demonteer eerst de behuizing).',
+        tf2: 'Haal de TF-kaart uit de MSPKVM (voor de VOLLEDIGE versie, demonteer eerst de behuizing).',
         tf3: 'Plaats de TF-kaart in een kaartlezer en verbind deze met uw computer.',
         tf4: 'Kopieer het imagebestand naar de /data directory op de TF-kaart.',
-        tf5: 'Plaats de TF-kaart terug in de NanoKVM.'
+        tf5: 'Plaats de TF-kaart terug in de MSPKVM.'
       }
     },
     script: {
@@ -125,7 +125,7 @@ const nl = {
     },
     terminal: {
       title: 'Terminal',
-      nanokvm: 'NanoKVM Terminal',
+      mspkvm: 'MSPKVM Terminal',
       serial: 'Seriële poort terminal',
       serialPort: 'Seriële poort',
       serialPortPlaceholder: 'Voer de seriële poort in',
@@ -149,14 +149,14 @@ const nl = {
     settings: {
       title: 'Settings',
       about: {
-        title: 'Over NanoKVM',
+        title: 'Over MSPKVM',
         information: 'Informatie',
         ip: 'IP',
         mdns: 'mDNS',
         application: 'Applicatie versie',
-        applicationTip: 'NanoKVM web application version',
+        applicationTip: 'MSPKVM web application version',
         image: 'Image versie',
-        imageTip: 'NanoKVM system image version',
+        imageTip: 'MSPKVM system image version',
         deviceKey: 'Apparaat sleutel',
         community: 'Community'
       },
@@ -211,8 +211,8 @@ const nl = {
         download: 'Download het',
         package: 'installatiepakket',
         unzip: 'en pak het uit',
-        upTailscale: 'Upload tailscale naar NanoKVM directory /usr/bin/',
-        upTailscaled: 'Upload tailscaled naar NanoKVM directory /usr/sbin/',
+        upTailscale: 'Upload tailscale naar MSPKVM directory /usr/bin/',
+        upTailscaled: 'Upload tailscaled naar MSPKVM directory /usr/sbin/',
         refresh: 'Vernieuw huidige pagina',
         notLogin:
           'Het apparaat is nog niet gekoppeld. Log in en koppel dit apparaat aan uw account.',

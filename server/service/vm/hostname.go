@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"NanoKVM-Server/proto"
+	"MSPKVM-Server/proto"
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"

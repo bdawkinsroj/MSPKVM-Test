@@ -1,5 +1,5 @@
 #!/bin/sh
-# nanokvm Rev3.1
+# mspkvm Rev1.0
 
 case "$1" in
   start)
@@ -37,26 +37,26 @@ case "$1" in
     /tmp/kvm_system/kvm_system &
 
     cp -r /kvmapp/server /tmp/
-    /tmp/server/NanoKVM-Server &
+    /tmp/server/MSPKVM-Server &
    ;;
 
   stop)
     killall kvm_system
-    killall NanoKVM-Server
+    killall MSPKVM-Server
     rm -r /tmp/kvm_system /tmp/server
     echo "OK"
    ;;
 
   restart)
     killall kvm_system
-    killall NanoKVM-Server
+    killall MSPKVM-Server
     rm -r /tmp/kvm_system /tmp/server
 
     cp -r /kvmapp/kvm_system /tmp/
     /tmp/kvm_system/kvm_system &
 
     cp -r /kvmapp/server /tmp/
-    /tmp/server/NanoKVM-Server &
+    /tmp/server/MSPKVM-Server &
 
     sync
     echo "OK"

@@ -30,7 +30,7 @@
 #define FALSE 0
 
 /*
- * 型番データ表
+ * Model Number Data Table
  */
 const qr_vertable_t qr_vertable[QR_VER_MAX+1] = {
 	{ NAV, NAV, NAV, NAV, { 0, 0, 0, 0 },
@@ -282,7 +282,7 @@ const qr_vertable_t qr_vertable[QR_VER_MAX+1] = {
 };
 
 /*
- * αのべき表現→多項式係数の整数表現
+ * Power representation of α → Integer representation of polynomial coefficients
  */
 static const unsigned char qr_exp2fac[256] = {
 	  1,  2,  4,  8, 16, 32, 64,128, 29, 58,116,232,205,135, 19, 38,
@@ -304,7 +304,7 @@ static const unsigned char qr_exp2fac[256] = {
 };
 
 /*
- * 多項式係数の整数表現→αのべき表現
+ * Integer representation of polynomial coefficients → Power representation of α
  */
 static const unsigned char qr_fac2exp[256] = {
 	NAV,  0,  1, 25,  2, 50, 26,198,  3,223, 51,238, 27,104,199, 75,
@@ -326,7 +326,7 @@ static const unsigned char qr_fac2exp[256] = {
 };
 
 /*
- * 誤り訂正生成多項式の第2項以降の係数表(べき表現)
+ * Coefficient table of the second and subsequent terms of the error correction generating polynomial (power expression)
  */
 static const unsigned char qr_gftable[QR_RSW_MAX+1][QR_RSW_MAX] = {
 	{0},{0},{0},{0},{0},{0},{0},{87,229,146,149,238,102,21},
@@ -367,7 +367,7 @@ static const unsigned char qr_gftable[QR_RSW_MAX+1][QR_RSW_MAX] = {
 #define F1 (QR_MM_FUNC | QR_MM_BLACK)
 
 /*
- * 位置検出パターンのデータ
+ * Location pattern data
  */
 static const qr_byte_t qr_finderpattern[QR_DIM_FINDER][QR_DIM_FINDER] = {
 	{ F1, F1, F1, F1, F1, F1, F1 },
@@ -380,7 +380,7 @@ static const qr_byte_t qr_finderpattern[QR_DIM_FINDER][QR_DIM_FINDER] = {
 };
 
 /*
- * 位置合わせパターンのデータ
+ * Alignment pattern data
  */
 static const qr_byte_t qr_alignpattern[QR_DIM_ALIGN][QR_DIM_ALIGN] = {
 	{ F1, F1, F1, F1, F1 },
@@ -394,24 +394,24 @@ static const qr_byte_t qr_alignpattern[QR_DIM_ALIGN][QR_DIM_ALIGN] = {
 #undef F1
 
 /*
- * モード指示子(英字, 英数字, 8ビットバイト, 漢字)
+ * Mode indicator (alphabetical, alphanumeric, 8-bit byte, Kanji)
  */
 static const int qr_modeid[QR_EM_COUNT] = { 0x01, 0x02, 0x04, 0x08 };
 
 /*
- * 符号化モード名 (不使用)
+ * Encoding mode name (unused)
  */
 /*const char *qr_modename[QR_EM_COUNT] = {
 	"Numeric", "Alnum", "8bit-byte", "Kanji"
 };*/
 
 /*
- * エラー訂正レベル名
+ * error correction level name
  */
 const char *qr_eclname[QR_ECL_COUNT] = { "L", "M", "Q", "H" };
 
 /*
- * 英数字モードの符号化表
+ *Alphanumeric mode encoding table
  */
 static const signed char qr_alnumtable[256] = {
 	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
@@ -433,8 +433,8 @@ static const signed char qr_alnumtable[256] = {
 };
 
 /*
- * 形式情報(2箇所)の座標(下位ビットから)
- * (負数は下端/右端からのオフセット)
+ * Coordinates of format information (2 locations) (starting from the lower bit)
+* (negative numbers are offsets from the bottom/right end)
  */
 static const qr_coord_t qr_fmtinfopos[2][QR_FIN_MAX] = {
 	{{ 0, 8 }, { 1, 8 }, { 2, 8 }, { 3, 8 },
@@ -448,13 +448,13 @@ static const qr_coord_t qr_fmtinfopos[2][QR_FIN_MAX] = {
 };
 
 /*
- * 形式情報の固定黒モジュール
+ * Fixed black module of format information
  */
 static const qr_coord_t qr_fmtblackpos = { -8, 8 };
 
 /*
- * 型番情報(2箇所)の座標(下位ビットから)
- * (負数は下端/右端からのオフセット)
+ * Coordinates of model number information (2 locations) (starting from the lowest bit)
+* (negative numbers are offsets from the bottom/right end)
  */
 static const qr_coord_t qr_verinfopos[2][QR_VIN_MAX] = {
 	{{ -11, 0 }, { -10, 0 }, { -9, 0 },
@@ -472,7 +472,7 @@ static const qr_coord_t qr_verinfopos[2][QR_VIN_MAX] = {
 };
 
 /*
- * 型番情報(型番7〜40について有効)
+ * Model number information (valid for model numbers 7 to 40)
  */
 static const long qr_verinfo[QR_VER_MAX+1] = {
 	     -1L,      -1L,      -1L,      -1L,     -1L,       -1L,
@@ -485,12 +485,12 @@ static const long qr_verinfo[QR_VER_MAX+1] = {
 };
 
 /*
- * 一連の処理をする関数ポインタ型
+ * A function pointer type that performs a series of operations
  */
 typedef int (*qr_funcs)(QRCode *);
 
 /*
- * 内部処理用関数のプロトタイプ
+ * Prototypes for internal processing functions
  */
 static void qrAddDataBits(QRCode *qr, int n, int word);
 static int qrInitDataWord(QRCode *qr);

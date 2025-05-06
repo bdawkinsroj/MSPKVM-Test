@@ -29,20 +29,20 @@ const da = {
       loginButtonText: 'Log ind',
       tips: {
         reset1:
-          'To reset the passwords, pressing and holding the BOOT button on the NanoKVM for 10 seconds.',
+          'To reset the passwords, pressing and holding the BOOT button on the MSPKVM for 10 seconds.',
         reset2: 'For detailed steps, please consult this document:',
         reset3: 'Web default account:',
         reset4: 'SSH default account:',
         change1: 'Please note that this action will change the following passwords:',
         change2: 'Web login password',
         change3: 'System root password (SSH login password)',
-        change4: 'To reset the passwords, press and hold the BOOT button on the NanoKVM.'
+        change4: 'To reset the passwords, press and hold the BOOT button on the MSPKVM.'
       }
     },
     wifi: {
       title: 'Wi-Fi',
-      description: 'Configure Wi-Fi for NanoKVM',
-      success: 'Please check the network status of NanoKVM and visit the new IP address.',
+      description: 'Configure Wi-Fi for MSPKVM',
+      success: 'Please check the network status of MSPKVM and visit the new IP address.',
       failed: 'Operation failed, please try again.',
       confirmBtn: 'Ok',
       finishBtn: 'Finished'
@@ -95,18 +95,18 @@ const da = {
         'På nogle systemer kan det være nødvendigt at skubbe den virtuelle disk ud på fjerncomputeren før du kan montere diskbilledet.',
       tips: {
         title: 'Sådan uploader du',
-        usb1: 'Forbind din NanoKVM til din computer via USB.',
+        usb1: 'Forbind din MSPKVM til din computer via USB.',
         usb2: 'Sørg for, at den virtuelle disk er monteret (Indstillinger -> Virtuel disk).',
         usb3: 'Åben den virtuelle disk på din computer og kopier diskbilledet til roden af den virtuelle disk.',
-        scp1: 'Kontroller at din NanoKVM og din computer er på samme lokale netværk.',
-        scp2: 'Åben en terminal på din computer og brug SCP-kommandoen for at uploade diskbilledet til /data mappen på din NanoKVM.',
-        scp3: 'Eksempel: scp sti-til-dit-diskbillede root@din-nanokvm-ip:/data',
+        scp1: 'Kontroller at din MSPKVM og din computer er på samme lokale netværk.',
+        scp2: 'Åben en terminal på din computer og brug SCP-kommandoen for at uploade diskbilledet til /data mappen på din MSPKVM.',
+        scp3: 'Eksempel: scp sti-til-dit-diskbillede root@din-mspkvm-ip:/data',
         tfCard: 'microSD-kort',
         tf1: 'Denne metode er understøttet af Linux systemer',
-        tf2: 'Tag microSD-kortet ud af din NanoKVM (for den fulde version af NanoKVM skal du åbne enheden for at kunne tage microSD-kortet ud).',
+        tf2: 'Tag microSD-kortet ud af din MSPKVM (for den fulde version af MSPKVM skal du åbne enheden for at kunne tage microSD-kortet ud).',
         tf3: 'Indsæt microSD-kortet i en kortlæser og tilslut den til en computer.',
         tf4: 'Kopier diskbilledet til /data mappen på microSD-kortet.',
-        tf5: 'Skub microSD-kortet ud og indsæt microSD-kortet i din NanoKVM.'
+        tf5: 'Skub microSD-kortet ud og indsæt microSD-kortet i din MSPKVM.'
       }
     },
     script: {
@@ -124,7 +124,7 @@ const da = {
     },
     terminal: {
       title: 'Terminal',
-      nanokvm: 'Terminal til NanoKVM',
+      mspkvm: 'Terminal til MSPKVM',
       serial: 'Terminal til seriel port',
       serialPort: 'Serial port',
       serialPortPlaceholder: 'Angiv seriel port',
@@ -148,14 +148,14 @@ const da = {
     settings: {
       title: 'Settings',
       about: {
-        title: 'Om NanoKVM',
+        title: 'Om MSPKVM',
         information: 'Information',
         ip: 'IP',
         mdns: 'mDNS',
         application: 'Program version',
-        applicationTip: 'NanoKVM web application version',
+        applicationTip: 'MSPKVM web application version',
         image: 'Firmware version',
-        imageTip: 'NanoKVM system image version',
+        imageTip: 'MSPKVM system image version',
         deviceKey: 'Enhedsnøgle',
         community: 'Fællesskab'
       },

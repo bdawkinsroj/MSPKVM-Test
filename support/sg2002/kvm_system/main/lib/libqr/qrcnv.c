@@ -36,17 +36,16 @@
 }
 
 /*
- * シンボルを出力する際の定型作業をまとめたマクロ
- *
- * このマクロを呼び出す前に以下の4つのマクロをdefineし、
- * 呼び出した後はundefする
- *  qrWriteBOR()     行頭を書き込む
- *  qrWriteEOR()     行末を書き込む
- *  qrWriteBLM(m, n) 明モジュールを書き込む
- *  qrWriteDKM(m, n) 暗モジュールを書き込む
+ * A macro that summarizes the standard tasks when outputting symbols.
+*
+* Before calling this macro, define the following four macros and undefine them after calling them.
+* qrWriteBOR(): Writes the beginning of the line
+* qrWriteEOR(): Writes the end of the line
+* qrWriteBLM(m, n): Writes the light module
+* qrWriteDKM(m, n): Writes the dark module
 */
 #define qrWriteSymbol(qr, filler) { \
-	/* 分離パターン (上) */ \
+	/* Separation pattern (top) */ \
 	if (sepdim > 0) { \
 		qrInitRow(filler); \
 		qrWriteBOR(); \
@@ -55,13 +54,13 @@
 		qrWriteRow(i, sepdim); \
 	} \
 	for (i = 0; i < dim; i++) { \
-		/* 行を初期化 */ \
+		/* initialize row */ \
 		qrInitRow(filler); \
-		/* 行頭 */ \
+		/* Outfit */ \
 		qrWriteBOR(); \
-		/* 分離パターン (左) */ \
+		/* Separation pattern (left) */ \
 		qrWriteBLM(j, sepdim); \
-		/* シンボル本体 */ \
+		/* symbol body */ \
 		for (j = 0; j < dim; j++) { \
 			if (qrIsBlack((qr), i, j)) { \
 				qrWriteDKM(jx, mag); \
@@ -69,14 +68,14 @@
 				qrWriteBLM(jx, mag); \
 			} \
 		} \
-		/* 分離パターン (右) */ \
+		/* Separation pattern (right) */ \
 		qrWriteBLM(j, sepdim); \
-		/* 行末 */ \
+		/* end of line */ \
 		qrWriteEOR(); \
-		/* 行をmag回繰り返し書き込む */ \
+		/* Write the line mag times */ \
 		qrWriteRow(ix, mag); \
 	} \
-	/* 分離パターン (下) */ \
+	/* Separation pattern (bottom) */ \
 	if (sepdim > 0) { \
 		qrInitRow(filler); \
 		qrWriteBOR(); \
@@ -91,7 +90,7 @@
 
 #define qrsWriteSymbols(st, filler) { \
 	for (k = 0; k < rows; k++) { \
-		/* 分離パターン (上) */ \
+		/* Separation pattern (top) */ \
 		if (sepdim > 0) { \
 			qrInitRow(filler); \
 			qrWriteBOR(); \
@@ -100,14 +99,14 @@
 			qrWriteRow(i, sepdim); \
 		} \
 		for (i = 0; i < dim; i++) { \
-			/* 行を初期化 */ \
+			/* initialize row */ \
 			qrInitRow(filler); \
-			/* 行頭 */ \
+			/* Outfit */ \
 			qrWriteBOR(); \
 			for (kx = 0; kx < cols; kx++) { \
-				/* 分離パターン (左) */ \
+				/* Separation pattern (left) */ \
 				qrWriteBLM(j, sepdim); \
-				/* シンボル本体 */ \
+				/* symbol body */ \
 				if (order < 0) { \
 					pos = k + rows * kx; \
 				} else { \
@@ -125,15 +124,15 @@
 					qrWriteBLM(j, zdim); \
 				} \
 			} \
-			/* 分離パターン (右) */ \
+			/* Separation pattern (right) */ \
 			qrWriteBLM(j, sepdim); \
-			/* 行末 */ \
+			/* end of line */ \
 			qrWriteEOR(); \
-			/* 行をmag回繰り返し書き込む */ \
+			/* Write the line mag times */ \
 			qrWriteRow(ix, mag); \
 		} \
 	} \
-	/* 分離パターン (下) */ \
+	/* Separation pattern (bottom) */ \
 	if (sepdim > 0) { \
 		qrInitRow(filler); \
 		qrWriteBOR(); \
@@ -197,7 +196,7 @@
 /* {{{ qrSymbolToDigit() */
 
 /*
- * 生成されたQRコードシンボルを0,1と空白で構成される文字列に変換する
+ * Convert the generated QR code symbol into a string consisting of 0, 1 and spaces
  */
 QR_API qr_byte_t *
 qrSymbolToDigit(QRCode *qr, int sep, int mag, int *size)
@@ -211,7 +210,7 @@ qrSymbolToDigit(QRCode *qr, int sep, int mag, int *size)
 	QRCNV_GET_SIZE();
 
 	/*
-	 * 変換後のサイズを計算し、メモリを確保する
+	 * Calculate the size after conversion and allocate memory
 	 */
 	rsize = imgdim + 1;
 	*size = rsize * imgdim - 1;
@@ -225,12 +224,12 @@ qrSymbolToDigit(QRCode *qr, int sep, int mag, int *size)
 #define qrWriteDKM qrWriteDKM_Digit
 
 	/*
-	 * シンボルを書き込む
+	 * write symbol
 	 */
 	qrWriteSymbol(qr, '0');
 
 	/*
-	 * 最後の文字(スペース)を終端文字に置換する
+	 * Replace the last character (space) with the terminator
 	 */
 	*(--sptr) = '\0';
 
@@ -248,7 +247,7 @@ qrSymbolToDigit(QRCode *qr, int sep, int mag, int *size)
 /* {{{ qrSymbolToASCII() */
 
 /*
- * 生成されたQRコードシンボルを0,1と空白で構成される文字列に変換する
+ * Convert the generated QR code symbol into a string consisting of 0, 1 and spaces
  */
 QR_API qr_byte_t *
 qrSymbolToASCII(QRCode *qr, int sep, int mag, int *size)
@@ -262,7 +261,7 @@ qrSymbolToASCII(QRCode *qr, int sep, int mag, int *size)
 	QRCNV_GET_SIZE();
 
 	/*
-	 * 変換後のサイズを計算し、メモリを確保する
+	 * Calculate the size after conversion and allocate memory
 	 */
 	rsize = imgdim * QRCNV_AA_UNIT + QRCNV_EOL_SIZE;
 	*size = rsize * imgdim;
@@ -276,12 +275,12 @@ qrSymbolToASCII(QRCode *qr, int sep, int mag, int *size)
 #define qrWriteDKM qrWriteDKM_ASCII
 
 	/*
-	 * シンボルを書き込む
+	 * write symbol
 	 */
 	qrWriteSymbol(qr, ' ');
 
 	/*
-	 * 終端文字を書き込む
+	 * Write the termination character
 	 */
 	*sptr = '\0';
 
@@ -299,8 +298,8 @@ qrSymbolToASCII(QRCode *qr, int sep, int mag, int *size)
 /* {{{ qrSymbolToJSON() */
 
 /*
- * 生成されたQRコードシンボルをJSON形式の文字列に変換する
- * JSONをデコードすると二次元配列が得られる
+ * Convert the generated QR code symbol into a JSON format string 
+ * Decode the JSON to get a two-dimensional array
  */
 QR_API qr_byte_t *
 qrSymbolToJSON(QRCode *qr, int sep, int mag, int *size)
@@ -314,7 +313,7 @@ qrSymbolToJSON(QRCode *qr, int sep, int mag, int *size)
 	QRCNV_GET_SIZE();
 
 	/*
-	 * 変換後のサイズを計算し、メモリを確保する
+	 * Calculate the size after conversion and allocate memory
 	 */
 	rsize = 1 + imgdim * QRCNV_JSON_UNIT + 1;
 	*size = 1 + rsize * imgdim - 1 + 1;
@@ -328,17 +327,17 @@ qrSymbolToJSON(QRCode *qr, int sep, int mag, int *size)
 #define qrWriteDKM qrWriteDKM_JSON
 
 	/*
-	 * ヘッダを書き込む
+	 * write header
 	 */
 	*sptr++ = '[';
 
 	/*
-	 * シンボルを書き込む
+	 * write symbol
 	 */
 	qrWriteSymbol(qr, ',');
 
 	/*
-	 * フッタと終端文字を書き込む
+	 * Write the footer and terminator
 	 */
 	sptr--;
 	*sptr++ = ']';
@@ -358,8 +357,8 @@ qrSymbolToJSON(QRCode *qr, int sep, int mag, int *size)
 /* {{{ qrSymbolToPBM() */
 
 /*
- * 生成されたQRコードシンボルをモノクロ2値の
- * アスキー形式Portable Bitmap(PBM)に変換する
+ * Convert the generated QR code symbol into a monochrome binary
+ * ASCII format Portable Bitmap (PBM)
  */
 QR_API qr_byte_t *
 qrSymbolToPBM(QRCode *qr, int sep, int mag, int *size)
@@ -375,7 +374,7 @@ qrSymbolToPBM(QRCode *qr, int sep, int mag, int *size)
 	QRCNV_GET_SIZE();
 
 	/*
-	 * 変換後のサイズを計算し、メモリを確保する
+	 * Calculate the size after conversion and allocate memory
 	 */
 	hsize = snprintf(&(header[0]), sizeof(header), "P1\n%d %d\n", imgdim, imgdim);
 	if (hsize == -1 || header[hsize - 1] != '\n') {
@@ -393,18 +392,18 @@ qrSymbolToPBM(QRCode *qr, int sep, int mag, int *size)
 #define qrWriteDKM qrWriteDKM_PBM
 
 	/*
-	 * ヘッダを書き込む
+	 * write header
 	 */
 	memcpy(sptr, header, (size_t)hsize);
 	sptr += hsize;
 
 	/*
-	 * シンボルを書き込む
+	 * write symbol
 	 */
 	qrWriteSymbol(qr, ' ');
 
 	/*
-	 * 終端文字を書き込む
+	 * Write the termination character
 	 */
 	*sptr = '\0';
 
@@ -422,8 +421,8 @@ qrSymbolToPBM(QRCode *qr, int sep, int mag, int *size)
 /* {{{ qrsSymbolsToDigit() */
 
 /*
- * 構造的連接用qrSymbolToDigit()
- * order は無視される
+ * qrSymbolToDigit() for structural concatenation
+ * order is ignored
  */
 QR_API qr_byte_t *
 qrsSymbolsToDigit(QRStructured *st, int sep, int mag, int order, int *size)
@@ -441,7 +440,7 @@ qrsSymbolsToDigit(QRStructured *st, int sep, int mag, int order, int *size)
 	QRCNV_SA_GET_SIZE();
 
 	/*
-	 * 変換後のサイズを計算し、メモリを確保する
+	 * Calculate the size after conversion and allocate memory
 	 */
 	rsize = imgdim + 1;
 	*size = rsize * imgdim * st->num - 1;
@@ -455,7 +454,7 @@ qrsSymbolsToDigit(QRStructured *st, int sep, int mag, int order, int *size)
 #define qrWriteDKM qrWriteDKM_Digit
 
 	/*
-	 * シンボルを書き込む
+	 * write symbol
 	 */
 	for (k = 0; k < st->num; k++) {
 		qrWriteSymbol(st->qrs[k], '0');
@@ -464,7 +463,7 @@ qrsSymbolsToDigit(QRStructured *st, int sep, int mag, int order, int *size)
 	}
 
 	/*
-	 * 最後の文字(LF)を終端文字に置換する
+	 * Replace the last character (LF) with a terminator
 	 */
 	*(--sptr) = '\0';
 
@@ -482,7 +481,7 @@ qrsSymbolsToDigit(QRStructured *st, int sep, int mag, int order, int *size)
 /* {{{ qrsSymbolsToASCII() */
 
 /*
- * 構造的連接用qrSymbolToASCII()
+ * Constructed connection using qrSymbolToASCII()
  */
 QR_API qr_byte_t *
 qrsSymbolsToASCII(QRStructured *st, int sep, int mag, int order, int *size)
@@ -500,7 +499,7 @@ qrsSymbolsToASCII(QRStructured *st, int sep, int mag, int order, int *size)
 	QRCNV_SA_GET_SIZE();
 
 	/*
-	 * 変換後のサイズを計算し、メモリを確保する
+	 * Calculate the size after conversion and allocate memory
 	 */
 	rsize = xdim * QRCNV_AA_UNIT + QRCNV_EOL_SIZE;
 	*size = rsize * ydim;
@@ -514,12 +513,12 @@ qrsSymbolsToASCII(QRStructured *st, int sep, int mag, int order, int *size)
 #define qrWriteDKM qrWriteDKM_ASCII
 
 	/*
-	 * シンボルを書き込む
+	 * write symbol
 	 */
 	qrsWriteSymbols(st, ' ');
 
 	/*
-	 * 終端文字を書き込む
+	 * Write the termination character
 	 */
 	*sptr = '\0';
 
@@ -537,8 +536,8 @@ qrsSymbolsToASCII(QRStructured *st, int sep, int mag, int order, int *size)
 /* {{{ qrsSymbolsToJSON() */
 
 /*
- * 構造的連接用qrSymbolToJSON()
- * order は無視される
+ * qrSymbolToJSON() for structural concatenation
+ * order is ignored
  */
 QR_API qr_byte_t *
 qrsSymbolsToJSON(QRStructured *st, int sep, int mag, int order, int *size)
@@ -556,7 +555,7 @@ qrsSymbolsToJSON(QRStructured *st, int sep, int mag, int order, int *size)
 	QRCNV_SA_GET_SIZE();
 
 	/*
-	 * 変換後のサイズを計算し、メモリを確保する
+	 * Calculate the size after conversion and allocate memory
 	 */
 	rsize = 1 + imgdim * QRCNV_JSON_UNIT + 1;
 	*size = 1 + (1 + rsize * imgdim + 1) * st->num - 1 + 1;
@@ -570,12 +569,12 @@ qrsSymbolsToJSON(QRStructured *st, int sep, int mag, int order, int *size)
 #define qrWriteDKM qrWriteDKM_JSON
 
 	/*
-	 * ヘッダを書き込む
+	 * write header
 	 */
 	*sptr++ = '[';
 
 	/*
-	 * シンボルを書き込む
+	 * write symbol
 	 */
 	for (k = 0; k < st->num; k++) {
 		*sptr++ = '[';
@@ -586,7 +585,7 @@ qrsSymbolsToJSON(QRStructured *st, int sep, int mag, int order, int *size)
 	}
 
 	/*
-	 * フッタと終端文字を書き込む
+	 * Write the footer and terminator
 	 */
 	sptr--;
 	*sptr++ = ']';
@@ -606,7 +605,7 @@ qrsSymbolsToJSON(QRStructured *st, int sep, int mag, int order, int *size)
 /* {{{ qrsSymbolsToPBM() */
 
 /*
- * 構造的連接用qrSymbolToPBM()
+ * Constructed connection using qrSymbolToPBM()
  */
 QR_API qr_byte_t *
 qrsSymbolsToPBM(QRStructured *st, int sep, int mag, int order, int *size)
@@ -626,7 +625,7 @@ qrsSymbolsToPBM(QRStructured *st, int sep, int mag, int order, int *size)
 	QRCNV_SA_GET_SIZE();
 
 	/*
-	 * 変換後のサイズを計算し、メモリを確保する
+	 * Calculate the size after conversion and allocate memory
 	 */
 	hsize = snprintf(&(header[0]), 64, "P1\n%d %d\n", xdim, ydim);
 	if (hsize >= 64) {
@@ -644,18 +643,18 @@ qrsSymbolsToPBM(QRStructured *st, int sep, int mag, int order, int *size)
 #define qrWriteDKM qrWriteDKM_PBM
 
 	/*
-	 * ヘッダを書き込む
+	 * write header
 	 */
 	memcpy(sptr, header, (size_t)hsize);
 	sptr += hsize;
 
 	/*
-	 * シンボルを書き込む
+	 * write symbol
 	 */
 	qrsWriteSymbols(st, ' ');
 
 	/*
-	 * 終端文字を付加する
+	 * Append a terminator
 	 */
 	*sptr = '\0';
 

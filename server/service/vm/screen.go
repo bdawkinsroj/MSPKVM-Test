@@ -1,7 +1,7 @@
 package vm
 
 import (
-	"NanoKVM-Server/common"
+	"MSPKVM-Server/common"
 	"fmt"
 	"os"
 	"strconv"
@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 
-	"NanoKVM-Server/proto"
+	"MSPKVM-Server/proto"
 )
 
 var screenFileMap = map[string]string{

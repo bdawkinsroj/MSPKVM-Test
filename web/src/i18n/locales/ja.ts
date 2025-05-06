@@ -30,20 +30,20 @@ const ja = {
       loginButtonText: 'ログイン',
       tips: {
         reset1:
-          'To reset the passwords, pressing and holding the BOOT button on the NanoKVM for 10 seconds.',
+          'To reset the passwords, pressing and holding the BOOT button on the MSPKVM for 10 seconds.',
         reset2: 'For detailed steps, please consult this document:',
         reset3: 'Web default account:',
         reset4: 'SSH default account:',
         change1: 'Please note that this action will change the following passwords:',
         change2: 'Web login password',
         change3: 'System root password (SSH login password)',
-        change4: 'To reset the passwords, press and hold the BOOT button on the NanoKVM.'
+        change4: 'To reset the passwords, press and hold the BOOT button on the MSPKVM.'
       }
     },
     wifi: {
       title: 'Wi-Fi',
-      description: 'Configure Wi-Fi for NanoKVM',
-      success: 'Please check the network status of NanoKVM and visit the new IP address.',
+      description: 'Configure Wi-Fi for MSPKVM',
+      success: 'Please check the network status of MSPKVM and visit the new IP address.',
       failed: 'Operation failed, please try again.',
       confirmBtn: 'Ok',
       finishBtn: 'Finished'
@@ -97,18 +97,18 @@ const ja = {
         '一部のシステムでは、イメージをマウントする前にリモートホストで仮想ディスクをアンマウントする必要があります。',
       tips: {
         title: 'アップロード方法',
-        usb1: 'NanoKVMをUSB経由でコンピュータに接続します。',
+        usb1: 'MSPKVMをUSB経由でコンピュータに接続します。',
         usb2: '仮想ディスクがマウントされていることを確認します（設定 - 仮想ディスク）。',
         usb3: 'コンピュータ上で仮想ディスクを開き、イメージファイルを仮想ディスクのルートディレクトリにコピーします。',
-        scp1: 'NanoKVMとコンピュータが同じローカルネットワークに接続されていることを確認します。',
-        scp2: 'コンピュータのターミナルを開き、SCPコマンドを使用してイメージファイルをNanoKVMの/dataディレクトリにアップロードします。',
+        scp1: 'MSPKVMとコンピュータが同じローカルネットワークに接続されていることを確認します。',
+        scp2: 'コンピュータのターミナルを開き、SCPコマンドを使用してイメージファイルをMSPKVMの/dataディレクトリにアップロードします。',
         scp3: '例: scp あなたのイメージパス root@あなたのナノKVMのIP:/data',
         tfCard: 'TFカード',
         tf1: 'この方法はLinuxシステムでサポートされています',
-        tf2: 'NanoKVMからTFカードを取り出します（フルバージョンの場合、まずケースを分解してください）。',
+        tf2: 'MSPKVMからTFカードを取り出します（フルバージョンの場合、まずケースを分解してください）。',
         tf3: 'TFカードをカードリーダーに挿入し、コンピュータに接続します。',
         tf4: 'TFカードの/dataディレクトリにイメージファイルをコピーします。',
-        tf5: 'TFカードをNanoKVMに挿入します。'
+        tf5: 'TFカードをMSPKVMに挿入します。'
       }
     },
     script: {
@@ -126,7 +126,7 @@ const ja = {
     },
     terminal: {
       title: 'ターミナル',
-      nanokvm: 'NanoKVMターミナル',
+      mspkvm: 'MSPKVMターミナル',
       serial: 'シリアルポートターミナル',
       serialPort: 'シリアルポート',
       serialPortPlaceholder: 'シリアルポートを入力してください',
@@ -150,14 +150,14 @@ const ja = {
     settings: {
       title: 'Settings',
       about: {
-        title: 'NanoKVMについて',
+        title: 'MSPKVMについて',
         information: '情報',
         ip: 'IP',
         mdns: 'mDNS',
         application: 'アプリケーションバージョン',
-        applicationTip: 'NanoKVM web application version',
+        applicationTip: 'MSPKVM web application version',
         image: 'イメージバージョン',
-        imageTip: 'NanoKVM system image version',
+        imageTip: 'MSPKVM system image version',
         firmware: 'ファームウェアバージョン',
         deviceKey: 'デバイスキー',
         community: 'コミュニティ'
@@ -212,8 +212,8 @@ const ja = {
         retry: 'ページをリフレッシュして再試行してください。または手動でインストールしてください',
         download: 'インストールパッケージをダウンロードして',
         package: '解凍してください',
-        upTailscale: 'tailscaleをNanoKVMのディレクトリ/usr/bin/にアップロードしてください',
-        upTailscaled: 'tailscaledをNanoKVMのディレクトリ/usr/sbin/にアップロードしてください',
+        upTailscale: 'tailscaleをMSPKVMのディレクトリ/usr/bin/にアップロードしてください',
+        upTailscaled: 'tailscaledをMSPKVMのディレクトリ/usr/sbin/にアップロードしてください',
         refresh: '現在のページをリフレッシュします',
         notLogin:
           'デバイスはまだバインドされていません。ログインしてこのデバイスをアカウントにバインドしてください。',

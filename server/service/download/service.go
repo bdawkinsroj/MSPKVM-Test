@@ -1,7 +1,7 @@
 package download
 
 import (
-	"NanoKVM-Server/proto"
+	"MSPKVM-Server/proto"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"

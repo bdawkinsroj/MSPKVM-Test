@@ -1,7 +1,7 @@
 package application
 
 import (
-	"NanoKVM-Server/proto"
+	"MSPKVM-Server/proto"
 	"encoding/json"
 	"fmt"
 	"io"

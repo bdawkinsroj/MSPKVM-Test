@@ -71,14 +71,14 @@ To use tailscale, you need to meet these conditions below:
   1. Both tailscale and tailscaled were installed.
   2. At least one tailscale's account were registered.
      (https://login.tailscale.com/start)
-  3. Your NanoKVM device must keep online.
+  3. Your MSPKVM device must keep online.
 
 Then, follow the steps below:
   1. Login in https://login.tailscale.com on your PC
      to enter into yout admin console.
   2. Run 'tailscale login' on your device, and copy the link showed
      to open on your PC, and confirm the auth.
-  3. Congratulations, your NanoKVM device is now on the tailnet, try to
+  3. Congratulations, your MSPKVM device is now on the tailnet, try to
      visit it from all your device which on the same tailnet.
   4. run 'tailscale set --webclient' and manage your device
      on the web interface from localnet and tailenet.
@@ -86,25 +86,6 @@ Then, follow the steps below:
 Added: no more action to be repeat after your device reboot.
 EOF
                 echo ""
-                cat <<EOF
-为了正常使用 tailscale, 你需要满足以下几个条件：
-  1. tailscale 和 tailscaled 这两个静态链接的二进制程序
-     都已经正确安装在系统上。
-  2. 至少注册一个 tailscale 的帐号才能使用其服务。
-     (https://login.tailscale.com/start)
-  3. 你的 NanoKVM 设备必须保持在线。
-
-然后，跟着以下步骤操作：
-  1. 在你的电脑上登录 https://login.tailscale.com 以进入控制台。
-  2. 在你的 NanoKVM ssh 终端上执行 'tailscale login', 然后复制
-     出现的链接到浏览器上，登录并通过验证。
-  3. 祝贺，你的 NanoKVM 现在已经加入了 tailnet 然后你可以从任意
-     同样已加入同一 tailnet 的设备去访问你的 NanoKVM。
-  4. 执行 'tailscale set --webclient' 然后你就可以从 '局域网' 和
-     'tailnet' 来访问特定网页，用来管理你的设备。
-
-补充: 不需要重复上面的操作，哪怕你的设备重启过。
-EOF
                 ;;
         *)
                 echo "Usage: $0 {start|stop|restart}"

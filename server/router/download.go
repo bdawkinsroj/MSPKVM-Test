@@ -1,10 +1,10 @@
 package router
 
 import (
-	"NanoKVM-Server/service/download"
+	"MSPKVM-Server/service/download"
 	"github.com/gin-gonic/gin"
 
-	"NanoKVM-Server/middleware"
+	"MSPKVM-Server/middleware"
 )
 
 func downloadRouter(r *gin.Engine) {

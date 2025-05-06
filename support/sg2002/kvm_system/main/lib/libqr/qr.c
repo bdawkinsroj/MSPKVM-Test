@@ -25,7 +25,7 @@
 QR_API const char *(*qrGetCurrentFunctionName)(void) = NULL;
 
 /*
- * ライブラリのバージョンを返す
+ * returns the library version
  */
 QR_API const char *
 qrVersion(void)
@@ -34,7 +34,7 @@ qrVersion(void)
 }
 
 /*
- * QRCodeオブジェクトを生成する
+ * Create a QRCode object
  */
 QR_API QRCode *
 qrInit(int version, int mode, int eclevel, int masktype, int *errcode)
@@ -42,7 +42,7 @@ qrInit(int version, int mode, int eclevel, int masktype, int *errcode)
 	QRCode *qr = NULL;
 
 	/*
-	 * メモリを確保する
+	 * Allocate memory
 	 */
 	qr = (QRCode *)calloc(1, sizeof(QRCode));
 	if (qr == NULL) {
@@ -59,7 +59,7 @@ qrInit(int version, int mode, int eclevel, int masktype, int *errcode)
 	}
 
 	/*
-	 * 内部状態を初期化する
+	 * Initialize the internal state
 	 */
 	qr->_symbol = NULL;
 	qr->symbol = NULL;
@@ -73,7 +73,7 @@ qrInit(int version, int mode, int eclevel, int masktype, int *errcode)
 	qr->state = QR_STATE_BEGIN;
 
 	/*
-	 * 型番を設定する
+	 * Set model number
 	*/
 	if (version == -1 || (version >= 1 && version <= QR_VER_MAX)) {
 		qr->param.version = version;
@@ -84,7 +84,7 @@ qrInit(int version, int mode, int eclevel, int masktype, int *errcode)
 	}
 
 	/*
-	 * 符号化モードを設定する
+	 * Set encoding mode
 	*/
 	if (mode == QR_EM_AUTO || (mode >= QR_EM_NUMERIC && mode < QR_EM_COUNT)) {
 		qr->param.mode = mode;
@@ -95,7 +95,7 @@ qrInit(int version, int mode, int eclevel, int masktype, int *errcode)
 	}
 
 	/*
-	 * 誤り訂正レベルを設定する
+	 * Setting the error correction level
 	*/
 	if (eclevel >= QR_ECL_L && eclevel < QR_EM_COUNT) {
 		qr->param.eclevel = eclevel;
@@ -106,7 +106,7 @@ qrInit(int version, int mode, int eclevel, int masktype, int *errcode)
 	}
 
 	/*
-	 * マスクパターンを設定する
+	 * Set mask pattern
 	*/
 	if (masktype == -1 || (masktype >= 0 && masktype < QR_MPT_MAX)) {
 		qr->param.masktype = masktype;
@@ -120,7 +120,7 @@ qrInit(int version, int mode, int eclevel, int masktype, int *errcode)
 }
 
 /*
- * QRStructuredオブジェクトを生成する
+ * Create a QRStructured object
  */
 QR_API QRStructured *
 qrsInit(int version, int mode, int eclevel, int masktype, int maxnum, int *errcode)
@@ -128,7 +128,7 @@ qrsInit(int version, int mode, int eclevel, int masktype, int maxnum, int *errco
 	QRStructured *st = NULL;
 
 	/*
-	 * メモリを確保する
+	 * Allocate memory
 	 */
 	st = (QRStructured *)calloc(1, sizeof(QRStructured));
 	if (st == NULL) {
@@ -137,13 +137,13 @@ qrsInit(int version, int mode, int eclevel, int masktype, int maxnum, int *errco
 	}
 
 	/*
-	 * 内部状態を初期化する
+	 * Initialize the internal state
 	 */
 	st->parity = 0;
 	st->state = QR_STATE_BEGIN;
 
 	/*
-	 * 最大シンボル数を設定する
+	 * Set the maximum number of symbols
 	*/
 	if (maxnum >= 2 && masktype <= QR_STA_MAX) {
 		st->max = maxnum;
@@ -154,7 +154,7 @@ qrsInit(int version, int mode, int eclevel, int masktype, int maxnum, int *errco
 	}
 
 	/*
-	 * 型番を設定する
+	 * Set model number
 	 */
 	if (version >= 1 && version <= QR_VER_MAX) {
 		st->param.version = version;
@@ -165,7 +165,7 @@ qrsInit(int version, int mode, int eclevel, int masktype, int maxnum, int *errco
 	}
 
 	/*
-	 * 符号化モードを設定する
+	 * Set encoding mode
 	*/
 	if (mode == QR_EM_AUTO || (mode >= QR_EM_NUMERIC && mode < QR_EM_COUNT)) {
 		st->param.mode = mode;
@@ -176,7 +176,7 @@ qrsInit(int version, int mode, int eclevel, int masktype, int maxnum, int *errco
 	}
 
 	/*
-	 * 誤り訂正レベルを設定する
+	 * Setting the error correction level
 	*/
 	if (eclevel >= QR_ECL_L && eclevel < QR_EM_COUNT) {
 		st->param.eclevel = eclevel;
@@ -187,7 +187,7 @@ qrsInit(int version, int mode, int eclevel, int masktype, int maxnum, int *errco
 	}
 
 	/*
-	 * マスクパターンを設定する
+	 * Set mask pattern
 	*/
 	if (masktype == -1 || (masktype >= 0 && masktype < QR_MPT_MAX)) {
 		st->param.masktype = masktype;
@@ -198,7 +198,7 @@ qrsInit(int version, int mode, int eclevel, int masktype, int maxnum, int *errco
 	}
 
 	/*
-	 * 一つめのQRコードオブジェクトを初期化する
+	 * Initialize the first QR code object
 	*/
 	st->qrs[0] = qrInit(st->param.version, st->param.mode,
 			st->param.eclevel, st->param.masktype, errcode);
@@ -213,7 +213,7 @@ qrsInit(int version, int mode, int eclevel, int masktype, int maxnum, int *errco
 }
 
 /*
- * QRCodeオブジェクトを複製する
+ * Duplicate a QRCode object
  */
 QR_API QRCode *
 qrClone(const QRCode *qr, int *errcode)
@@ -221,7 +221,7 @@ qrClone(const QRCode *qr, int *errcode)
 	QRCode *cp = NULL;
 
 	/*
-	 * QRCodeオブジェクト用のメモリを確保し、複製する
+	 * Allocate memory for the QRCode object and duplicate it.
 	 */
 	cp = (QRCode *)malloc(sizeof(QRCode));
 	if (cp == NULL) {
@@ -231,7 +231,7 @@ qrClone(const QRCode *qr, int *errcode)
 	memcpy(cp, qr, sizeof(QRCode));
 
 	/*
-	 * 動的に確保されるメンバをいったんNULLにする
+	 * Set dynamically allocated members to NULL
 	 */
 	cp->dataword = NULL;
 	cp->ecword = NULL;
@@ -241,7 +241,7 @@ qrClone(const QRCode *qr, int *errcode)
 	cp->source = NULL;
 
 	/*
-	 * ファイナライズ後ならシンボル、ファイナライズ前なら計算用領域を複製
+	 * After finalization, duplicate the symbol. Before finalization, duplicate the calculation area.
 	 */
 	if (cp->state == QR_STATE_FINAL) {
 		int i, dim;
@@ -280,7 +280,7 @@ qrClone(const QRCode *qr, int *errcode)
 	}
 
 	/*
-	 * 入力データを複製
+	 * Duplicate input data
 	 */
 	if (cp->srcmax > 0 && qr->source != NULL) {
 		cp->source = (qr_byte_t *)malloc(cp->srcmax);
@@ -296,7 +296,7 @@ qrClone(const QRCode *qr, int *errcode)
 }
 
 /*
- * QRStructuredオブジェクトを複製する
+ * Duplicating a QRStructured object
  */
 QR_API QRStructured *
 qrsClone(const QRStructured *st, int *errcode)
@@ -305,7 +305,7 @@ qrsClone(const QRStructured *st, int *errcode)
 	int i = 0;
 
 	/*
-	 * QRStructuredオブジェクト用のメモリを確保し、複製する
+	 * Allocate memory for the QRStructured object and duplicate it.
 	 */
 	cps = (QRStructured *)malloc(sizeof(QRStructured));
 	if (cps == NULL) {
@@ -315,7 +315,7 @@ qrsClone(const QRStructured *st, int *errcode)
 	memcpy(cps, st, sizeof(QRStructured));
 
 	/*
-	 * 保持しているQRCodeオブジェクトを複製する
+	 * Duplicate the QRCode object you are holding
 	 */
 	while (i < cps->num) {
 		QRCode *cp = qrClone(st->qrs[i], errcode);
@@ -337,7 +337,7 @@ qrsClone(const QRStructured *st, int *errcode)
 }
 
 /*
- * QRCodeオブジェクトを開放する
+ * Free the QRCode object
  */
 QR_API void
 qrDestroy(QRCode *qr)
@@ -355,7 +355,7 @@ qrDestroy(QRCode *qr)
 }
 
 /*
- * QRStructuredオブジェクトを開放する
+ * Freeing a QRStructured object
  */
 QR_API void
 qrsDestroy(QRStructured *st)
@@ -371,7 +371,7 @@ qrsDestroy(QRStructured *st)
 }
 
 /*
- * 出力形式に対応するMIMEタイプを返す
+ * Returns the MIME type for the output format.
  */
 QR_API const char *
 qrMimeType(int format)
@@ -390,7 +390,7 @@ qrMimeType(int format)
 }
 
 /*
- * 出力形式に対応する拡張子 (ピリオドなし) を返す
+ * Returns the extension (without the period) for the output format.
  */
 QR_API const char *
 qrExtension(int format)
@@ -409,7 +409,7 @@ qrExtension(int format)
 }
 
 /*
- * QRコードオブジェクトに登録されているエラー番号を返す
+ * Returns the error number registered in the QR code object.
  */
 QR_API int
 qrGetErrorCode(QRCode *qr)
@@ -418,7 +418,7 @@ qrGetErrorCode(QRCode *qr)
 }
 
 /*
- * QRコードオブジェクトに登録されているエラー情報を返す
+ * Returns the error information registered in the QR code object.
  */
 QR_API char *
 qrGetErrorInfo(QRCode *qr)
@@ -427,7 +427,7 @@ qrGetErrorInfo(QRCode *qr)
 }
 
 /*
- * 構造的連接の最後のQRコードオブジェクトに登録されているエラー番号を返す
+ * Returns the error number registered in the last QR code object of the structural concatenation.
  */
 QR_API int
 qrsGetErrorCode(QRStructured *st)
@@ -436,7 +436,7 @@ qrsGetErrorCode(QRStructured *st)
 }
 
 /*
- * 構造的連接の最後のQRコードオブジェクトに登録されているエラー情報を返す
+ * Returns the error information registered in the last QR code object of the structural link.
  */
 QR_API char *
 qrsGetErrorInfo(QRStructured *st)
@@ -445,7 +445,7 @@ qrsGetErrorInfo(QRStructured *st)
 }
 
 /*
- * エラー番号に対応したエラー情報を返す
+ * Returns the error information corresponding to the error number.
  */
 QR_API const char *
 qrStrError(int errcode)
@@ -564,7 +564,7 @@ qrStrError(int errcode)
 }
 
 /*
- * libqrのエラー番号からエラー情報を設定する
+ * Set error information from libqr error number
  */
 QR_API void
 qrSetErrorInfo(QRCode *qr, int errnum, const char *param)
@@ -578,7 +578,7 @@ qrSetErrorInfo(QRCode *qr, int errnum, const char *param)
 }
 
 /*
- * システム標準のエラー番号からエラー情報を設定する
+ * Sets error information from the system standard error number.
  */
 QR_API void
 qrSetErrorInfo2(QRCode *qr, int errnum, const char *param)
@@ -602,7 +602,7 @@ qrSetErrorInfo2(QRCode *qr, int errnum, const char *param)
 }
 
 /*
- * libqrのエラー番号と可変長パラメータからエラー情報を設定する
+ * Set error information from libqr error number and variable length parameters
  */
 QR_API void
 qrSetErrorInfo3(QRCode *qr, int errnum, const char *fmt, ...)
@@ -618,7 +618,7 @@ qrSetErrorInfo3(QRCode *qr, int errnum, const char *fmt, ...)
 }
 
 /*
- * 最適な符号化方法を調べる
+ * Finding the best encoding method
  */
 QR_API int
 qrDetectDataType(const qr_byte_t *source, int size)
@@ -636,7 +636,7 @@ qrDetectDataType(const qr_byte_t *source, int size)
 }
 
 /*
- * 数字以外のデータが現れる位置を調べる
+ * Find the location of non-numeric data
  */
 QR_API int
 qrStrPosNotNumeric(const qr_byte_t *source, int size)
@@ -653,7 +653,7 @@ qrStrPosNotNumeric(const qr_byte_t *source, int size)
 }
 
 /*
- * 英数字以外のデータが現れる位置を調べる
+ * Check for the location of non-alphanumeric data
  */
 QR_API int
 qrStrPosNotAlnum(const qr_byte_t *source, int size)
@@ -670,7 +670,7 @@ qrStrPosNotAlnum(const qr_byte_t *source, int size)
 }
 
 /*
- * JIS X 0208漢字以外のデータが現れる位置を調べる
+ * Check the position where data other than JIS X 0208 kanji appears
  */
 QR_API int
 qrStrPosNotKanji(const qr_byte_t *source, int size)
@@ -685,7 +685,7 @@ qrStrPosNotKanji(const qr_byte_t *source, int size)
 		} else if (x >= 0xe0 && x <= 0xea) {
 			x -= 0xc1;
 		} else {
-			/* JIS X 0208漢字の1バイトめでない */
+			/* Not the first byte of JIS X 0208 Kanji */
 			return p - 1;
 		}
 		y = source[p++];
@@ -696,7 +696,7 @@ qrStrPosNotKanji(const qr_byte_t *source, int size)
 			return p - 1;
 		}
 		if (qr_dwtable_kanji[x][y] == -1) {
-			/* JIS X 0208漢字の未定義領域 */
+			/* JIS X 0208 Undefined areas of Chinese characters */
 			return p - 2;
 		}
 	}
@@ -707,7 +707,7 @@ qrStrPosNotKanji(const qr_byte_t *source, int size)
 }
 
 /*
- * 英数字もしくはJIS X 0208漢字のデータが現れる位置を調べる
+ * Check the position where alphanumeric or JIS X 0208 kanji data appears
  */
 QR_API int
 qrStrPosNot8bit(const qr_byte_t *source, int size)
@@ -736,7 +736,7 @@ qrStrPosNot8bit(const qr_byte_t *source, int size)
 }
 
 /*
- * デフォルトの符号化モードでsizeバイト符号化したときのビット長を返す
+ * Returns the bit length when size bytes are encoded in the default encoding mode.
  */
 QR_API int
 qrGetEncodedLength(QRCode *qr, int size)
@@ -745,7 +745,7 @@ qrGetEncodedLength(QRCode *qr, int size)
 }
 
 /*
- * 特定の符号化モードでsizeバイト符号化したときのビット長を返す
+ * Returns the length in bits when size bytes are encoded in a specific encoding mode.
  */
 QR_API int
 qrGetEncodedLength2(QRCode *qr, int size, int mode)
@@ -753,19 +753,19 @@ qrGetEncodedLength2(QRCode *qr, int size, int mode)
 	int n, v;
 
 	/*
-	 * モード指示子と文字数指示子のサイズ
+	 * Mode and character count indicator sizes
 	 */
 	v = (qr->param.version == -1) ? QR_VER_MAX : qr->param.version;
 	n = 4 + qr_vertable[v].nlen[mode];
 
 	/*
-	 * 符号化モードごとのデータサイズ
+	 * Data size for each encoding mode
 	 */
 	switch (mode) {
 	  case QR_EM_NUMERIC:
 		/*
-		 * 数字モード: 3桁ごとに10ビット
-		 * (余りは1桁なら4ビット, 2桁なら7ビット)
+		 * Number mode: 10 bits per 3 digits
+		 * (remainder is 4 bits for 1 digit, 7 bits for 2 digits)
 		 */
 		n += (size / 3) * 10;
 		switch (size % 3) {
@@ -779,8 +779,8 @@ qrGetEncodedLength2(QRCode *qr, int size, int mode)
 		break;
 	  case QR_EM_ALNUM:
 		/*
-		 * 英数字モード: 2桁ごとに11ビット
-		 * (余りは1桁につき6ビット)
+		 * Alphanumeric mode: 11 bits per 2 digits
+		 * (6 bits per digit remainder)
 		 */
 		n += (size / 2) * 11;
 		if (size % 2 == 1) {
@@ -789,13 +789,13 @@ qrGetEncodedLength2(QRCode *qr, int size, int mode)
 		break;
 	  case QR_EM_8BIT:
 		/*
-		 * 8ビットバイトモード: 1桁ごとに8ビット
+		 * 8-bit byte mode: 8 bits per digit
 		 */
 		n += size * 8;
 		break;
 	  case QR_EM_KANJI:
 		/*
-		 * 漢字モード: 1文字(2バイト)ごとに13ビット
+		 * Kanji mode: 13 bits per character (2 bytes)
 		 */
 		n += (size / 2) * 13;
 		break;
@@ -808,7 +808,7 @@ qrGetEncodedLength2(QRCode *qr, int size, int mode)
 }
 
 /*
- * デフォルトの符号化モードでsizeビットを上限として符号化可能な最大のバイト長を返す
+ * Returns the maximum byte length that can be encoded in the default encoding mode, up to size bits.
  */
 QR_API int
 qrGetEncodableLength(QRCode *qr, int size)
@@ -817,7 +817,7 @@ qrGetEncodableLength(QRCode *qr, int size)
 }
 
 /*
- * 特定の符号化モードでsizeビットを上限として符号化可能な最大のバイト長を返す
+ * Returns the maximum length of bytes that can be encoded in a particular encoding mode, up to size bits.
  */
 QR_API int
 qrGetEncodableLength2(QRCode *qr, int size, int mode)
@@ -825,7 +825,7 @@ qrGetEncodableLength2(QRCode *qr, int size, int mode)
 	int l, m, n, v;
 
 	/*
-	 * モード指示子と文字数指示子のサイズ
+	 * Mode and character count indicator sizes
 	 */
 	v = (qr->param.version == -1) ? QR_VER_MAX : qr->param.version;
 	n = size - 4 - qr_vertable[v].nlen[mode];
@@ -834,13 +834,13 @@ qrGetEncodableLength2(QRCode *qr, int size, int mode)
 	}
 
 	/*
-	 * 符号化モードごとのデータサイズ
+	 * Data size for each encoding mode
 	 */
 	switch (mode) {
 	  case QR_EM_NUMERIC:
 		/*
-		 * 数字モード: 3桁ごとに10ビット
-		 * (余りは1桁なら4ビット, 2桁なら7ビット)
+		 * Number mode: 10 bits per 3 digits
+ 		 * (remainder is 4 bits for 1 digit, 7 bits for 2 digits)
 		 */
 		l = (n / 10) * 3;
 		m = n % 10;
@@ -852,8 +852,8 @@ qrGetEncodableLength2(QRCode *qr, int size, int mode)
 		break;
 	  case QR_EM_ALNUM:
 		/*
-		 * 英数字モード: 2桁ごとに11ビット
-		 * (余りは1桁につき6ビット)
+		 * Alphanumeric mode: 11 bits per 2 digits
+		 * (6 bits per digit remainder)
 		 */
 		l = (n / 11) * 2;
 		m = n % 11;
@@ -863,13 +863,13 @@ qrGetEncodableLength2(QRCode *qr, int size, int mode)
 		break;
 	  case QR_EM_8BIT:
 		/*
-		 * 8ビットバイトモード: 1桁ごとに8ビット
+		 * 8-bit byte mode: 8 bits per digit
 		 */
 		l = n / 8;
 		break;
 	  case QR_EM_KANJI:
 		/*
-		 * 漢字モード: 1文字(2バイト)ごとに13ビット
+		 * Kanji mode: 13 bits per character (2 bytes)
 		 */
 		l = (n / 13) * 2;
 		break;
@@ -882,7 +882,7 @@ qrGetEncodableLength2(QRCode *qr, int size, int mode)
 }
 
 /*
- * データを追加する
+ * Add data
  */
 QR_API int
 qrAddData(QRCode *qr, const qr_byte_t *source, int size)
@@ -895,7 +895,7 @@ qrAddData(QRCode *qr, const qr_byte_t *source, int size)
 }
 
 /*
- * 符号化モードを指定してデータを追加する
+ * Add data by specifying the encoding mode
  */
 QR_API int
 qrAddData2(QRCode *qr, const qr_byte_t *source, int size, int mode)
@@ -915,7 +915,7 @@ qrAddData2(QRCode *qr, const qr_byte_t *source, int size, int mode)
 	}
 
 	/*
-	 * 入力データに最適な符号化モードを選ぶ
+	 * Choose the best encoding mode for your input data
 	 */
 	if (mode == QR_EM_AUTO) {
 		mode = qrDetectDataType(source, size);
@@ -926,7 +926,7 @@ qrAddData2(QRCode *qr, const qr_byte_t *source, int size, int mode)
 
 
 	/*
-	 * 符号化後のデータ長を計算する
+	 * Calculate the length of the encoded data
 	 */
 	enclen = qrGetEncodedLength2(qr, size, mode);
 	if (enclen == -1) {
@@ -946,7 +946,7 @@ qrAddData2(QRCode *qr, const qr_byte_t *source, int size, int mode)
 	}
 
 	/*
-	 * 型番が指定されていれば、入力データをバッファリングせず直接エンコードする
+	 * If a model number is specified, the input data is encoded directly without buffering.
 	 */
 	if (qr->param.version != -1) {
 		qr->enclen += enclen;
@@ -961,7 +961,7 @@ qrAddData2(QRCode *qr, const qr_byte_t *source, int size, int mode)
 	}
 
 	/*
-	 * 入力データを検証する
+	 * Validate input data
 	 */
 	pos = -1;
 	err = QR_ERR_NONE;
@@ -986,7 +986,7 @@ qrAddData2(QRCode *qr, const qr_byte_t *source, int size, int mode)
 	qr->enclen += enclen;
 
 	/*
-	 * バッファの容量が足りないときは追加で確保する
+	 * If the buffer capacity is insufficient, additional capacity is allocated.
 	 */
 	while (qr->srcmax < qr->srclen + size + 6) {
 		qr->srcmax += QR_SRC_MAX;
@@ -999,7 +999,7 @@ qrAddData2(QRCode *qr, const qr_byte_t *source, int size, int mode)
 	}
 
 	/*
-	 * バッファにデータを保存する
+	 * Save data in a buffer
 	 */
 	qr->source[qr->srclen++] = (qr_byte_t)(mode | 0x80);
 	qr->source[qr->srclen++] = (qr_byte_t)((size >> 24) & 0x7F);
@@ -1015,7 +1015,7 @@ qrAddData2(QRCode *qr, const qr_byte_t *source, int size, int mode)
 }
 
 /*
- * 構造的連接の最後のQRコードオブジェクトにデータを追加する
+ * Add data to the last QR code object in the structural concatenation
  */
 QR_API int
 qrsAddData(QRStructured *st, const qr_byte_t *source, int size)
@@ -1028,7 +1028,7 @@ qrsAddData(QRStructured *st, const qr_byte_t *source, int size)
 }
 
 /*
- * 構造的連接の最後のQRコードオブジェクトに符号化モードを指定してデータを追加する
+ * Add data to the last QR code object in the structural concatenation by specifying the encoding mode.
  */
 QR_API int
 qrsAddData2(QRStructured *st, const qr_byte_t *source, int size, int mode)
@@ -1049,14 +1049,14 @@ qrsAddData2(QRStructured *st, const qr_byte_t *source, int size, int mode)
 	}
 
 	/*
-	 * 入力データに最適な符号化モードを選ぶ
+	 * Choose the best encoding mode for your input data
 	 */
 	if (mode == QR_EM_AUTO) {
 		mode = qrDetectDataType(source, size);
 	}
 
 	/*
-	 * 残りデータ容量を計算する
+	 * Calculate remaining data capacity
 	 */
 	maxlen = 8 * qr_vertable[st->param.version].ecl[st->param.eclevel].datawords;
 	limit = maxlen - QR_STA_LEN;
@@ -1067,7 +1067,7 @@ qrsAddData2(QRStructured *st, const qr_byte_t *source, int size, int mode)
 	}
 
 	/*
-	 * 符号化後のデータ長を計算する
+	 * Calculate the length of the encoded data
 	 */
 	enclen = qrGetEncodedLength2(st->cur, size, mode);
 	if (enclen == -1) {
@@ -1110,7 +1110,7 @@ qrsAddData2(QRStructured *st, const qr_byte_t *source, int size, int mode)
 	}
 
 	/*
-	 * 入力データをエンコードする
+	 * Encode input data
 	 */
 	p = 0;
 	i = 0;
@@ -1120,7 +1120,7 @@ qrsAddData2(QRStructured *st, const qr_byte_t *source, int size, int mode)
 		}
 		if (!qrHasData(st->cur)) {
 			/*
-			 * データコード語を初期化し、仮の構造的連接ヘッダを追加する
+			 * Initialize the data codeword and add a temporary structured concatenation header.
 			 */
 			qrInitDataWord(st->cur);
 			qrAddDataBits(st->cur, 4, 0);
@@ -1141,7 +1141,7 @@ qrsAddData2(QRStructured *st, const qr_byte_t *source, int size, int mode)
 		i++;
 		if (i < j && sizes[i] > 0) {
 			/*
-			 * 次のQRコードオブジェクトを初期化する
+			 * Initialize the following QR code object:
 			 */
 			int errcode;
 			st->qrs[st->num] = qrInit(st->param.version, st->param.mode,
@@ -1156,7 +1156,7 @@ qrsAddData2(QRStructured *st, const qr_byte_t *source, int size, int mode)
 	}
 
 	/*
-	 * パリティを計算する
+	 * calculate parity
 	 */
 	p = 0;
 	while (p < size) {
@@ -1167,18 +1167,18 @@ qrsAddData2(QRStructured *st, const qr_byte_t *source, int size, int mode)
 }
 
 /*
- * データコード語を初期化する
+ * Initialize data codeword
  */
 static int
 qrInitDataWord(QRCode *qr)
 {
 	/*
-	 * データコード語領域をゼロクリアする
+	 * Clear the data code word area to zero
 	 */
 	memset(qr->dataword, '\0', QR_DWD_MAX);
 
 	/*
-	 * 追加位置をバイト0の最上位ビットにする
+	 * The addition position is the most significant bit of byte 0.
 	 */
 	qr->dwpos = 0;
 	qr->dwbit = 7;
@@ -1187,7 +1187,7 @@ qrInitDataWord(QRCode *qr)
 }
 
 /*
- * データコード語をエンコードする
+ * Encode a data codeword
  */
 static int
 qrEncodeDataWord(QRCode *qr, const qr_byte_t *source, int size, int mode)
@@ -1205,13 +1205,13 @@ qrEncodeDataWord(QRCode *qr, const qr_byte_t *source, int size, int mode)
 	}
 
 	/*
-	 * モード指示子(4ビット)を追加する
+	 * Add a mode indicator (4 bits)
 	 */
 	qrAddDataBits(qr, 4, qr_modeid[mode]);
 
 	/*
-	 * 文字数指示子(8〜16ビット)を追加する
-	 * ビット数は型番とモードによって異なる
+	 * Adds a character count indicator (8 to 16 bits)
+	 * The number of bits varies depending on the model and mode
 	 */
 	if (mode == QR_EM_KANJI) {
 		qrAddDataBits(qr, qr_vertable[qr->param.version].nlen[mode], size / 2);
@@ -1220,14 +1220,14 @@ qrEncodeDataWord(QRCode *qr, const qr_byte_t *source, int size, int mode)
 	}
 
 	/*
-	 * 入力データを符号化する
+	 * encode input data
 	 */
 	switch (mode) {
 	  case QR_EM_NUMERIC:
 		/*
-		 * 数字モード
-		 * 3桁ずつ10ビットの2進数に変換する
-		 * 余りは1桁なら4ビット、2桁なら7ビットにする
+		 * Number mode
+		 * Converts every three digits into a 10-bit binary number
+		 * The remainder is 4 bits if it is 1 digit, and 7 bits if it is 2 digits
 		 */
 		while (p < size) {
 			qr_byte_t q = source[p];
@@ -1238,7 +1238,7 @@ qrEncodeDataWord(QRCode *qr, const qr_byte_t *source, int size, int mode)
 			}
 			word = word * 10 + (q - '0');
 			/*
-			 * 3桁たまったら10ビットで追加する
+			 * When three digits are accumulated, add 10 bits.
 			 */
 			if (++n >= 3) {
 				qrAddDataBits(qr, 10, word);
@@ -1248,7 +1248,7 @@ qrEncodeDataWord(QRCode *qr, const qr_byte_t *source, int size, int mode)
 			p++;
 		}
 		/*
-		 * 余りの桁を追加する
+		 * Add the remaining digits
 		 */
 		if (n == 1) {
 			qrAddDataBits(qr, 4, word);
@@ -1259,20 +1259,20 @@ qrEncodeDataWord(QRCode *qr, const qr_byte_t *source, int size, int mode)
 
 	  case QR_EM_ALNUM:
 		/*
-		 * 英数字モード
-		 * 2桁ずつ11ビットの2進数に変換する
-		 * 余りは6ビットとして変換する
+		 * Alphanumeric mode
+		 * Converts two digits at a time into an 11-bit binary number
+		 * Converts the remainder as a 6-bit number
 		 */
 		while (p < size) {
 			signed char q = qr_alnumtable[source[p]];
 			if (q == -1) {
-				/* 符号化可能な英数字でない */
+				/* Not an encodable alphanumeric character */
 				e = QR_ERR_NOT_ALNUM;
 				goto err;
 			}
 			word = word * 45 + (int)q;
 			/*
-			 * 2桁たまったら11ビットで追加する
+			 * When two digits are accumulated, add 11 bits.
 			 */
 			if (++n >= 2) {
 				qrAddDataBits(qr, 11, word);
@@ -1282,7 +1282,7 @@ qrEncodeDataWord(QRCode *qr, const qr_byte_t *source, int size, int mode)
 			p++;
 		}
 		/*
-		 * 余りの桁を追加する
+		 * Add the remaining digits
 		 */
 		if (n == 1) {
 			qrAddDataBits(qr, 6, word);
@@ -1291,8 +1291,8 @@ qrEncodeDataWord(QRCode *qr, const qr_byte_t *source, int size, int mode)
 
 	  case QR_EM_8BIT:
 		/*
-		 * 8ビットバイトモード
-		 * 各バイトを直接8ビット値として追加する
+		 * 8-bit byte mode
+		 * Add each byte directly as an 8-bit value
 		 */
 		while (p < size) {
 			qrAddDataBits(qr, 8, (int)source[p++]);
@@ -1301,15 +1301,15 @@ qrEncodeDataWord(QRCode *qr, const qr_byte_t *source, int size, int mode)
 
 	  case QR_EM_KANJI:
 		/*
-		 * 漢字モード
-		 * 2バイトを13ビットに変換して追加する
+		 * Kanji mode
+		 * Convert 2 bytes to 13 bits and add
 		 */
 		while (p < size - 1) {
 			qr_byte_t x, y;
 			/*
-			 * 第1バイトの処理
-			 * 0x81-0x9fなら0x81を引く
-			 * 0xe0,0xeaなら0xc1を引く
+			 * Processing the first byte
+			 * If it is 0x81-0x9f, subtract 0x81
+             * If it is 0xe0, 0xea, subtract 0xc1
 			 */
 			x = source[p++];
 			if (x >= 0x81 && x <= 0x9f) {
@@ -1317,30 +1317,30 @@ qrEncodeDataWord(QRCode *qr, const qr_byte_t *source, int size, int mode)
 			} else if (x >= 0xe0 && x <= 0xea) {
 				x -= 0xc1;
 			} else {
-				/* JIS X 0208漢字の1バイトめでない */
+				/* Not the first byte of JIS X 0208 Kanji */
 				p -= 1;
 				e = QR_ERR_NOT_KANJI;
 				goto err;
 			}
 			/*
-			 * 第2バイトの処理
-			 * 0x40を引く
+			 * Process the second byte
+			 * Subtract 0x40
 			 */
 			y = source[p++];
 			if (y >= 0x40 && y <= 0xfc) {
 				y -= 0x40;
 			} else {
-				/* JIS X 0208漢字の2バイトめでない */
+				/* Not the second byte of JIS X 0208 Kanji */
 				p -= 1;
 				e = QR_ERR_NOT_KANJI;
 				goto err;
 			}
 			/*
-			 * 結果を13ビットの値として追加する
+			 * Add the result as a 13-bit value
 			 */
 			word = (int)qr_dwtable_kanji[x][y];
 			if (word == -1) {
-				/* JIS X 0208漢字の未定義領域 */
+				/* JIS X 0208 Undefined areas of Chinese characters */
 				p -= 2;
 				e = QR_ERR_NOT_KANJI;
 				goto err;
@@ -1349,7 +1349,7 @@ qrEncodeDataWord(QRCode *qr, const qr_byte_t *source, int size, int mode)
 		}
 		if (p < size) {
 			/*
-			 * 末尾に余分なバイトがある
+			 * Extra bytes at the end
 			 */
 			e = QR_ERR_NOT_KANJI;
 			goto err;
@@ -1375,7 +1375,7 @@ qrEncodeDataWord(QRCode *qr, const qr_byte_t *source, int size, int mode)
 }
 
 /*
- * データコード語の余りを埋める
+ * Fill in the remainder of the data code word
  */
 static int
 qrFinalizeDataWord(QRCode *qr)
@@ -1384,7 +1384,7 @@ qrFinalizeDataWord(QRCode *qr)
 	int word;
 
 	/*
-	 * 終端パターンを追加する(最大4ビットの0)
+	 * Add a termination pattern (up to 4 zeros)
 	 */
 	n = qrRemainedDataBits(qr);
 	if (n < 4) {
@@ -1395,8 +1395,8 @@ qrFinalizeDataWord(QRCode *qr)
 		n -= 4;
 	}
 	/*
-	 * 末尾のデータコード語の全ビットが埋まっていなければ
-	 * 余りを埋め草ビット(0)で埋める
+	 * If all bits of the last data code word are not filled,
+	 * fill the remainder with padding bits (0).
 	 */
 	m = n % 8;
 	if (m > 0) {
@@ -1405,7 +1405,7 @@ qrFinalizeDataWord(QRCode *qr)
 	}
 
 	/*
-	 * 残りのデータコード語に埋め草コード語1,2を交互に埋める
+	 * Fill the remaining data code words with padding code words 1 and 2 alternately.
 	 */
 	word = PADWORD1;
 	while (n >= 8) {
@@ -1422,21 +1422,21 @@ qrFinalizeDataWord(QRCode *qr)
 }
 
 /*
- * データコード語にビット列を追加する
+ * Adding a bit string to a data code word
  */
 static void
 qrAddDataBits(QRCode *qr, int n, int word)
 {
 	/*
-	 * 上位ビットから順に処理(ビット単位で処理するので遅い)
+	 * Processes from the most significant bit (slow as it processes bit by bit)
 	 */
 	while (n-- > 0) {
 		/*
-		 * ビット追加位置にデータの下位からnビットめをORする
+		 * OR the nth lowest bit of the data into the bit addition position
 		 */
 		qr->dataword[qr->dwpos] |= ((word >> n) & 1) << qr->dwbit;
 		/*
-		 * 次のビット追加位置に進む
+		 * Advance to the next bit addition position
 		 */
 		if (--qr->dwbit < 0) {
 			qr->dwpos++;
@@ -1446,7 +1446,7 @@ qrAddDataBits(QRCode *qr, int n, int word)
 }
 
 /*
- * データコード語の残りビット数を返す
+ * Returns the number of remaining bits in a data code word.
  */
 QR_API int
 qrRemainedDataBits(QRCode *qr)
@@ -1457,7 +1457,7 @@ qrRemainedDataBits(QRCode *qr)
 }
 
 /*
- * RSブロックごとに誤り訂正コード語を計算する
+ * Calculate the error-correcting codeword for each RS block
  */
 static int
 qrComputeECWord(QRCode *qr)
@@ -1467,10 +1467,10 @@ qrComputeECWord(QRCode *qr)
 	qr_byte_t rswork[QR_RSD_MAX];
 
 	/*
-	 * データコード語をRSブロックごとに読み出し、
-	 * それぞれについて誤り訂正コード語を計算する
-	 * RSブロックは長さによってnrsb種類に分かれ、
-	 * それぞれの長さについてrsbnum個のブロックがある
+	 * read the data codewords by RS block
+	 * calculate the error correction codeword for each
+	 * the RS blocks are divided into nrsb types based on their length
+	 * there are rsbnum blocks for each length
 	 */
 	dwtop = 0;
 	ecwtop = 0;
@@ -1482,11 +1482,10 @@ qrComputeECWord(QRCode *qr)
 		/*unsigned char *gfvector;*/
 		/*qr_rsblock_t *rsbp;*/
 		/*
-		 * この長さのRSブロックの個数(rsbnum)と
-		 * RSブロック内のデータコード語の長さ(dwlen)、
-		 * 誤り訂正コード語の長さ(ecwlen)を求める
-		 * また誤り訂正コード語の長さから、使われる
-		 * 誤り訂正生成多項式(gfvector)を選ぶ
+		 * the number of RS blocks of this length (rsbnum)
+		 * the length of the data code word in the RS block (dwlen)
+		 * the length of the error correction code word (ecwlen) are calculated
+		 * also, from the length of the error correction code word, the error correction generator polynomial (gfvector) to be used is selected.
 		 */
 		/*rsbp = &(qr_vertable[qr->param.version].ecl[qr->param.eclevel].rsb[i]);
 		rsbnum = rsbp->rsbnum;
@@ -1497,33 +1496,26 @@ qrComputeECWord(QRCode *qr)
 		ecwlen = rsb[i].totalwords - rsb[i].datawords;
 		/*gfvector = qr_gftable[ecwlen];*/
 		/*
-		 * それぞれのRSブロックについてデータコード語を
-		 * 誤り訂正生成多項式で除算し、結果を誤り訂正
-		 * コード語とする
+		 * for each RS block, divide the data codeword by the error correction generator polynomial and use the result as the error correction codeword.
 		 */
 		for (j = 0; j < rsbnum; j++) {
 			/*
-			 * RS符号計算用作業領域をクリアし、
-			 * 当該RSブロックのデータコード語を
-			 * 多項式係数とみなして作業領域に入れる
-			 * (作業領域の大きさはRSブロックの
-			 * データコード語と誤り訂正コード語の
-			 * いずれか長いほうと同じだけ必要)
+			 * clear the work area for RS code calculation
+			 * and treat the data code word of the RS block
+			 * as a polynomial coefficient and put it into the work area
+			 * (The size of the work area needs to be the same as the data code word or error correction code word of the RS block, whichever is longer)
 			 */
 			memset(&(rswork[0]), '\0', QR_RSD_MAX);
 			memcpy(&(rswork[0]), &(qr->dataword[dwtop]), (size_t)dwlen);
 			/*
-			 * 多項式の除算を行う
-			 * (各次数についてデータコード語の初項係数から
-			 * 誤り訂正生成多項式への乗数を求め、多項式
-			 * どうしの減算により剰余を求めることをくり返す)
+			 * Perform polynomial division
+			 * (for each degree, find the multiplier for the error correction generating polynomial from the coefficient of the first term of the data code word and repeat the process of finding the remainder by subtracting the polynomials)
 			 */
 			for (k = 0; k < dwlen; k++) {
 				int e;
 				if (rswork[0] == 0) {
 					/*
-					 * 初項係数がゼロなので、各項係数を
-					 * 左にシフトして次の次数に進む
+					 * Since the coefficient of the first term is zero, shift each term coefficient to the left to proceed to the next order.
 					 */
 					for (m = 0; m < QR_RSD_MAX-1; m++) {
 						rswork[m] = rswork[m+1];
@@ -1532,10 +1524,9 @@ qrComputeECWord(QRCode *qr)
 					continue;
 				}
 				/*
-				 * データコード語の初項係数(整数表現)から
-				 * 誤り訂正生成多項式への乗数(べき表現)を求め、
-				 * 残りの各項について剰余を求めるために
-				 * データコード語の各項係数を左にシフトする
+				 * From the coefficient of the first term of the data code word (integer expression)
+				 * find the multiplier (power expression) for the error correction generating polynomial
+				 * shift the coefficient of each term of the data code word to the left to find the remainder for each remaining term
 				 */
 				e = qr_fac2exp[rswork[0]];
 				for (m = 0; m < QR_RSD_MAX-1; m++) {
@@ -1543,24 +1534,19 @@ qrComputeECWord(QRCode *qr)
 				}
 				rswork[QR_RSD_MAX-1] = 0;
 				/*
-				 * 誤り訂正生成多項式の各項係数に上で求めた
-				 * 乗数を掛け(べき表現の加算により求める)、
-				 * データコード語の各項から引いて(整数表現の
-				 * 排他的論理和により求める)、剰余を求める
+				 * Multiply each term coefficient of the error correction generating polynomial by the multiplier calculated above (by adding the power expressions), 
+				 * subtract it from each term of the data code word (by exclusive ORing the integer expressions), and calculate the remainder.
 				 */
 				for (m = 0; m < ecwlen; m++) {
 					rswork[m] ^= qr_exp2fac[(gfvector[m] + e) % 255];
 				}
 			}
 			/*
-			 * 多項式除算の剰余を当該RSブロックの
-			 * 誤り訂正コードとする
+			 * The remainder of the polynomial division is used as the error-correcting code for the RS block.
 			 */
 			memcpy(&(qr->ecword[ecwtop]), &(rswork[0]), (size_t)ecwlen);
 			/*
-			 * データコード語の読み出し位置と
-			 * 誤り訂正コード語の書き込み位置を
-			 * 次のRSブロック開始位置に移動する
+			 * Move the data code word read position and the error correction code word write position to the start position of the next RS block.
 			 */
 			dwtop += dwlen;
 			ecwtop += ecwlen;
@@ -1572,7 +1558,7 @@ qrComputeECWord(QRCode *qr)
 }
 
 /*
- * データコード語と誤り訂正コード語から最終的なコード語を作る
+ * Generate the final codeword from the data codeword and the error correction codeword.
  */
 static int
 qrMakeCodeWord(QRCode *qr)
@@ -1583,9 +1569,9 @@ qrMakeCodeWord(QRCode *qr)
 	/*qr_rsblock_t *rsb;*/
 
 	/*
-	 * RSブロックのサイズ種類数(nrsb)および
-	 * 最大RSブロックのデータコード語数(dwlenmax)、
-	 * 誤り訂正コード語数(ecwlenmax)を得る
+	 * Obtain the number of RS block size types (nrsb),
+	 * the maximum number of data code words in an RS block (dwlenmax),
+	 * and the number of error correction code words (ecwlenmax)
 	 */
 	nrsb = qr_vertable[qr->param.version].ecl[qr->param.eclevel].nrsb;
 	/*rsb = qr_vertable[qr->param.version].ecl[qr->param.eclevel].rsb;*/
@@ -1593,63 +1579,61 @@ qrMakeCodeWord(QRCode *qr)
 	dwlenmax = rsb[nrsb-1].datawords;
 	ecwlenmax = rsb[nrsb-1].totalwords - rsb[nrsb-1].datawords;
 	/*
-	 * 各RSブロックから順にデータコード語を取り出し
-	 * コード語領域(qr->codeword)に追加する
+	 * Extract the data codeword from each RS block in order
+	 * add it to the codeword area (qr->codeword)
 	 */
 	cwtop = 0;
 	for (i = 0; i < dwlenmax; i++) {
 		pos = i;
 		/*
-		 * RSブロックのサイズごとに処理を行う
+		 * Perform processing for each RS block size
 		 */
 		for (j = 0; j < nrsb; j++) {
 			dwlen = rsb[j].datawords;
 			/*
-			 * 同じサイズのRSブロックは順に処理する
+			 * RS blocks of the same size are processed in order.
 			 */
 			for (k = 0; k < rsb[j].rsbnum; k++) {
 				/*
-				 * 各RSブロックのiバイトめのデータ
-				 * コード語をコード語領域に追加する
-				 * (すでにすべてのデータコード語を
-				 * 取り出したRSブロックは飛ばす)
+				 * Add the i-th byte of data
+				 * of each RS block to the code word area
+				 * (skip RS blocks that have already extracted all data code words)
 				 */
 				if (i < dwlen) {
 					qr->codeword[cwtop++] = qr->dataword[pos];
 				}
 				/*
-				 * 次のRSブロックのiバイトめに進む
+				 * Go to the i-th byte of the next RS block
 				 */
 				pos += dwlen;
 			}
 		}
 	}
 	/*
-	 * 各RSブロックから順に誤り訂正コード語を取り出し
-	 * コード語領域(qr->codeword)に追加する
+	 * Extract the error-correcting codeword from each RS block in turn
+	 * add it to the codeword area (qr->codeword)
 	 */
 	for (i = 0; i < ecwlenmax; i++) {
 		pos = i;
 		/*
-		 * RSブロックのサイズごとに処理を行う
+		 * Perform processing for each RS block size
 		 */
 		for (j = 0; j < nrsb; j++) {
 			ecwlen = rsb[j].totalwords - rsb[j].datawords;
 			/*
-			 * 同じサイズのRSブロックは順に処理する
+			 * RS blocks of the same size are processed in order.
 			 */
 			for (k = 0; k < rsb[j].rsbnum; k++) {
 				/*
-				 * 各RSブロックのiバイトめの誤り訂正
-				 * コード語をコード語領域に追加する
-				 * (すでにすべての誤り訂正コード語を
-				 * 取り出したRSブロックは飛ばす)
+				 * Add the i-th byte of error correction
+				 * codeword to the codeword area
+				 * (skip RS blocks that have already removed all error correction codewords)
 				 */
 				if (i < ecwlen) {
 					qr->codeword[cwtop++] = qr->ecword[pos];
 				}
 				/*
-				 * 次のRSブロックのiバイトめに進む
+				 * Go to the i-th byte of the next RS block
 				 */
 				pos += ecwlen;
 			}
@@ -1661,7 +1645,7 @@ qrMakeCodeWord(QRCode *qr)
 }
 
 /*
- * シンボルを初期化し、機能パターンを配置する
+ * Initialize symbols and place functional patterns
  */
 static int
 qrFillFunctionPattern(QRCode *qr)
@@ -1669,11 +1653,11 @@ qrFillFunctionPattern(QRCode *qr)
 	int i, j, n, dim, xpos, ypos;
 
 	/*
-	 * シンボルの1辺の長さを求める
+	 * Find the length of one side of the symbol
 	 */
 	dim = qr_vertable[qr->param.version].dimension;
 	/*
-	 * シンボル全体をクリアする
+	 * Clear the entire symbol
 	 */
 	qrFree(qr->symbol);
 	qrFree(qr->_symbol);
@@ -1690,7 +1674,7 @@ qrFillFunctionPattern(QRCode *qr)
 		qr->symbol[i] = qr->_symbol + dim * i;
 	}
 	/*
-	 * 左上、右上、左下の隅に位置検出パターンを配置する
+	 * Place the finder pattern in the top left, top right, and bottom left corners
 	 */
 	for (i = 0; i < QR_DIM_FINDER; i++) {
 		for (j = 0; j < QR_DIM_FINDER; j++) {
@@ -1700,7 +1684,7 @@ qrFillFunctionPattern(QRCode *qr)
 		}
 	}
 	/*
-	 * 位置検出パターンの分離パターンを配置する
+	 * Place the separation pattern of the position finder pattern
 	 */
 	for (i = 0; i < QR_DIM_FINDER+1; i++) {
 		qr->symbol[i][QR_DIM_FINDER] = QR_MM_FUNC;
@@ -1711,14 +1695,14 @@ qrFillFunctionPattern(QRCode *qr)
 		qr->symbol[QR_DIM_FINDER][dim-1-i] = QR_MM_FUNC;
 	}
 	/*
-	 * 位置合わせパターンを配置する
+	 * Positioning the Alignment Pattern
 	 */
 	n = qr_vertable[qr->param.version].aplnum;
 	for (i = 0; i < n; i++) {
 		for (j = 0; j < n; j++) {
 			int x, y, x0, y0, xcenter, ycenter;
 			/*
-			 * 位置合わせパターンの中心と左上の座標を求める
+			 * Find the center and top left coordinates of the alignment pattern
 			 */
 			ycenter = qr_vertable[qr->param.version].aploc[i];
 			xcenter = qr_vertable[qr->param.version].aploc[j];
@@ -1726,7 +1710,7 @@ qrFillFunctionPattern(QRCode *qr)
 			x0 = xcenter - QR_DIM_ALIGN / 2;
 			if (qrIsFunc(qr, ycenter, xcenter)) {
 				/*
-				 * 位置検出パターンと重なるときは配置しない
+				 * Do not place if it overlaps with the position finder pattern
 				 */
 				continue;
 			}
@@ -1738,7 +1722,7 @@ qrFillFunctionPattern(QRCode *qr)
 		}
 	}
 	/*
-	 * タイミングパターンを配置する
+	 * Placing a Timing Pattern
 	 */
 	for (i = QR_DIM_FINDER; i < dim-1-QR_DIM_FINDER; i++) {
 		qr->symbol[i][QR_DIM_TIMING] = QR_MM_FUNC;
@@ -1749,7 +1733,7 @@ qrFillFunctionPattern(QRCode *qr)
 		}
 	}
 	/*
-	 * 形式情報の領域を予約する
+	 * Reserve space for format information
 	 */
 	for (i = 0; i < 2; i++) {
 		for (j = 0; j < QR_FIN_MAX; j++) {
@@ -1762,8 +1746,8 @@ qrFillFunctionPattern(QRCode *qr)
 	ypos = (qr_fmtblackpos.ypos + dim) % dim;
 	qr->symbol[ypos][xpos] |= QR_MM_FUNC;
 	/*
-	 * 型番情報が有効(型番7以上)なら
-	 * 型番情報の領域を予約する
+	 * If the model number information is valid (model number 7 or higher),
+	 * Reserve the area for the model number information
 	 */
 	if (qr_verinfo[qr->param.version] != -1L) {
 		for (i = 0; i < 2; i++) {
@@ -1779,7 +1763,7 @@ qrFillFunctionPattern(QRCode *qr)
 }
 
 /*
- * シンボルに符号化されたコード語を配置する
+ * Place the encoded codeword into the symbol
  */
 static int
 qrFillCodeWord(QRCode *qr)
@@ -1787,25 +1771,25 @@ qrFillCodeWord(QRCode *qr)
 	int i, j;
 
 	/*
-	 * シンボル右下隅から開始する
+	 * Start from the bottom right corner of the symbol
 	 */
 	qrInitPosition(qr);
 	/*
-	 * コード語領域のすべてのバイトについて...
+	 * For every byte in the codeword area...
 	 */
 	for (i = 0; i < qr_vertable[qr->param.version].totalwords; i++) {
 		/*
-		 * 最上位ビットから順に各ビットを調べ...
+		 * Check each bit starting from the most significant bit...
 		 */
 		for (j = 7; j >= 0; j--) {
 			/*
-			 * そのビットが1なら黒モジュールを置く
+			 * If the bit is 1, place a black module.
 			 */
 			if ((qr->codeword[i] & (1 << j)) != 0) {
 				qr->symbol[qr->ypos][qr->xpos] |= QR_MM_DATA;
 			}
 			/*
-			 * 次のモジュール配置位置に移動する
+			 * Move to the next module placement position
 			 */
 			qrNextPosition(qr);
 		}
@@ -1815,34 +1799,33 @@ qrFillCodeWord(QRCode *qr)
 }
 
 /*
- * モジュール配置の初期位置と配置方向を決める
+ * Determine the initial position and direction of module placement
  */
 static void
 qrInitPosition(QRCode *qr)
 {
 	/*
-	 * シンボルの右下隅から配置を始める
+	 * Start placement from the bottom right corner of the symbol
 	 */
 	qr->xpos = qr->ypos = qr_vertable[qr->param.version].dimension - 1;
 	/*
-	 * 最初の移動方向は左向き、次に上向き
+	 * First movement direction is left, then upwards
 	 */
 	qr->xdir = -1;
 	qr->ydir = -1;
 }
 
 /*
- * 次のモジュール配置位置を決める
+ * Decide where to place the next module
  */
 static void
 qrNextPosition(QRCode *qr)
 {
 	do {
 		/*
-		 * qr->xdir方向に1モジュール移動して
-		 * qr->xdirの向きを逆にする
-		 * 右に移動したときはqr->ydir方向にも
-		 * 1モジュール移動する
+		 * Move one module in the qr->xdir direction
+		 * Reverse the direction of qr->xdir
+		 * When moving to the right, also move one module in the qr->ydir direction
 		 */
 		qr->xpos += qr->xdir;
 		if (qr->xdir > 0) {
@@ -1850,11 +1833,11 @@ qrNextPosition(QRCode *qr)
 		}
 		qr->xdir = -qr->xdir;
 		/*
-		 * y方向にシンボルをはみ出すようなら
-		 * y方向ではなくx方向に2モジュール左に移動し、
-		 * かつqr->ydirの向きを逆にする
-		 * qr->xposが縦のタイミングパターン上なら
-		 * さらに1モジュール左に移動する
+		 * If the symbol overflows in the y direction,
+    	 * move it two modules to the left in the x direction instead of the y direction,
+	 	 * and reverse the direction of qr->ydir
+		 * If qr->xpos is on the vertical timing pattern,
+		 * move it one more module to the left
 		 */
 		if (qr->ypos < 0 || qr->ypos >= qr_vertable[qr->param.version].dimension) {
 			qr->ypos -= qr->ydir;
@@ -1865,14 +1848,14 @@ qrNextPosition(QRCode *qr)
 			}
 		}
 		/*
-		 * 新しい位置が機能パターン上なら
-		 * それをよけて次の候補位置を探す
+		 * If the new position is on the functional pattern,
+		 * move it aside and search for the next candidate position
 		 */
 	} while (qrIsFunc(qr, qr->ypos, qr->xpos));
 }
 
 /*
- * シンボルを最適なマスクパターンでマスクする
+ * Mask the symbol with the optimal mask pattern
  */
 static int
 qrSelectMaskPattern(QRCode *qr)
@@ -1882,23 +1865,22 @@ qrSelectMaskPattern(QRCode *qr)
 
 	if (qr->param.masktype >= 0) {
 		/*
-		 * マスクパターンが引数で指定されていたので
-		 * そのパターンでマスクして終了
+		 * A mask pattern was specified as an argument, so mask with that pattern and exit.
 		 */
 		return qrApplyMaskPattern(qr);
 	}
 	/*
-	 * すべてのマスクパターンを評価する
+	 * Evaluate all mask patterns
 	 */
 	xpenalty = -1L;
 	for (type = 0; type < QR_MPT_MAX; type++) {
 		/*
-		 * 当該マスクパターンでマスクして評価する
+		 * Mask with the mask pattern and evaluate
 		 */
 		qrApplyMaskPattern2(qr, type);
 		penalty = qrEvaluateMaskPattern(qr);
 		/*
-		 * 失点がこれまでより低かったら記録する
+		 * Record if the number of goals conceded is lower than before
 		 */
 		if (xpenalty == -1L || penalty < xpenalty) {
 			qr->param.masktype = type;
@@ -1906,13 +1888,13 @@ qrSelectMaskPattern(QRCode *qr)
 		}
 	}
 	/*
-	 * 失点が最低のパターンでマスクする
+	 * Mask with the pattern that will result in the least number of runs conceded
 	 */
 	return qrApplyMaskPattern(qr);
 }
 
 /*
- * 設定済みの参照子のマスクパターンでシンボルをマスクする
+ * Mask the symbol with the mask pattern of the configured reference
  */
 static int
 qrApplyMaskPattern(QRCode *qr)
@@ -1921,7 +1903,7 @@ qrApplyMaskPattern(QRCode *qr)
 }
 
 /*
- * 指定した参照子のマスクパターンでシンボルをマスクする
+ * Masks the symbol with the mask pattern of the specified reference.
  */
 static int
 qrApplyMaskPattern2(QRCode *qr, int type)
@@ -1936,20 +1918,19 @@ qrApplyMaskPattern2(QRCode *qr, int type)
 
 	dim = qr_vertable[qr->param.version].dimension;
 	/*
-	 * 以前のマスクパターンをクリアし、
-	 * 符号化済みデータを初期パターンとする
+	 * Clear the previous mask pattern and use the encoded data as the initial pattern.
 	 */
 	for (i = 0; i < dim; i++) {
 		for (j = 0; j < dim; j++) {
 			/*
-			 * 機能パターン領域の印字黒モジュールは残す
+			 * Printing black modules in the functional pattern area are left intact
 			 */
 			if (qrIsFunc(qr, i, j)) {
 				continue;
 			}
 			/*
-			 * 符号化データ領域は符号化データの
-			 * 黒モジュールを印字黒モジュールにする
+			 * The encoded data area is encoded data
+			 * Black modules are printed black modules	
 			 */
 			if (qrIsData(qr, i, j)) {
 				qr->symbol[i][j] |= QR_MM_BLACK;
@@ -1959,19 +1940,18 @@ qrApplyMaskPattern2(QRCode *qr, int type)
 		}
 	}
 	/*
-	 * i行j列のモジュールについて...
+	 * About the module in row i and column j...
 	 */
 	for (i = 0; i < dim; i++) {
 		for (j = 0; j < dim; j++) {
 			if (qrIsFunc(qr, i, j)) {
 				/*
-				 * 機能パターン領域(および形式情報、
-				 * 型番情報)はマスク対象から除外する
+				 * Functional pattern areas (and format information, model number information) are excluded from masking.
 				 */
 				continue;
 			}
 			/*
-			 * 指定された条件を満たすモジュールを反転する
+			 * Flip modules that meet the specified criteria
 			 */
 			if ((type == 0 && (i + j) % 2 == 0) ||
 				(type == 1 && i % 2 == 0) ||
@@ -1991,7 +1971,7 @@ qrApplyMaskPattern2(QRCode *qr, int type)
 }
 
 /*
- * マスクパターンを評価し評価値を返す
+ * Evaluates the mask pattern and returns the evaluation value.
  */
 static long
 qrEvaluateMaskPattern(QRCode *qr)
@@ -2000,30 +1980,30 @@ qrEvaluateMaskPattern(QRCode *qr)
 	long penalty;
 
 	/*
-	 * 評価値をpenaltyに積算する
-	 * マスクは符号化領域に対してのみ行うが
-	 * 評価はシンボル全体について行われる
+	 * The evaluation value is multiplied by the penalty.
+	 * Masking is done only for the coding area,
+	 * but evaluation is done for the entire symbol.
 	 */
 	penalty = 0L;
 	dim = qr_vertable[qr->param.version].dimension;
 	/*
-	 * 特徴: 同色の行/列の隣接モジュール
-	 * 評価条件: モジュール数 = (5＋i)
-	 * 失点: 3＋i
+	 * Characteristics: Adjacent modules in the same row/column
+	 * Evaluation criteria: Number of modules = (5+i)
+	 * Loss: 3+i
 	 */
 	for (i = 0; i < dim; i++) {
 		n = 0;
 		for (j = 0; j < dim; j++) {
 			if (j > 0 && qrIsBlack(qr, i, j) == qrIsBlack(qr, i, j-1)) {
 				/*
-				 * すぐ左と同色のモジュール
-				 * 同色列の長さを1増やす
+				 * Module of the same color as the one immediately to the left
+				 * Increase the length of the row of the same color by 1
 				 */
 				n++;
 			} else {
 				/*
-				 * 色が変わった
-				 * 直前で終わった同色列の長さを評価する
+				 * The color has changed. 
+				 * Evaluate the length of the same-colored sequence that just ended.
 				 */
 				if (n >= 5) {
 					penalty += (long)(3 + (n - 5));
@@ -2032,8 +2012,8 @@ qrEvaluateMaskPattern(QRCode *qr)
 			}
 		}
 		/*
-		 * 列が尽きた
-		 * 直前で終わった同色列の長さを評価する
+		 * The sequence is over
+		 * Evaluate the length of the same-color sequence that just ended
 		 */
 		if (n >= 5) {
 			penalty += (long)(3 + (n - 5));
@@ -2044,14 +2024,14 @@ qrEvaluateMaskPattern(QRCode *qr)
 		for (j = 0; j < dim; j++) {
 			if (j > 0 && qrIsBlack(qr, j, i) == qrIsBlack(qr, j-1, i)) {
 				/*
-				 * すぐ上と同色のモジュール
-				 * 同色列の長さを1増やす
+				 * Module of the same color as the one immediately above
+				 * Increase the length of the row of the same color by 1
 				 */
 				n++;
 			} else {
 				/*
-				 * 色が変わった
-				 * 直前で終わった同色列の長さを評価する
+				 * The color has changed. 
+				 * Evaluate the length of the same-colored sequence that just ended.
 				 */
 				if (n >= 5) {
 					penalty += (long)(3 + (n - 5));
@@ -2060,17 +2040,17 @@ qrEvaluateMaskPattern(QRCode *qr)
 			}
 		}
 		/*
-		 * 列が尽きた
-		 * 直前で終わった同色列の長さを評価する
+		 * The sequence is over
+		 * Evaluate the length of the same-color sequence that just ended
 		 */
 		if (n >= 5) {
 			penalty += (long)(3 + (n - 5));
 		}
 	}
 	/*
-	 * 特徴: 同色のモジュールブロック
-	 * 評価条件: ブロックサイズ = 2×2
-	 * 失点: 3
+	 * Characteristics: Module blocks of the same color
+	 * Evaluation conditions: Block size = 2×2
+	 * Losses: 3
 	 */
 	for (i = 0; i < dim - 1; i++) {
 		for (j = 0; j < dim - 1; j++) {
@@ -2079,19 +2059,19 @@ qrEvaluateMaskPattern(QRCode *qr)
 				qrIsBlack(qr, i, j) == qrIsBlack(qr, i+1, j+1))
 			{
 				/*
-				 * 2×2の同色のブロックがあった
+				 * There was a 2x2 block of the same color.
 				 */
 				penalty += 3L;
 			}
 		}
 	}
 	/*
-	 * 特徴: 行/列における1:1:3:1:1比率(暗:明:暗:明:暗)のパターン
-	 * に続いて比率4の幅以上の明パターン
-	 * 失点: 40
-	 * 前後はシンボル境界外か明モジュールである必要がある
-	 * 2:2:6:2:2のようなパターンにも失点を与えるべきかは
-	 * JIS規格からは読み取れない。ここでは与えていない
+	 * Characteristics: A pattern with a 1:1:3:1:1 ratio (dark:light:dark:light:dark) in rows/columns
+	 * Followed by a light pattern with a width of 4 or more
+	 * Points lost: 40
+	 * The pattern before and after must be outside the symbol boundary or a light module
+	 * Whether or not a pattern like 2:2:6:2:2 should also be penalized
+	 * It is not clear from the JIS standard. It is not given here
 	 */
 	for (i = 0; i < dim; i++) {
 		for (j = 0; j < dim - 6; j++) {
@@ -2113,7 +2093,7 @@ qrEvaluateMaskPattern(QRCode *qr)
 					}
 				}
 				/*
-				 * パターンがあった
+				 * There was a pattern
 				 */
 				if (l) {
 					penalty += 40L;
@@ -2142,7 +2122,7 @@ qrEvaluateMaskPattern(QRCode *qr)
 					}
 				}
 				/*
-				 * パターンがあった
+				 * There was a pattern
 				 */
 				if (l) {
 					penalty += 40L;
@@ -2151,9 +2131,9 @@ qrEvaluateMaskPattern(QRCode *qr)
 		}
 	}
 	/*
-	 * 特徴: 全体に対する暗モジュールの占める割合
-	 * 評価条件: 50±(5×k)%〜50±(5×(k＋1))%
-	 * 失点: 10×k
+	 * Characteristics: Percentage of dark modules in the total
+	 * Evaluation conditions: 50±(5×k)% to 50±(5×(k＋1))%
+	 * Loss: 10×k
 	 */
 	m = 0;
 	n = 0;
@@ -2170,7 +2150,7 @@ qrEvaluateMaskPattern(QRCode *qr)
 }
 
 /*
- * シンボルに形式情報と型番情報を配置する
+ * Placing model and part number information on the symbol
  */
 static int
 qrFillFormatInfo(QRCode *qr)
@@ -2180,16 +2160,15 @@ qrFillFormatInfo(QRCode *qr)
 
 	dim = qr_vertable[qr->param.version].dimension;
 	/*
-	 * 形式情報を計算する
-	 * 誤り訂正レベル2ビット(L:01, M:00, Q:11, H:10)と
-	 * マスクパターン参照子3ビットからなる計5ビットに
-	 * Bose-Chaudhuri-Hocquenghem(15,5)符号による
-	 * 誤り訂正ビット10ビットを付加して15ビットとする
-	 * (5ビットをxの次数14〜10の多項式係数とみなして
-	 * 多項式x^10+x^8+x^5+x^4+x^2+x+1(係数10100110111)
-	 * で除算した剰余10ビットを誤り訂正ビットとする)
-	 * さらにすべてのビットがゼロにならないように
-	 * 101010000010010(0x5412)とXORをとる
+	 * Calculate the format information
+	 * 2 bits of error correction level (L:01, M:00, Q:11, H:10)
+	 * 3 bits of mask pattern reference code are used for a total of 5 bits
+	 * Using Bose-Chaudhuri-Hocquenghem (15,5) code
+	 * 10 error correction bits are added to make 15 bits
+	 * (The 5 bits are treated as polynomial coefficients of degree 14 to 10 of x
+	 * Polynomial x^10+x^8+x^5+x^4+x^2+x+1 (coefficient 10100110111)
+	 * Divide by and the 10 bits of remainder are used as error correction bits)
+	 * Furthermore, XOR with 101010000010010 (0x5412) so that all bits do not become zero
 	 */
 	fmt = ((qr->param.eclevel ^ 1) << 3) | qr->param.masktype;
 	modulo = fmt << 10;
@@ -2201,7 +2180,7 @@ qrFillFormatInfo(QRCode *qr)
 	}
 	fmt = ((fmt << 10) + modulo) ^ 0x5412;
 	/*
-	 * 形式情報をシンボルに配置する
+	 * Putting formatting information on symbols
 	 */
 	for (i = 0; i < 2; i++) {
 		for (j = 0; j < QR_FIN_MAX; j++) {
@@ -2217,8 +2196,8 @@ qrFillFormatInfo(QRCode *qr)
 	ypos = (qr_fmtblackpos.ypos + dim) % dim;
 	qr->symbol[ypos][xpos] |= QR_MM_BLACK;
 	/*
-	 * 型番情報が有効(型番7以上)なら
-	 * 型番情報をシンボルに配置する
+	 * If the model number information is valid (model number 7 or higher),
+	 * Place the model number information on the symbol
 	 */
 	v = qr_verinfo[qr->param.version];
 	if (v != -1L) {
@@ -2238,9 +2217,8 @@ qrFillFormatInfo(QRCode *qr)
 }
 
 /*
- * データコード語の余剰ビットを埋める処理から
- * シンボルに形式情報と型番情報を配置する処理までを
- * 一括で実行する
+ * It performs all the processes in one go, from filling in the surplus bits of the data code word
+ * to placing format information and model number information in the symbol
  */
 QR_API int
 qrFinalize(QRCode *qr)
@@ -2263,7 +2241,7 @@ qrFinalize(QRCode *qr)
 	}
 
 	/*
-	 * 型番自動選択
+	 * Automatic model number selection
 	 */
 	if (qr->param.version == -1) {
 		int maxlen, delta;
@@ -2292,7 +2270,7 @@ qrFinalize(QRCode *qr)
 	}
 
 	/*
-	 * データコード語に入力データを登録する
+	 * Register input data in the data code word
 	 */
 	if (qr->source != NULL) {
 		qr_byte_t *source;
@@ -2316,7 +2294,7 @@ qrFinalize(QRCode *qr)
 	}
 
 	/*
-	 * シンボルを生成する
+	 * generate a symbol
 	 */
 	while (funcs[i] && ret == TRUE) {
 		ret = funcs[i++](qr);
@@ -2332,7 +2310,7 @@ qrFinalize(QRCode *qr)
 }
 
 /*
- * Finalze済か判定する
+ * Determine if it has been finalized
  */
 QR_API int
 qrIsFinalized(const QRCode *qr)
@@ -2344,7 +2322,7 @@ qrIsFinalized(const QRCode *qr)
 }
 
 /*
- * データをセット済か判定する
+ * Determine if data has been set
  */
 QR_API int qrHasData(const QRCode *qr)
 {
@@ -2355,8 +2333,7 @@ QR_API int qrHasData(const QRCode *qr)
 }
 
 /*
- * 構造的連接の最後のQRコードオブジェクトの
- * 仮構造的連接ヘッダを正しい情報で上書きし、Finalizeする
+ * Overwrite the temporary structural link header of the last QR code object in the structural link with the correct information and finalize it.
  */
 QR_API int
 qrsFinalize(QRStructured *st)
@@ -2396,7 +2373,7 @@ qrsFinalize(QRStructured *st)
 }
 
 /*
- * Finalze済か判定する
+ * Determine if it has been finalized
  */
 QR_API int
 qrsIsFinalized(const QRStructured *st)
@@ -2408,7 +2385,7 @@ qrsIsFinalized(const QRStructured *st)
 }
 
 /*
- * データをセット済か判定する
+ * Determine if data has been set
  */
 QR_API int qrsHasData(const QRStructured *st)
 {
@@ -2419,7 +2396,7 @@ QR_API int qrsHasData(const QRStructured *st)
 }
 
 /*
- * 生成されたQRコードシンボルを fmt で指定した形式に変換する
+ * Convert the generated QR code symbol to the format specified by fmt 
  */
 QR_API qr_byte_t *
 qrGetSymbol(QRCode *qr, int fmt, int sep, int mag, int *size)
@@ -2457,7 +2434,7 @@ qrGetSymbol(QRCode *qr, int fmt, int sep, int mag, int *size)
 }
 
 /*
- * 生成されたQRコードシンボルをストリーム fp に書き込む
+ * Write the generated QR code symbol to the stream fp 
  */
 QR_API int
 qrOutputSymbol(QRCode *qr, FILE *fp, int fmt, int sep, int mag)
@@ -2491,7 +2468,7 @@ qrOutputSymbol(QRCode *qr, FILE *fp, int fmt, int sep, int mag)
 }
 
 /*
- * 生成されたQRコードシンボルをファイル pathname に書き込む
+ * Write the generated QR code symbol to the file pathname
  */
 QR_API int
 qrOutputSymbol2(QRCode *qr, const char *pathname, int fmt, int sep, int mag)
@@ -2517,7 +2494,7 @@ qrOutputSymbol2(QRCode *qr, const char *pathname, int fmt, int sep, int mag)
 }
 
 /*
- * 生成されたQRコードシンボルすべてを fmt で指定した形式に変換する
+ * Convert all generated QR Code symbols to the format specified by fmt
  */
 QR_API qr_byte_t *
 qrsGetSymbols(QRStructured *st, int fmt, int sep, int mag, int order, int *size)
@@ -2550,7 +2527,7 @@ qrsGetSymbols(QRStructured *st, int fmt, int sep, int mag, int order, int *size)
 }
 
 /*
- * 生成されたQRコードシンボルすべてをストリーム fp に書き込む
+ * Write all generated QR code symbols to the stream fp
  */
 QR_API int
 qrsOutputSymbols(QRStructured *st, FILE *fp, int fmt, int sep, int mag, int order)
@@ -2585,7 +2562,7 @@ qrsOutputSymbols(QRStructured *st, FILE *fp, int fmt, int sep, int mag, int orde
 }
 
 /*
- * 生成されたQRコードシンボルすべてをファイル pathname に書き込む
+ * Write all generated QR Code symbols to the file pathname
  */
 QR_API int
 qrsOutputSymbols2(QRStructured *st, const char *pathname, int fmt, int sep, int mag, int order)

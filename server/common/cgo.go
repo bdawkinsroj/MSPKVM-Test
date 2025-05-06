@@ -7,7 +7,7 @@ package common
 */
 import "C"
 import (
-	"NanoKVM-Server/config"
+	"MSPKVM-Server/config"
 	"strings"
 	"sync"
 	"unsafe"

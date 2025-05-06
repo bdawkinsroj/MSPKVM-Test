@@ -28,20 +28,20 @@ const en = {
       loginButtonText: 'Login',
       tips: {
         reset1:
-          'To reset the passwords, press and hold the BOOT button on the NanoKVM for 10 seconds.',
+          'To reset the passwords, press and hold the BOOT button on the MSPKVM for 10 seconds.',
         reset2: 'For detailed steps, please consult this document:',
         reset3: 'Web default account:',
         reset4: 'SSH default account:',
         change1: 'Please note that this action will change the following passwords:',
         change2: 'Web login password',
         change3: 'System root password (SSH login password)',
-        change4: 'To reset the passwords, press and hold the BOOT button on the NanoKVM.'
+        change4: 'To reset the passwords, press and hold the BOOT button on the MSPKVM.'
       }
     },
     wifi: {
       title: 'Wi-Fi',
-      description: 'Configure Wi-Fi for NanoKVM',
-      success: 'Please check the network status of NanoKVM and visit the new IP address.',
+      description: 'Configure Wi-Fi for MSPKVM',
+      success: 'Please check the network status of MSPKVM and visit the new IP address.',
       failed: 'Operation failed, please try again.',
       confirmBtn: 'Ok',
       finishBtn: 'Finished'
@@ -90,10 +90,10 @@ const en = {
       resetHid: 'Reset HID',
       hidOnly: {
         title: 'HID-Only mode',
-        desc: "If your mouse and keyboard stop responding and resetting HID doesn't help, it could be a compatibility issue between the NanoKVM and the device. Try to enable HID-Only mode for better compatibility.",
+        desc: "If your mouse and keyboard stop responding and resetting HID doesn't help, it could be a compatibility issue between the MSPKVM and the device. Try to enable HID-Only mode for better compatibility.",
         tip1: 'Enabling HID-Only mode will unmount the virtual U-disk and virtual network',
         tip2: 'In HID-Only mode, image mounting is disabled',
-        tip3: 'NanoKVM will automatically reboot after switching modes',
+        tip3: 'MSPKVM will automatically reboot after switching modes',
         enable: 'Enable HID-Only mode',
         disable: 'Disable HID-Only mode'
       }
@@ -109,18 +109,18 @@ const en = {
       refresh: 'Refresh the image list',
       tips: {
         title: 'How to upload',
-        usb1: 'Connect the NanoKVM to your computer via USB.',
+        usb1: 'Connect the MSPKVM to your computer via USB.',
         usb2: 'Ensure that the virtual disk is mounted (Settings - Virtual Disk).',
         usb3: 'Open the virtual disk on your computer and copy the image file to the root directory of the virtual disk.',
-        scp1: 'Make sure the NanoKVM and your computer are on the same local network.',
-        scp2: 'Open a terminal on your computer and use the SCP command to upload the image file to the /data directory on the NanoKVM.',
-        scp3: 'Example: scp your-image-path root@your-nanokvm-ip:/data',
+        scp1: 'Make sure the MSPKVM and your computer are on the same local network.',
+        scp2: 'Open a terminal on your computer and use the SCP command to upload the image file to the /data directory on the MSPKVM.',
+        scp3: 'Example: scp your-image-path root@your-mspkvm-ip:/data',
         tfCard: 'TF Card',
         tf1: 'This method is supported on Linux system',
-        tf2: 'Get TF card from the NanoKVM (for the FULL version, disassemble the case first).',
+        tf2: 'Get TF card from the MSPKVM (for the FULL version, disassemble the case first).',
         tf3: 'Insert the TF card into a card reader and connect it to your computer.',
         tf4: 'Copy the image file to the /data directory on the TF card.',
-        tf5: 'Insert the TF card into the NanoKVM.'
+        tf5: 'Insert the TF card into the MSPKVM.'
       }
     },
     script: {
@@ -138,7 +138,7 @@ const en = {
     },
     terminal: {
       title: 'Terminal',
-      nanokvm: 'NanoKVM Terminal',
+      mspkvm: 'MSPKVM Terminal',
       serial: 'Serial Port Terminal',
       serialPort: 'Serial Port',
       serialPortPlaceholder: 'Please enter the serial port',
@@ -184,14 +184,14 @@ const en = {
     settings: {
       title: 'Settings',
       about: {
-        title: 'About NanoKVM',
+        title: 'About MSPKVM',
         information: 'Information',
         ip: 'IP',
         mdns: 'mDNS',
         application: 'Application Version',
-        applicationTip: 'NanoKVM web application version',
+        applicationTip: 'MSPKVM web application version',
         image: 'Image Version',
-        imageTip: 'NanoKVM system image version',
+        imageTip: 'MSPKVM system image version',
         deviceKey: 'Device Key',
         community: 'Community',
         hostname: 'Hostname',
@@ -259,7 +259,7 @@ const en = {
         network: 'Virtual Network',
         networkDesc: 'Mount virtual network card on the remote host',
         reboot: 'Reboot',
-        rebootDesc: 'Are you sure you want to reboot NanoKVM?',
+        rebootDesc: 'Are you sure you want to reboot MSPKVM?',
         okBtn: 'Yes',
         cancelBtn: 'No'
       },
@@ -282,8 +282,8 @@ const en = {
         download: 'Download the',
         package: 'installation package',
         unzip: 'and unzip it',
-        upTailscale: 'Upload tailscale to NanoKVM directory /usr/bin/',
-        upTailscaled: 'Upload tailscaled to NanoKVM directory /usr/sbin/',
+        upTailscale: 'Upload tailscale to MSPKVM directory /usr/bin/',
+        upTailscaled: 'Upload tailscaled to MSPKVM directory /usr/sbin/',
         refresh: 'Refresh current page',
         notLogin:
           'The device has not been bound yet. Please login and bind this device to your account.',

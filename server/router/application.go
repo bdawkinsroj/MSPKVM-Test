@@ -1,8 +1,8 @@
 package router
 
 import (
-	"NanoKVM-Server/middleware"
-	"NanoKVM-Server/service/application"
+	"MSPKVM-Server/middleware"
+	"MSPKVM-Server/service/application"
 
 	"github.com/gin-gonic/gin"
 )

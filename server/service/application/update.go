@@ -13,8 +13,8 @@ import (
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 
-	"NanoKVM-Server/proto"
-	"NanoKVM-Server/utils"
+	"MSPKVM-Server/proto"
+	"MSPKVM-Server/utils"
 )
 
 const (
@@ -35,7 +35,7 @@ func (s *Service) Update(c *gin.Context) {
 	// Sleep for a second before restarting the device
 	time.Sleep(1 * time.Second)
 
-	_ = exec.Command("sh", "-c", "/etc/init.d/S95nanokvm restart").Run()
+	_ = exec.Command("sh", "-c", "/etc/init.d/S95mspkvm restart").Run()
 }
 
 func update() error {

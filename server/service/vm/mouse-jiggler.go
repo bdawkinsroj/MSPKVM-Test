@@ -1,8 +1,8 @@
 package vm
 
 import (
-	"NanoKVM-Server/proto"
-	"NanoKVM-Server/service/vm/jiggler"
+	"MSPKVM-Server/proto"
+	"MSPKVM-Server/service/vm/jiggler"
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"

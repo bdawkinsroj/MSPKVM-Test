@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { MenuItem } from '@/components/menu-item.tsx';
 
-import { Nanokvm } from './nanokvm';
+import { MSPkvm } from './mspkvm';
 import { SerialPort } from './serial-port';
 
 export const Terminal = () => {

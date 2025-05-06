@@ -1,14 +1,14 @@
 /**
- * 待解决的问题:
- * // 分辨率跟随输出
- * // 自动切换分辨率
- * // HDMI分辨率问题
- * // H264输入空图,VENC容易炸问题
- * // MJPEG/H264切换时卡退
- * // 再加一条手动清空全部内存
- * // deinit时free全部内存
- * // free 错内存时会炸的问题
- */
+* Problems to be solved:
+* // Resolution follows output
+* // Automatic resolution switching
+* // HDMI resolution problem
+* // H264 input empty image, VENC easy to explode
+* // Card exit when switching between MJPEG/H264
+* // Add another line to manually clear all memory
+* // Free all memory during deinit
+* // Crash when freeing the wrong memory
+*/
 #include "kvm_vision.h"
 
 #define default_venc_chn        1
@@ -42,7 +42,7 @@
 #define hdmi_state_path         "/proc/lt_int"
 #define watchdog_mode_path      "/etc/kvm/watchdog"
 #define watchdog_temp_path      "/tmp/watchdog"
-#define watchdog_file           "/tmp/nanokvm_wd"
+#define watchdog_file           "/tmp/mspkvm_wd"
 
 #define LT6911_ADDR 	0x2B
 #define LT6911_READ 	0xFF
@@ -50,7 +50,7 @@
 
 pthread_mutex_t vi_mutex;
 
-static char NanoKVM_edit[] = {
+static char MSPKVM_edit[] = {
 	0x00,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x00,0x41,0x0C,0x33,0xC2,0x66,0xBA,0x00,0x00,
 	0x2B,0x1F,0x01,0x04,0xA5,0x50,0x22,0x78,0x3B,0xCC,0xE5,0xAB,0x51,0x48,0xA6,0x26,
 	0x0C,0x50,0x54,0xBF,0xEF,0x00,0xD1,0xC0,0xB3,0x00,0x95,0x00,0x81,0x80,0x81,0x40,
@@ -837,11 +837,11 @@ void lt6911_write_edid(void)
 	lt6911_write_reg(0x5A, 0x82);
 
 	for(i = 0; i < 16; i++){
-		// 写wren命令(为一个pulse，此时不需要考虑wrrd_mode，spi_paddr[1:0]的值)
+		// Write the wren command (for one pulse, the values ​​of wrrd_mode and spi_paddr[1:0] do not need to be considered at this time)
 		lt6911_write_reg(0x5A, 0x86);
 		lt6911_write_reg(0x5A, 0x82);
 
-		// 配置spi_len[3:0]= 15，可配置，spi内部加1，即配置一次写入16个字节
+		//Configure spi_len[3:0] = 15, which is configurable. spi internally adds 1, that is, configure to write 16 bytes at a time
 		lt6911_write_reg(0x5E, 0xEF);
 		lt6911_write_reg(0x5A, 0xA2);
 		lt6911_write_reg(0x5A, 0x82);
@@ -850,7 +850,7 @@ void lt6911_write_edid(void)
 
 		if(i < 8) {
 			for(j = 0; j < 16; j++){
-				lt6911_write_reg(0x59, NanoKVM_edit[i*16+j]);
+				lt6911_write_reg(0x59, MSPKVM_edit[i*16+j]);
 			}
 		} else {
 			for(j = 0; j < 16; j++){
@@ -858,7 +858,7 @@ void lt6911_write_edid(void)
 			}
 		}
 
-		// 把fifo数据写到flash(当wrrd_mode = 1，spi_paddr= 2’b10,addr[23:0](地址在写入过程中需要保持不变)准备好的情况下，给一个spi_sta的pulse，就开始写入flash)
+		// Write the fifo data to the flash (when wrrd_mode = 1, spi_paddr = 2'b10, addr[23:0] (the address needs to remain unchanged during the writing process) is ready, give a spi_sta pulse and start writing to the flash)
 		lt6911_write_reg(0x5B, 0x00);
 		lt6911_write_reg(0x5C, 0x21);
 		lt6911_write_reg(0x5D, i*16);
@@ -1586,8 +1586,8 @@ void set_venc_auto_recyc(uint8_t _enable)
 
 /**********************************************************************************
  * @name    kvmv_read_img
- * @author  Sipeed BuGu
- * @date    2024/10/25
+ * @author  MSP Power Tools
+ * @date    2025/5/6
  * @version R1.0
  * @brief   Acquire the encoded image with auto init
  * @param	_width				@input: 	Output image width

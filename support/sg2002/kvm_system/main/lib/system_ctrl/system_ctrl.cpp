@@ -10,7 +10,7 @@ void gen_hostapd_conf(char* ap_ssid)
 {
 	char file_data[300] = {0};
 	FILE * fp;
-	sprintf(file_data, "ctrl_interface=/var/run/hostapd\nctrl_interface_group=0\nssid=NanoKVM\nhw_mode=g\nchannel=1\nbeacon_int=100\ndtim_period=2\nmax_num_sta=255\nrts_threshold=-1\nfragm_threshold=-1\nmacaddr_acl=0\nauth_algs=3\nwpa=2\nwpa_passphrase=%s\nieee80211n=1\n", ap_ssid);
+	sprintf(file_data, "ctrl_interface=/var/run/hostapd\nctrl_interface_group=0\nssid=MSPKVM\nhw_mode=g\nchannel=1\nbeacon_int=100\ndtim_period=2\nmax_num_sta=255\nrts_threshold=-1\nfragm_threshold=-1\nmacaddr_acl=0\nauth_algs=3\nwpa=2\nwpa_passphrase=%s\nieee80211n=1\n", ap_ssid);
 	fp = fopen("/etc/hostapd.conf", "w");
 	fwrite(file_data, sizeof(file_data) , 1, fp );
 	fclose(fp);
@@ -68,7 +68,7 @@ uint8_t wifi_connected(void)
 void kvm_start_wifi_config_process(void)
 {
 	if(kvm_sys_state.wifi_config_process == -1){
-		// printf("[kvmw]开始配置wifi\n");
+		// printf("[kvmw]Start configuring wifi\n");
 		kvm_sys_state.wifi_config_process = 0;
 		kvm_sys_state.sub_page = 0;
 	}
@@ -80,14 +80,14 @@ void kvm_wifi_web_config_process()
 		system("rm /kvmapp/kvm/wifi_try_connect");
 		system("/etc/init.d/S30wifi restart");
 		kvm_sys_state.wifi_config_process = 3;
-		// 尝试连接wifi
+		// Try to connect to wifi
 		if(kvm_sys_state.wifi_config_process == 3){
 			// time::sleep_ms(WIFI_CONNECTION_DELAY);
 			if(wifi_connected()){
-				// 连上了
+				// Connected
 				kvm_sys_state.wifi_config_process = -1;
 			} else {
-				// 没连上
+				// Not connected
 				kvm_sys_state.wifi_config_process = 0;
 			}
 		}
@@ -103,7 +103,7 @@ void kvm_wifi_config_process()
 		case -1:
 			// printf("[kvms]Not in the process of configuring WiFi\n");
 			break;
-		case 0: // 启动wifi
+		case 0: // Start wifi
 			srand((unsigned)time::time_ms());
 			for(temp = 0; temp < 4; temp++){
 				do{
@@ -116,20 +116,20 @@ void kvm_wifi_config_process()
 			kvm_sys_state.wifi_ap_pass[8] = '\0';
 
 			sprintf(cmd, "echo %s > /kvmapp/kvm/ap.pass", kvm_sys_state.wifi_ap_pass);
-			system("echo NanoKVM > /kvmapp/kvm/ap.ssid");
+			system("echo MSPKVM > /kvmapp/kvm/ap.ssid");
 			system(cmd);
 			system("/etc/init.d/S30wifi ap");
 
 			kvm_sys_state.wifi_config_process = 1;
 			kvm_sys_state.sub_page = 1;
 			break;
-		case 1: // 等待设备连接
+		case 1: // Waiting for device to connect
 			if(sta_connect_ap()){
 				kvm_sys_state.wifi_config_process = 2;
 				kvm_sys_state.sub_page = 3;
 			}
 			break;
-		case 2: // 等待输入帐号密码
+		case 2: // Waiting for account and password input
 			if(ssid_pass_ok()){
 				system("rm /kvmapp/kvm/wifi_try_connect");
 				system("/etc/init.d/S30wifi restart");
@@ -137,15 +137,15 @@ void kvm_wifi_config_process()
 				kvm_sys_state.sub_page = 5;
 			}
 			break;
-		case 3: // 尝试连接wifi
+		case 3: // Try to connect to wifi
 			time::sleep_ms(WIFI_CONNECTION_DELAY);
 			if(wifi_connected()){
-				// 连上了
+				// Connected
 				kvm_sys_state.wifi_config_process = -1;
 				kvm_sys_state.page = 0;
 				kvm_sys_state.sub_page = 0;
 			} else {
-				// 没连上
+				// Not connected
 				kvm_sys_state.wifi_config_process = 0;
 				kvm_sys_state.sub_page = 0;
 			}
@@ -171,7 +171,7 @@ uint8_t kvm_reset_password(void)
 	time::sleep_ms(10);
     fputs("sync\n", fp);
 	time::sleep_ms(10);
-    fputs("exit\n", fp); // 退出 bash
+    fputs("exit\n", fp); // quit bash
 
     if (pclose(fp) == -1) {
         perror("pclose");

@@ -8,12 +8,12 @@ import (
 	"syscall"
 	"time"
 
-	"NanoKVM-Server/common"
-	"NanoKVM-Server/config"
-	"NanoKVM-Server/logger"
-	"NanoKVM-Server/middleware"
-	"NanoKVM-Server/router"
-	"NanoKVM-Server/service/vm/jiggler"
+	"MSPKVM-Server/common"
+	"MSPKVM-Server/config"
+	"MSPKVM-Server/logger"
+	"MSPKVM-Server/middleware"
+	"MSPKVM-Server/router"
+	"MSPKVM-Server/service/vm/jiggler"
 
 	"github.com/gin-gonic/gin"
 	cors "github.com/rs/cors/wrapper/gin"

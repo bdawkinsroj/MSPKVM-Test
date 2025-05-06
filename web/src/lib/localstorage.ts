@@ -1,19 +1,19 @@
 import { Resolution } from '@/types';
 
-const LANGUAGE_KEY = 'nano-kvm-language';
-const VIDEO_MODE_KEY = 'nano-kvm-vide-mode';
-const WEB_RESOLUTION_KEY = 'nano-kvm-web-resolution';
-const FPS_KEY = 'nano-kvm-fps';
-const QUALITY_KEY = 'nano-kvm-quality';
-const GOP_KEY = 'nano-kvm-gop';
-const FRAME_DETECT_KEY = 'nano-kvm-frame-detect';
-const MOUSE_STYLE_KEY = 'nano-kvm-mouse-style';
-const MOUSE_MODE_KEY = 'nano-kvm-mouse-mode';
-const SKIP_UPDATE_KEY = 'nano-kvm-check-update';
-const KEYBOARD_LAYOUT_KEY = 'nano-kvm-keyboard-layout';
-const SKIP_MODIFY_PASSWORD_KEY = 'nano-kvm-skip-modify-password';
-const MENU_DISABLED_ITEMS_KEY = 'nano-kvm-menu-disabled-items';
-const POWER_CONFIRM_KEY = 'nano-kvm-power-confirm';
+const LANGUAGE_KEY = 'msp-kvm-language';
+const VIDEO_MODE_KEY = 'msp-kvm-vide-mode';
+const WEB_RESOLUTION_KEY = 'msp-kvm-web-resolution';
+const FPS_KEY = 'msp-kvm-fps';
+const QUALITY_KEY = 'msp-kvm-quality';
+const GOP_KEY = 'msp-kvm-gop';
+const FRAME_DETECT_KEY = 'msp-kvm-frame-detect';
+const MOUSE_STYLE_KEY = 'msp-kvm-mouse-style';
+const MOUSE_MODE_KEY = 'msp-kvm-mouse-mode';
+const SKIP_UPDATE_KEY = 'msp-kvm-check-update';
+const KEYBOARD_LAYOUT_KEY = 'msp-kvm-keyboard-layout';
+const SKIP_MODIFY_PASSWORD_KEY = 'msp-kvm-skip-modify-password';
+const MENU_DISABLED_ITEMS_KEY = 'msp-kvm-menu-disabled-items';
+const POWER_CONFIRM_KEY = 'msp-kvm-power-confirm';
 
 type ItemWithExpiry = {
   value: string;

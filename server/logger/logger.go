@@ -4,7 +4,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"NanoKVM-Server/config"
+	"MSPKVM-Server/config"
 
 	"github.com/sirupsen/logrus"
 )

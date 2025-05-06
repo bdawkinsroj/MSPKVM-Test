@@ -70,12 +70,12 @@ main(int argc, char **argv)
 	}
 
 	/*
-	 * QRコードオブジェクトを生成し、コマンド行引数からパラメータと入力データを設定する
+	 * Create a QR code object and set parameters and input data from command line arguments.
 	 */
 	qr = qrGetParameter(argc, argv, &fmt, &sep, &mag, QRCMD_EXTRA_PARAM_C &ptr);
 
 	/*
-	 * データコード語をエンコードし、シンボルを配置する
+	 * Encode data code words and place symbols
 	 */
 	if (!qrCmdFinalize(qr)) {
 		ewritelnf("%s: %s", argv[0], qrCmdGetErrorInfo(qr));
@@ -84,12 +84,12 @@ main(int argc, char **argv)
 	}
 
 	/*
-	 * シンボルを出力する
+	 * output symbol
 	 */
 #ifdef QRCMD_STRUCTURED_APPEND
 	if (extra == -1) {
 		/*
-		 * 連番出力
+		 * Sequential number output
 		 */
 		int i;
 		for (i = 0; i < qr->num; i++) {
@@ -134,7 +134,7 @@ main(int argc, char **argv)
 /* {{{ qrShowHelp() */
 
 /*
- * 使用方法を表示する
+ * Show usage instructions
  */
 void
 qrShowHelp(void)
@@ -225,7 +225,7 @@ qrShowHelp(void)
 /* {{{ qrGetParameter() */
 
 /*
- * コマンド行引数からパラメータと入力データを設定し、出力ファイル名を取得する
+ * Set parameters and input data from command line arguments and get output file name
  */
 QRCMD_PTR_TYPE *
 qrGetParameter(int argc, char **argv,
@@ -244,20 +244,20 @@ qrGetParameter(int argc, char **argv,
 	int has_data = 0;
 
 	/*
-	 * 引数のパラメータを取得する
+	 * Get the argument parameters
 	 */
 	for (i = 1; i < argc; i++) {
 		ptr = argv[i];
 		if (!strcmp(ptr, "-?") || !strcasecmp(ptr, "-h") || !strcmp(ptr, "--help")) {
 			/*
-			 * 使用方法
+			 * How to use
 			 */
 			qrShowHelp();
 			exit(1);
 
 		} else if (!strcmp(ptr, "-V")) {
 			/*
-			 * バージョン
+			 * version
 			 */
 			writelnf("%s: QR Code Generator", QRCMD_PROG_NAME);
 			writelnf("qrcmd version: %s", QRCMD_PROG_VERSION);
@@ -266,7 +266,7 @@ qrGetParameter(int argc, char **argv,
 
 		} else if (QR_SHORT_OPT("-v") || QR_LONG_OPT("--version")) {
 			/*
-			 * 型番
+			 * Model number
 			 */
 			QR_GETOPT_NEXT();
 			if (*ptr < '0' || *ptr > '9') {
@@ -279,7 +279,7 @@ qrGetParameter(int argc, char **argv,
 
 		} else if (QR_SHORT_OPT("-m") || QR_LONG_OPT("--mode")) {
 			/*
-			 * 符号化モード
+			 * encoding mode
 			 */
 			QR_GETOPT_NEXT();
 			switch (*ptr) {
@@ -309,7 +309,7 @@ qrGetParameter(int argc, char **argv,
 
 		} else if (QR_SHORT_OPT("-e") || QR_LONG_OPT("--eclevel")) {
 			/*
-			 * 誤り訂正レベル
+			 * error correction level
 			 */
 			QR_GETOPT_NEXT();
 			switch (*ptr) {
@@ -335,7 +335,7 @@ qrGetParameter(int argc, char **argv,
 
 		} else if (QR_SHORT_OPT("-p") || QR_LONG_OPT("--pattern")) {
 			/*
-			 * マスクパターン種別
+			 * Mask pattern type
 			 */
 			QR_GETOPT_NEXT();
 			if (*ptr < '0' || *ptr > '9') {
@@ -348,7 +348,7 @@ qrGetParameter(int argc, char **argv,
 
 		} else if (QR_SHORT_OPT("-x") || QR_LONG_OPT("--magnify")) {
 			/*
-			 * ピクセル表示倍率
+			 * Pixel display magnification
 			 */
 			QR_GETOPT_NEXT();
 			if (*ptr < '0' || *ptr > '9') {
@@ -361,7 +361,7 @@ qrGetParameter(int argc, char **argv,
 
 		} else if (QR_SHORT_OPT("-s") || QR_LONG_OPT("--separator")) {
 			/*
-			 * 分離パターン幅
+			 * Separation pattern width
 			 */
 			QR_GETOPT_NEXT();
 			if (*ptr < '0' || *ptr > '9') {
@@ -374,7 +374,7 @@ qrGetParameter(int argc, char **argv,
 
 		} else if (QR_SHORT_OPT("-f") || QR_LONG_OPT("--format")) {
 			/*
-			 * 出力形式
+			 * Output form
 			 */
 			QR_GETOPT_NEXT();
 			if (!strcasecmp(ptr, "digit") || !strcasecmp(ptr, "01")) {
@@ -411,7 +411,7 @@ qrGetParameter(int argc, char **argv,
 
 		} else if (QR_SHORT_OPT("-o") || QR_LONG_OPT("--output")) {
 			/*
-			 * 出力ファイル名
+			 * Output file name
 			 */
 			QR_GETOPT_NEXT();
 			size_t pathlen;
@@ -429,7 +429,7 @@ qrGetParameter(int argc, char **argv,
 
 		} else if (QR_SHORT_OPT("-a") || QR_LONG_OPT("--maxnum")) {
 			/*
-			 * 最大シンボル数
+			 * Maximum number of symbols
 			 */
 			QR_GETOPT_NEXT();
 			if (*ptr < '0' || *ptr > '9') {
@@ -453,7 +453,7 @@ qrGetParameter(int argc, char **argv,
 
 		} else if (!strcmp(ptr, "--serial")) {
 			/*
-			 * 連番
+			 * Continuously
 			*/
 			if (*extra != 0) {
 				errx(1, "Serial image output and GIF animation output are exclusive.");
@@ -462,7 +462,7 @@ qrGetParameter(int argc, char **argv,
 
 		} else if (!strcmp(ptr, "--animation") || !strncmp(ptr, "--animation=", 12)) {
 			/*
-			 * GIFアニメ
+			 * GIF animation
 			*/
 			if (*extra != 0) {
 				errx(1, "Serial image output and GIF animation output are exclusive.");
@@ -490,7 +490,7 @@ qrGetParameter(int argc, char **argv,
 	}
 
 	/*
-	 * QRコードオブジェクトを初期化する
+	 * Initialize the QR code object
 	 */
 	qr = qrCmdInit(version, mode, eclevel, masktype, QRCMD_MAX_NUM_B &errcode);
 	if (qr == NULL) {
@@ -498,13 +498,13 @@ qrGetParameter(int argc, char **argv,
 	}
 
 	/*
-	 * 入力データを取得する
+	 * Get input data
 	 */
 	for (; i < argc; i++) {
 		ptr = argv[i];
 		if (QR_SHORT_OPT("-m") || QR_LONG_OPT("--mode")) {
 			/*
-			 * 符号化モードを上書き
+			 * Override encoding mode
 			 */
 			QR_GETOPT_NEXT();
 			switch (*ptr) {
@@ -535,7 +535,7 @@ qrGetParameter(int argc, char **argv,
 			FILE *fp;
 			int c;
 			/*
-			 * 入力データをファイルから読む
+			 * Read input data from a file
 			 */
 			QR_GETOPT_NEXT();
 			fp = fopen(ptr, "rb");
@@ -566,7 +566,7 @@ qrGetParameter(int argc, char **argv,
 			qr_byte_t source[QRCMD_SRC_MAX];
 			int srclen = 0;
 			/*
-			 * 入力データを引数から得る
+			 * Get input data from arguments
 			 */
 			srclen = strlen(ptr);
 			if (srclen == 0) {
@@ -587,7 +587,7 @@ qrGetParameter(int argc, char **argv,
 
 		} else {
 			/*
-			 * 未定義オプション
+			 * undefined option
 			 */
 			qrCmdDestroy(qr);
 			errx(1, "%s: %s", ptr, qrStrError(QR_ERR_INVALID_ARG));
@@ -595,7 +595,7 @@ qrGetParameter(int argc, char **argv,
 	}
 
 	/*
-	 * 入力データが空なら、標準入力から読む
+	 * If the input data is empty, read from standard input.
 	 */
 	if (!has_data) {
 		qr_byte_t source[QRCMD_SRC_MAX];

@@ -1,7 +1,7 @@
 package vm
 
 import (
-	"NanoKVM-Server/proto"
+	"MSPKVM-Server/proto"
 	"os/exec"
 
 	"github.com/gin-gonic/gin"

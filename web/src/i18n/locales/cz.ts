@@ -30,20 +30,20 @@ const cz = {
       loginButtonText: 'Přihlášení',
       tips: {
         reset1:
-          'To reset the passwords, pressing and holding the BOOT button on the NanoKVM for 10 seconds.',
+          'To reset the passwords, pressing and holding the BOOT button on the MSPKVM for 10 seconds.',
         reset2: 'For detailed steps, please consult this document:',
         reset3: 'Web default account:',
         reset4: 'SSH default account:',
         change1: 'Please note that this action will change the following passwords:',
         change2: 'Web login password',
         change3: 'System root password (SSH login password)',
-        change4: 'To reset the passwords, press and hold the BOOT button on the NanoKVM.'
+        change4: 'To reset the passwords, press and hold the BOOT button on the MSPKVM.'
       }
     },
     wifi: {
       title: 'Wi-Fi',
-      description: 'Configure Wi-Fi for NanoKVM',
-      success: 'Please check the network status of NanoKVM and visit the new IP address.',
+      description: 'Configure Wi-Fi for MSPKVM',
+      success: 'Please check the network status of MSPKVM and visit the new IP address.',
       failed: 'Operation failed, please try again.',
       confirmBtn: 'Ok',
       finishBtn: 'Finished'
@@ -97,18 +97,18 @@ const cz = {
         'V některých systémech je nutné před připojením obrazu vysunout virtuální disk na vzdáleném hostiteli.',
       tips: {
         title: 'Jak nahrát',
-        usb1: 'Připojte NanoKVM k vašemu počítači přes USB.',
+        usb1: 'Připojte MSPKVM k vašemu počítači přes USB.',
         usb2: 'Ujistěte se, že je virtuální disk připojen (Nastavení - Virtuální disk).',
         usb3: 'Otevřete virtuální disk na vašem počítači a zkopírujte soubor s obrazem do kořenového adresáře virtuálního disku.',
-        scp1: 'Ujistěte se, že jsou NanoKVM a váš počítač ve stejné místní síti.',
-        scp2: 'Otevřete terminál na vašem počítači a použijte příkaz SCP pro nahrání souboru s obrazem do adresáře /data na zařízení NanoKVM.',
-        scp3: 'Příklad: scp cesta-k-vašemu-obrazu root@ip-nanokvm:/data',
+        scp1: 'Ujistěte se, že jsou MSPKVM a váš počítač ve stejné místní síti.',
+        scp2: 'Otevřete terminál na vašem počítači a použijte příkaz SCP pro nahrání souboru s obrazem do adresáře /data na zařízení MSPKVM.',
+        scp3: 'Příklad: scp cesta-k-vašemu-obrazu root@ip-mspkvm:/data',
         tfCard: 'SD Karta',
         tf1: 'Tato metoda je podporována na systémech Linux',
-        tf2: 'Vyjměte SD kartu z NanoKVM (u plné verze nejprve rozložte krabičku).',
+        tf2: 'Vyjměte SD kartu z MSPKVM (u plné verze nejprve rozložte krabičku).',
         tf3: 'Vložte SD kartu do čtečky karet a připojte ji k vašemu počítači.',
         tf4: 'Zkopírujte soubor s obrazem do adresáře /data na SD kartě.',
-        tf5: 'Vložte SD kartu zpět do NanoKVM.'
+        tf5: 'Vložte SD kartu zpět do MSPKVM.'
       }
     },
     script: {
@@ -126,7 +126,7 @@ const cz = {
     },
     terminal: {
       title: 'Terminál',
-      nanokvm: 'Terminál NanoKVM',
+      mspkvm: 'Terminál MSPKVM',
       serial: 'Terminál sériového portu',
       serialPort: 'Sériový port',
       serialPortPlaceholder: 'Zadejte prosím sériový port',
@@ -150,14 +150,14 @@ const cz = {
     settings: {
       title: 'Nastavení',
       about: {
-        title: 'O NanoKVM',
+        title: 'O MSPKVM',
         information: 'Informace',
         ip: 'IP',
         mdns: 'mDNS',
         application: 'Verze aplikace',
-        applicationTip: 'NanoKVM web application version',
+        applicationTip: 'MSPKVM web application version',
         image: 'Verze obrazu',
-        imageTip: 'NanoKVM system image version',
+        imageTip: 'MSPKVM system image version',
         deviceKey: 'Klíč zařízení',
         community: 'Komunita'
       },
@@ -212,8 +212,8 @@ const cz = {
         download: 'Stáhnout',
         package: 'instalační balíček',
         unzip: 'a rozbalit ho',
-        upTailscale: 'Nahrajte Tailscale do adresáře NanoKVM /usr/bin/',
-        upTailscaled: 'Nahrajte Tailscaled do adresáře NanoKVM /usr/sbin/',
+        upTailscale: 'Nahrajte Tailscale do adresáře MSPKVM /usr/bin/',
+        upTailscaled: 'Nahrajte Tailscaled do adresáře MSPKVM /usr/sbin/',
         refresh: 'Obnovit stránku',
         notLogin:
           'Zařízení nebylo dosud spárováno. Přihlaste se prosím a spárujte toto zařízení s vaším účtem.',

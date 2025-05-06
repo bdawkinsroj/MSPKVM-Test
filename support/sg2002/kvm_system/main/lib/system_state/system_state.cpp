@@ -108,7 +108,7 @@ int get_ip_addr(ip_addr_t ip_type)
 			return 1;
 		case ETH_ROUTE: // eth_route
 			if(access("/etc/kvm/gateway", F_OK) != 0){
-				// 不存在gateway文件
+				// The gateway file does not exist
 				memset( kvm_sys_state.eth_route, 0, sizeof( kvm_sys_state.eth_route ) );
 				char Cmd[100]={0};
 				memset( Cmd, 0, sizeof( Cmd ) );
@@ -126,7 +126,7 @@ int get_ip_addr(ip_addr_t ip_type)
 					break;
 				}
 				if(kvm_sys_state.eth_route[0] == 0){
-					// 开机时未插入ETH
+					// ETH is not plugged in when powering on
 					pclose(fp);
 					return 0;
 				}
@@ -166,7 +166,7 @@ int get_ip_addr(ip_addr_t ip_type)
 				break;
 			}
 			if(kvm_sys_state.wifi_route[0] == 0){
-				// 开机时未插入ETH
+				// ETH is not plugged in when powering on
 				pclose(fp);
 				return 0;
 			}
@@ -187,8 +187,8 @@ int chack_net_state(ip_addr_t use_ip_type)
 	char Cmd[100]={0};
 	if		(use_ip_type == ETH_ROUTE)  sprintf( Cmd,"ping -I eth0 -w 1 %s > /dev/null", kvm_sys_state.eth_route);
 	else if	(use_ip_type == WiFi_ROUTE) sprintf( Cmd,"ping -I wlan0 -w 1 %s > /dev/null", kvm_sys_state.wifi_route);
-	else return -1;	// 不支持的端口
-	if(system(Cmd) == 0){	// 256：不通； = 0：通
+	else return -1;	// Unsupported port
+	if(system(Cmd) == 0){	// 256: No communication; = 0：通
 		return 1;
 	}
 	return 0;
@@ -222,7 +222,7 @@ void kvm_update_usb_state()
 	if(RW_Data[0] == 'n') kvm_sys_state.usb_state = 0;
 	else if(RW_Data[0] == 'c') kvm_sys_state.usb_state = 1;
 	else kvm_sys_state.usb_state = -1;
-	// hid_state & udisk_state (rndis_state单独处理)
+	// hid_state & udisk_state (rndis_state is handled separately)
 	if(kvm_sys_state.usb_state == 1){
 		if(access("/sys/kernel/config/usb_gadget/g0/configs/c.1/hid.GS*", F_OK) == 0) 
 			kvm_sys_state.hid_state = 1;

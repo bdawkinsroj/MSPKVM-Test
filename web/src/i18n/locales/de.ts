@@ -30,20 +30,20 @@ const de = {
       loginButtonText: 'Einloggen',
       tips: {
         reset1:
-          'To reset the passwords, pressing and holding the BOOT button on the NanoKVM for 10 seconds.',
+          'To reset the passwords, pressing and holding the BOOT button on the MSPKVM for 10 seconds.',
         reset2: 'For detailed steps, please consult this document:',
         reset3: 'Web default account:',
         reset4: 'SSH default account:',
         change1: 'Please note that this action will change the following passwords:',
         change2: 'Web login password',
         change3: 'System root password (SSH login password)',
-        change4: 'To reset the passwords, press and hold the BOOT button on the NanoKVM.'
+        change4: 'To reset the passwords, press and hold the BOOT button on the MSPKVM.'
       }
     },
     wifi: {
       title: 'Wi-Fi',
-      description: 'Configure Wi-Fi for NanoKVM',
-      success: 'Please check the network status of NanoKVM and visit the new IP address.',
+      description: 'Configure Wi-Fi for MSPKVM',
+      success: 'Please check the network status of MSPKVM and visit the new IP address.',
       failed: 'Operation failed, please try again.',
       confirmBtn: 'Ok',
       finishBtn: 'Finished'
@@ -97,18 +97,18 @@ const de = {
         'Bei einigen Systemen muss die virtuelle Festplatte auf dem Remote-Host ausgeworfen werden, bevor das Image gemountet werden kann.',
       tips: {
         title: 'Wie man Abbilder hochlädt',
-        usb1: 'Den NanoKVM via USB mit dem Computer verbinden.',
+        usb1: 'Den MSPKVM via USB mit dem Computer verbinden.',
         usb2: 'Stellen sie sicher, das das Virtuelle Festplatte eingebunden ist. (Einstellungen - Virtuelle Festplatte).',
         usb3: 'Öffnen sie die Virtuelle Festplatte auf ihrem Computer und kopieren sie die Abbilddatei in das root-Verzeichnis des USB-Geräts.',
-        scp1: 'Stellen sie sicher, das sich der NanoKVM und ihr Computer im gleichen lokalen Netzwerk befinden.',
-        scp2: 'Öffnen sie ein Terminal auf ihrem Computer und benutzen sie den SCP-Befehl um die Abbilddatei in das /data Verzeichnis des NanoKVM zu kopieren.',
-        scp3: 'Beispiel: scp ihr-abbild-verzeichnis root@ihre-nanokvm-ip:/data',
+        scp1: 'Stellen sie sicher, das sich der MSPKVM und ihr Computer im gleichen lokalen Netzwerk befinden.',
+        scp2: 'Öffnen sie ein Terminal auf ihrem Computer und benutzen sie den SCP-Befehl um die Abbilddatei in das /data Verzeichnis des MSPKVM zu kopieren.',
+        scp3: 'Beispiel: scp ihr-abbild-verzeichnis root@ihre-MSPkvm-ip:/data',
         tfCard: 'TF-Karte',
         tf1: 'Diese Mehthode wird auf Linuxsystemen unterstützt',
-        tf2: 'Entfernen sie die TF-Karte aus dem NanoKVM (gilt nur für die fertig zusammengebaute Version, bitte das Gehäuse vorher auseinanderbauen).',
+        tf2: 'Entfernen sie die TF-Karte aus dem MSPKVM (gilt nur für die fertig zusammengebaute Version, bitte das Gehäuse vorher auseinanderbauen).',
         tf3: 'Legen sie die TF-Karte in den Kartenleser ein und verbinden sie diesen mit dem Computer.',
         tf4: 'Kopieren sie die Abbild-Datei in das /data Verzeichnis der TF-Karte.',
-        tf5: 'Legen sie die TF-Karte in das NanoKVM ein.'
+        tf5: 'Legen sie die TF-Karte in das MSPKVM ein.'
       }
     },
     script: {
@@ -126,7 +126,7 @@ const de = {
     },
     terminal: {
       title: 'Terminal',
-      nanokvm: 'NanoKVM Terminal',
+      mspkvm: 'MSPKVM Terminal',
       serial: 'Terminal über den Seriellen Port',
       serialPort: 'Serieller Port',
       serialPortPlaceholder: 'Serielle Portnummer eingeben',
@@ -150,14 +150,14 @@ const de = {
     settings: {
       title: 'Settings',
       about: {
-        title: 'Über NanoKVM',
+        title: 'Über MSPKVM',
         information: 'Information',
         ip: 'IP',
         mdns: 'mDNS',
         application: 'Versionsnummer',
-        applicationTip: 'NanoKVM web application version',
+        applicationTip: 'MSPKVM web application version',
         image: 'Image Version',
-        imageTip: 'NanoKVM system image version',
+        imageTip: 'MSPKVM system image version',
         deviceKey: 'Geräte-Key',
         community: 'Community'
       },
@@ -213,8 +213,8 @@ const de = {
         download: 'Laden sie das',
         package: 'Installationspaket',
         unzip: 'und entpacken sie es manuell',
-        upTailscale: 'Hochladen von tailscale in das NanoKVM Verzeichnis /usr/bin/',
-        upTailscaled: 'Hochladen von tailscaled in das NanoKVM Verzeichnis /usr/sbin/',
+        upTailscale: 'Hochladen von tailscale in das MSPKVM Verzeichnis /usr/bin/',
+        upTailscaled: 'Hochladen von tailscaled in das MSPKVM Verzeichnis /usr/sbin/',
         refresh: 'Die aktuelle Seite neu laden',
         notLogin:
           'Diese Geräte ist bisher noch nicht verknüpft. Bitte loggen sie sich in ihr Konto ein und verknüpfen sie dieses Gerät mit diesem.',

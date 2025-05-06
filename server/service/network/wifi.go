@@ -1,7 +1,7 @@
 package network
 
 import (
-	"NanoKVM-Server/proto"
+	"MSPKVM-Server/proto"
 	"os"
 	"strings"
 

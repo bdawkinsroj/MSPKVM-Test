@@ -1,8 +1,8 @@
 package auth
 
 import (
-	"NanoKVM-Server/proto"
-	"NanoKVM-Server/utils"
+	"MSPKVM-Server/proto"
+	"MSPKVM-Server/utils"
 	"errors"
 	"io"
 	"os"

@@ -34,8 +34,8 @@ void kvmv_init(uint8_t _debug_info_en);
 void set_venc_auto_recyc(uint8_t _enable);
 /**********************************************************************************
  * @name    kvmv_read_img
- * @author  Sipeed BuGu
- * @date    2024/10/25
+ * @author  MSP Power Tools
+ * @date    2025/5/6
  * @version R1.0
  * @brief   Acquire the encoded image with auto init
  * @param	_width				@input: 	Output image width

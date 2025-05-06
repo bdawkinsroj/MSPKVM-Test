@@ -23,8 +23,8 @@ void build_recovery(void)
 void* thread_oled_handle(void * arg)
 {
 	OLED_Init();
-	OLED_ColorTurn(0);		//0正常显示 1 反色显示
-	OLED_DisplayTurn(0);	//0正常显示 1 屏幕翻转显示
+	OLED_ColorTurn(0);		//0 Normal display 1 Inverted display
+	OLED_DisplayTurn(0);	//0 Normal display 1 Screen flip display
 	OLED_Clear();
 	if(kvm_oled_state.ue_patch_state == 1){
 		kvm_show_UE();
@@ -78,17 +78,17 @@ void* thread_key_handle(void * arg)
 		read (fd, &event, sizeof (event));
 		if (event.type == EV_KEY) {
 			if (event.value == 1){
-				// printf ("[kvmk]按键按下\n");
+				// printf ("[kvmk]button pressed\n");
 				press_time = time::time_ms();
 			} else if (event.value == 0){
 				oled_auto_sleep_time_update();
-				// printf ("[kvmk]按键抬起\n");
+				// printf ("[kvmk]Button raised\n");
 				press_cycle = time::time_ms() - press_time;
 				if(press_cycle >= KEY_LONGLONG_PRESS){
 					kvm_reset_password();
 				} else if (press_cycle >= KEY_LONG_PRESS && press_cycle < KEY_LONGLONG_PRESS){
 					// long
-					// printf ("[kvmk]按键长按\n");
+					// printf ("[kvmk]long press button\n");
 					// printf("[kvmk]wifi_state = %d\n", kvm_sys_state.wifi_state);
 					if(kvm_sys_state.wifi_state == -2){
 						kvm_sys_state.page = 0;
@@ -109,7 +109,7 @@ void* thread_key_handle(void * arg)
 					}
 				} else {
 					// short
-					// printf ("[kvmk]按键短按\n");
+					// printf ("[kvmk]Short press of button\n");
 					// printf ("[kvmk]wifi_config_process = %d\n", kvm_sys_state.wifi_config_process);
 					// printf ("[kvmk]page = %d\n", kvm_sys_state.page);
 					// printf ("[kvmk]sub_page = %d\n", kvm_sys_state.sub_page);

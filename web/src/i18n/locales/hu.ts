@@ -30,20 +30,20 @@ const hu = {
       loginButtonText: 'Bejelentkezés',
       tips: {
         reset1:
-          'To reset the passwords, pressing and holding the BOOT button on the NanoKVM for 10 seconds.',
+          'To reset the passwords, pressing and holding the BOOT button on the MSPKVM for 10 seconds.',
         reset2: 'For detailed steps, please consult this document:',
         reset3: 'Web default account:',
         reset4: 'SSH default account:',
         change1: 'Please note that this action will change the following passwords:',
         change2: 'Web login password',
         change3: 'System root password (SSH login password)',
-        change4: 'To reset the passwords, press and hold the BOOT button on the NanoKVM.'
+        change4: 'To reset the passwords, press and hold the BOOT button on the MSPKVM.'
       }
     },
     wifi: {
       title: 'Wi-Fi',
-      description: 'Configure Wi-Fi for NanoKVM',
-      success: 'Please check the network status of NanoKVM and visit the new IP address.',
+      description: 'Configure Wi-Fi for MSPKVM',
+      success: 'Please check the network status of MSPKVM and visit the new IP address.',
       failed: 'Operation failed, please try again.',
       confirmBtn: 'Ok',
       finishBtn: 'Finished'
@@ -97,18 +97,18 @@ const hu = {
         'Egyes rendszerekben szükséges lehet a virtuális lemez eltávolítása a távoli gépen, mielőtt a képet csatlakoztatja.',
       tips: {
         title: 'Hogyan tölts fel képeket',
-        usb1: 'Csatlakoztassa a NanoKVM-t a számítógépéhez USB-n keresztül.',
+        usb1: 'Csatlakoztassa a MSPKVM-t a számítógépéhez USB-n keresztül.',
         usb2: 'Győződjön meg róla, hogy a virtuális lemez csatlakoztatva van (Beállítások - Virtuális lemez).',
         usb3: 'Nyissa meg a virtuális lemezt a számítógépén, és másolja a kép fájlt a virtuális lemez gyökérkönyvtárába.',
-        scp1: 'Győződjön meg róla, hogy a NanoKVM és a számítógépe ugyanazon a helyi hálózaton van.',
-        scp2: 'Nyisson meg egy terminált a számítógépén, és használja az SCP parancsot a kép fájl feltöltésére a /data könyvtárba a NanoKVM-en.',
-        scp3: 'Példa: scp your-image-path root@your-nanokvm-ip:/data',
+        scp1: 'Győződjön meg róla, hogy a MSPKVM és a számítógépe ugyanazon a helyi hálózaton van.',
+        scp2: 'Nyisson meg egy terminált a számítógépén, és használja az SCP parancsot a kép fájl feltöltésére a /data könyvtárba a MSPKVM-en.',
+        scp3: 'Példa: scp your-image-path root@your-mspkvm-ip:/data',
         tfCard: 'TF Kártya',
         tf1: 'Ez a módszer támogatott Linux rendszeren',
-        tf2: 'Vegye ki a TF kártyát a NanoKVM-ből (a TELJES verzióhoz, először szedje szét a házat).',
+        tf2: 'Vegye ki a TF kártyát a MSPKVM-ből (a TELJES verzióhoz, először szedje szét a házat).',
         tf3: 'Helyezze a TF kártyát egy kártyaolvasóba, és csatlakoztassa a számítógépéhez.',
         tf4: 'Másolja a képfájlt a TF kártya /data könyvtárába.',
-        tf5: 'Helyezze vissza a TF kártyát a NanoKVM-be.'
+        tf5: 'Helyezze vissza a TF kártyát a MSPKVM-be.'
       }
     },
     script: {
@@ -126,7 +126,7 @@ const hu = {
     },
     terminal: {
       title: 'Terminál',
-      nanokvm: 'NanoKVM Terminál',
+      mspkvm: 'MSPKVM Terminál',
       serial: 'Soros port terminál',
       serialPort: 'Soros port',
       serialPortPlaceholder: 'Adja meg a soros portot',
@@ -150,14 +150,14 @@ const hu = {
     settings: {
       title: 'Settings',
       about: {
-        title: 'NanoKVM Névjegy',
+        title: 'MSPKVM Névjegy',
         information: 'Információ',
         ip: 'IP',
         mdns: 'mDNS',
         application: 'Alkalmazás verzió',
-        applicationTip: 'NanoKVM web application version',
+        applicationTip: 'MSPKVM web application version',
         image: 'Képfájl verzió',
-        imageTip: 'NanoKVM system image version',
+        imageTip: 'MSPKVM system image version',
         deviceKey: 'Eszköz kulcs',
         community: 'Közösség'
       },
@@ -212,8 +212,8 @@ const hu = {
         download: 'Letöltés a',
         package: 'telepítési csomag',
         unzip: 'és kicsomagolás',
-        upTailscale: 'Töltsön fel tailscale-t a NanoKVM /usr/bin/ könyvtárába',
-        upTailscaled: 'Töltsön fel tailscaled-t a NanoKVM /usr/sbin/ könyvtárába',
+        upTailscale: 'Töltsön fel tailscale-t a MSPKVM /usr/bin/ könyvtárába',
+        upTailscaled: 'Töltsön fel tailscaled-t a MSPKVM /usr/sbin/ könyvtárába',
         refresh: 'Frissítse az aktuális oldalt',
         notLogin:
           'Az eszköz még nincs kötve. Kérem, jelentkezzen be és kösse az eszközt a fiókjához.',

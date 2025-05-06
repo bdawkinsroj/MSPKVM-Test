@@ -1,7 +1,7 @@
 package h264
 
 import (
-	"NanoKVM-Server/common"
+	"MSPKVM-Server/common"
 	"time"
 
 	"github.com/pion/webrtc/v4/pkg/media"

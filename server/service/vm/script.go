@@ -10,8 +10,8 @@ import (
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 
-	"NanoKVM-Server/proto"
-	"NanoKVM-Server/utils"
+	"MSPKVM-Server/proto"
+	"MSPKVM-Server/utils"
 )
 
 const ScriptDirectory = "/etc/kvm/scripts"

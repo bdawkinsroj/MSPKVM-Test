@@ -30,20 +30,20 @@ const nb = {
       loginButtonText: 'Logg inn',
       tips: {
         reset1:
-          'To reset the passwords, pressing and holding the BOOT button on the NanoKVM for 10 seconds.',
+          'To reset the passwords, pressing and holding the BOOT button on the MSPKVM for 10 seconds.',
         reset2: 'For detailed steps, please consult this document:',
         reset3: 'Web default account:',
         reset4: 'SSH default account:',
         change1: 'Please note that this action will change the following passwords:',
         change2: 'Web login password',
         change3: 'System root password (SSH login password)',
-        change4: 'To reset the passwords, press and hold the BOOT button on the NanoKVM.'
+        change4: 'To reset the passwords, press and hold the BOOT button on the MSPKVM.'
       }
     },
     wifi: {
       title: 'Wi-Fi',
-      description: 'Configure Wi-Fi for NanoKVM',
-      success: 'Please check the network status of NanoKVM and visit the new IP address.',
+      description: 'Configure Wi-Fi for MSPKVM',
+      success: 'Please check the network status of MSPKVM and visit the new IP address.',
       failed: 'Operation failed, please try again.',
       confirmBtn: 'Ok',
       finishBtn: 'Finished'
@@ -96,18 +96,18 @@ const nb = {
         'På noen systemer er det nødvendig å koble fra den virtuelle disken på den eksterne verten før man kan montere arkivfilen.',
       tips: {
         title: 'Hvordan laste opp',
-        usb1: 'Koble til NanoKVM-enheten til din datamaskin med USB.',
+        usb1: 'Koble til MSPKVM-enheten til din datamaskin med USB.',
         usb2: 'Sikre at den virtuelle disken er montert (Innstillinger - Virtuell disk).',
         usb3: 'Åpne den virtuelle disken på datamaskinen din og kopier arkivfilen til rot-mappen på den virtuelle disken.',
-        scp1: 'Sikre at NanoKVM-enheten og datamaskinen din er tilkoblet det samme lokale nettverket.',
-        scp2: 'Åpne en terminal på datamaskinen din og bruk SCP-kommandoen til å laste opp arkivfilen til mappen /data på NanoKVM-enheten.',
-        scp3: 'Eksempel: scp sti-til-din-arkivfil root@din-nanokvm-ip:/data',
+        scp1: 'Sikre at MSPKVM-enheten og datamaskinen din er tilkoblet det samme lokale nettverket.',
+        scp2: 'Åpne en terminal på datamaskinen din og bruk SCP-kommandoen til å laste opp arkivfilen til mappen /data på MSPKVM-enheten.',
+        scp3: 'Eksempel: scp sti-til-din-arkivfil root@din-mspkvm-ip:/data',
         tfCard: 'TF-kort',
         tf1: 'Denne metoden er støttet på datamskiner med Linux',
-        tf2: 'Ta TF-kortet ut av NanoKVM-enheten (hvis du har FULL-versjonen, demonter kabinettet først).',
+        tf2: 'Ta TF-kortet ut av MSPKVM-enheten (hvis du har FULL-versjonen, demonter kabinettet først).',
         tf3: 'Sett inn TF-kortet i en kortleser og koble den til datamaskinen din.',
         tf4: 'Kopiér arkivfilen til mappen /data på TF-kortet.',
-        tf5: 'Sett inn TF-kortet i NanoKVM-enheten.'
+        tf5: 'Sett inn TF-kortet i MSPKVM-enheten.'
       }
     },
     script: {
@@ -125,7 +125,7 @@ const nb = {
     },
     terminal: {
       title: 'Terminal',
-      nanokvm: 'NanoKVM',
+      mspkvm: 'MSPKVM',
       serial: 'Seriell port',
       serialPort: 'Seriell port',
       serialPortPlaceholder: 'Vennligst angi den serielle porten',
@@ -149,14 +149,14 @@ const nb = {
     settings: {
       title: 'Settings',
       about: {
-        title: 'Om NanoKVM',
+        title: 'Om MSPKVM',
         information: 'Informasjon',
         ip: 'IP',
         mdns: 'mDNS',
         application: 'Applikasjonsversjon',
-        applicationTip: 'NanoKVM web application version',
+        applicationTip: 'MSPKVM web application version',
         image: 'Arkivfil-versjon',
-        imageTip: 'NanoKVM system image version',
+        imageTip: 'MSPKVM system image version',
         deviceKey: 'Enhetsnøkkel',
         community: 'Fellesskap'
       },
@@ -211,8 +211,8 @@ const nb = {
         download: 'Last ned',
         package: 'installasjonspakken',
         unzip: 'og pakk den ut',
-        upTailscale: 'Last opp Tailscale til NanoKVM-enhetens mappe /usr/bin/',
-        upTailscaled: 'Last opp tailscaled til NanoKVM-enhetens mappe /usr/sbin/',
+        upTailscale: 'Last opp Tailscale til MSPKVM-enhetens mappe /usr/bin/',
+        upTailscaled: 'Last opp tailscaled til MSPKVM-enhetens mappe /usr/sbin/',
         refresh: 'Last inn denne siden på nytt',
         notLogin:
           'Denne enheten er ikke knyttet til din konto enda. Vennligst logg inn og knytt den til kontoen din..',

@@ -39,7 +39,7 @@ export const Tips = () => {
 
             <div className="flex items-center space-x-1">
               <span>{t('auth.tips.reset2')}</span>
-              <a href="https://wiki.sipeed.com/hardware/en/kvm/NanoKVM/reset.html" target="_blank">
+              <a href="https://wiki.sipeed.com/hardware/en/kvm/MSPKVM/reset.html" target="_blank">
                 wiki
               </a>
             </div>

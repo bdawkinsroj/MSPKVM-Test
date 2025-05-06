@@ -1,7 +1,7 @@
 package hid
 
 import (
-	"NanoKVM-Server/proto"
+	"MSPKVM-Server/proto"
 	"os"
 	"time"
 

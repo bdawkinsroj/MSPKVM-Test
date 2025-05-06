@@ -9,8 +9,8 @@ import (
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 
-	"NanoKVM-Server/config"
-	"NanoKVM-Server/proto"
+	"MSPKVM-Server/config"
+	"MSPKVM-Server/proto"
 )
 
 func (s *Service) SetGpio(c *gin.Context) {

@@ -29,20 +29,20 @@ const id = {
       loginButtonText: 'Masuk',
       tips: {
         reset1:
-          'To reset the passwords, pressing and holding the BOOT button on the NanoKVM for 10 seconds.',
+          'To reset the passwords, pressing and holding the BOOT button on the MSPKVM for 10 seconds.',
         reset2: 'For detailed steps, please consult this document:',
         reset3: 'Web default account:',
         reset4: 'SSH default account:',
         change1: 'Please note that this action will change the following passwords:',
         change2: 'Web login password',
         change3: 'System root password (SSH login password)',
-        change4: 'To reset the passwords, press and hold the BOOT button on the NanoKVM.'
+        change4: 'To reset the passwords, press and hold the BOOT button on the MSPKVM.'
       }
     },
     wifi: {
       title: 'Wi-Fi',
-      description: 'Configure Wi-Fi for NanoKVM',
-      success: 'Please check the network status of NanoKVM and visit the new IP address.',
+      description: 'Configure Wi-Fi for MSPKVM',
+      success: 'Please check the network status of MSPKVM and visit the new IP address.',
       failed: 'Operation failed, please try again.',
       confirmBtn: 'Ok',
       finishBtn: 'Finished'
@@ -96,18 +96,18 @@ const id = {
         'Di beberapa sistem, perlu mengeluarkan disk virtual pada host jarak jauh sebelum memasang gambar.',
       tips: {
         title: 'Cara mengunggah',
-        usb1: 'Hubungkan NanoKVM ke komputer Anda melalui USB.',
+        usb1: 'Hubungkan MSPKVM ke komputer Anda melalui USB.',
         usb2: 'Pastikan disk virtual telah terpasang (Pengaturan - Disk Virtual).',
         usb3: 'Buka disk virtual di komputer Anda dan salin file gambar ke direktori root disk virtual.',
-        scp1: 'Pastikan NanoKVM dan komputer Anda berada di jaringan lokal yang sama.',
-        scp2: 'Buka terminal di komputer Anda dan gunakan perintah SCP untuk mengunggah file gambar ke direktori /data di NanoKVM.',
-        scp3: 'Contoh: scp jalur-gambar-anda root@ip-nanokvm-anda:/data',
+        scp1: 'Pastikan MSPKVM dan komputer Anda berada di jaringan lokal yang sama.',
+        scp2: 'Buka terminal di komputer Anda dan gunakan perintah SCP untuk mengunggah file gambar ke direktori /data di MSPKVM.',
+        scp3: 'Contoh: scp jalur-gambar-anda root@ip-mspkvm-anda:/data',
         tfCard: 'Kartu TF',
         tf1: 'Metode ini didukung di sistem linux',
-        tf2: 'Dapatkan Kartu TF dari NanoKVM (untuk versi LENGKAP, bongkar casingnya terlebih dahulu).',
+        tf2: 'Dapatkan Kartu TF dari MSPKVM (untuk versi LENGKAP, bongkar casingnya terlebih dahulu).',
         tf3: 'Masukkan Kartu TF ke pembaca kartu dan hubungkan ke komputer Anda.',
         tf4: 'Salin berkas gambar ke direktori /data pada Kartu TF.',
-        tf5: 'Masukkan Kartu TF ke dalam NanoKVM.'
+        tf5: 'Masukkan Kartu TF ke dalam MSPKVM.'
       }
     },
     script: {
@@ -125,7 +125,7 @@ const id = {
     },
     terminal: {
       title: 'Terminal',
-      nanokvm: 'Terminal NanoKVM',
+      mspkvm: 'Terminal MSPKVM',
       serial: 'Terminal Port Serial',
       serialPort: 'Port Serial',
       serialPortPlaceholder: 'Silahkan masukkan port serial',
@@ -149,14 +149,14 @@ const id = {
     settings: {
       title: 'Settings',
       about: {
-        title: 'Tentang NanoKVM',
+        title: 'Tentang MSPKVM',
         information: 'Informasi',
         ip: 'IP',
         mdns: 'mDNS',
         application: 'Versi Aplikasi',
-        applicationTip: 'NanoKVM web application version',
+        applicationTip: 'MSPKVM web application version',
         image: 'Version Gambar',
-        imageTip: 'NanoKVM system image version',
+        imageTip: 'MSPKVM system image version',
         deviceKey: 'Kunci Perangkat',
         community: 'Komunitas'
       },
@@ -211,8 +211,8 @@ const id = {
         download: 'Mengunduh',
         package: 'paket instalasi',
         unzip: 'dan unzip itu',
-        upTailscale: 'Unggah tailscale ke direktori NanoKVM /usr/bin/',
-        upTailscaled: 'Unggah tailscaled ke direktori NanoKVM /usr/sbin/',
+        upTailscale: 'Unggah tailscale ke direktori MSPKVM /usr/bin/',
+        upTailscaled: 'Unggah tailscaled ke direktori MSPKVM /usr/sbin/',
         refresh: 'Segarkan halaman ini',
         notLogin:
           'Perangkat belum ditautkan. Silakan masuk dan tautkan perangkat ini ke akun Anda.',

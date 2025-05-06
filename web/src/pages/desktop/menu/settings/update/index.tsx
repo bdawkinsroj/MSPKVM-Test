@@ -125,7 +125,7 @@ export const Update = ({ setIsLocked }: UpdateProps) => {
           <Button
             type="link"
             size="small"
-            href="https://github.com/sipeed/NanoKVM/blob/main/CHANGELOG.md"
+            href="https://github.com/sipeed/MSPKVM/blob/main/CHANGELOG.md"
             target="_blank"
           >
             CHANGELOG

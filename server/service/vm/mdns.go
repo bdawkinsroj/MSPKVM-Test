@@ -1,7 +1,7 @@
 package vm
 
 import (
-	"NanoKVM-Server/proto"
+	"MSPKVM-Server/proto"
 	"fmt"
 	"os"
 	"os/exec"

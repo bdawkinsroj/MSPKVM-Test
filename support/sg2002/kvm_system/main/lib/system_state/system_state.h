@@ -15,7 +15,7 @@ enum ip_addr_t
 
 #define watchdog_mode_path      "/etc/kvm/watchdog"
 #define watchdog_temp_path      "/tmp/watchdog"
-#define watchdog_file           "/tmp/nanokvm_wd"
+#define watchdog_file           "/tmp/mspkvm_wd"
 
 // net_port
 int get_ip_addr(ip_addr_t ip_type);

@@ -8,8 +8,8 @@ import (
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 
-	"NanoKVM-Server/proto"
-	"NanoKVM-Server/service/hid"
+	"MSPKVM-Server/proto"
+	"MSPKVM-Server/service/hid"
 )
 
 const (

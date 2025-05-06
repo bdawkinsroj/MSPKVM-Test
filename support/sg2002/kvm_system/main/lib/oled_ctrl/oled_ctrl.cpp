@@ -75,7 +75,7 @@ int oled_exist(void)
 	return 1;
 }
 
-// 坐标设置
+// Coordinate settings
 void OLED_Set_Pos(uint8_t x, uint8_t y) 
 { 
 	// oled_write_register(OLED_CMD, 0xb0+y);
@@ -90,7 +90,7 @@ void OLED_Set_Pos(uint8_t x, uint8_t y)
 	oled_write_register(OLED_CMD, (x&0x0f));
 }
 
-//开启OLED显示    
+//Turn on OLED display    
 void OLED_Display_On()
 {
 	oled_write_register(OLED_CMD, 0X8D);
@@ -98,7 +98,7 @@ void OLED_Display_On()
 	oled_write_register(OLED_CMD, 0XAF);
 }
 
-//关闭OLED显示     
+//Turn off OLED display     
 void OLED_Display_Off()
 {
 	oled_write_register(OLED_CMD, 0X8D);
@@ -106,7 +106,7 @@ void OLED_Display_Off()
 	oled_write_register(OLED_CMD, 0XAE);
 }
 
-//清屏函数,清完屏,整个屏幕是黑色的!和没点亮一样!!!	  
+//Clear screen function, after clearing the screen, the whole screen is black! Just like it is not lit!!!	  
 void OLED_Clear(void)  
 {  
 	uint8_t i,n;		    
@@ -116,7 +116,7 @@ void OLED_Clear(void)
 		oled_write_register(OLED_CMD, 0x00);
 		oled_write_register(OLED_CMD, 0x10); 
 		for(n=0;n<128;n++)oled_write_register(OLED_DATA, 0x00); 
-	} //更新显示
+	} //Update display
 }
 
 void OLED_Fill(void)  
@@ -128,13 +128,13 @@ void OLED_Fill(void)
 		oled_write_register(OLED_CMD, 0x00);
 		oled_write_register(OLED_CMD, 0x10); 
 		for(n=0;n<128;n++)oled_write_register(OLED_DATA, 0xFF); 
-	} //更新显示
+	} //Update display
 }
 
-//在指定位置显示一个字符,包括部分字符
+//Display a character at the specified position, including partial characters
 //x:0~127
 //y:0~63				 
-//sizey:选择字体 6x8  8x16
+//sizey:Select font 6x8  8x16
 void OLED_ShowChar(uint8_t x,uint8_t y,char chr,uint8_t sizey)
 {
 	uint8_t c=0,sizex=sizey/2;
@@ -142,14 +142,14 @@ void OLED_ShowChar(uint8_t x,uint8_t y,char chr,uint8_t sizey)
 	if(sizey==8)size1=6;
 	else if(sizey==4)size1=4;
 	else size1=(sizey/8+((sizey%8)?1:0))*(sizey/2);
-	c=chr-' ';//得到偏移后的值
+	c=chr-' ';//Get the offset value
 	OLED_Set_Pos(x, y);
 	for(i=0; i<size1; i++)
 	{
 		if(i%sizex==0&&sizey==16) OLED_Set_Pos(x, y++);
-		if(sizey==8) oled_write_register(OLED_DATA, oled_asc2_0806[c][i]); //6X8字号
-		else if(sizey==16) oled_write_register(OLED_DATA, oled_asc2_1608[c][i]);//8x16字号
-		else if(sizey==4) oled_write_register(OLED_DATA, oled_asc2_0804[c][i]);//8x4字号
+		if(sizey==8) oled_write_register(OLED_DATA, oled_asc2_0806[c][i]); //6X8 font size
+		else if(sizey==16) oled_write_register(OLED_DATA, oled_asc2_1608[c][i]);//8x16 font size
+		else if(sizey==4) oled_write_register(OLED_DATA, oled_asc2_0804[c][i]);//8x4 font size
 		else return;
 	}
 }
@@ -159,13 +159,13 @@ void OLED_ShowCharTurn(uint8_t x,uint8_t y,char chr,uint8_t sizey)
 	uint16_t i=0,size1;
 	if(sizey==8)size1=6;
 	else size1=(sizey/8+((sizey%8)?1:0))*(sizey/2);
-	c=chr-' ';//得到偏移后的值
+	c=chr-' ';//Get the offset value
 	OLED_Set_Pos(x, y);
 	for(i=0; i<size1; i++)
 	{
 		if(i%sizex==0&&sizey!=8) OLED_Set_Pos(x, y++);
-		if(sizey==8) oled_write_register(OLED_DATA, ~oled_asc2_0806[c][i]); //6X8字号
-		else if(sizey==16) oled_write_register(OLED_DATA, ~oled_asc2_1608[c][i]);//8x16字号
+		if(sizey==8) oled_write_register(OLED_DATA, ~oled_asc2_0806[c][i]); //6X8 font size
+		else if(sizey==16) oled_write_register(OLED_DATA, ~oled_asc2_1608[c][i]);//8x16 font size
 		else return;
 	}
 }
@@ -191,11 +191,11 @@ uint32_t oled_pow(uint8_t m,uint8_t n)
 	return result;
 }
 
-//显示数字
-//x,y :起点坐标
-//num:要显示的数字
-//len :数字的位数
-//sizey:字体大小		  
+//Display numbers
+//x,y: starting point coordinates
+//num: the number to be displayed
+//len: the number of digits
+//sizey: font size		  
 void OLED_ShowNum(uint8_t x, uint8_t y, uint8_t num, uint8_t len, uint8_t sizey)
 {         	
 	uint8_t t, temp, m = 0;
@@ -216,7 +216,7 @@ void OLED_ShowNum(uint8_t x, uint8_t y, uint8_t num, uint8_t len, uint8_t sizey)
 	}
 }
 
-//显示一个字符号串
+//Display a string of characters
 void OLED_ShowString(uint8_t x, uint8_t y, char *chr, uint8_t sizey)
 {
 	uint8_t j=0;
@@ -228,7 +228,7 @@ void OLED_ShowString(uint8_t x, uint8_t y, char *chr, uint8_t sizey)
 		else x+=sizey/2;
 	}
 }
-//反显一个字符号串
+//Reverse a string of characters
 void OLED_ShowStringTurn(uint8_t x, uint8_t y, char *chr, uint8_t sizey)
 {
 	uint8_t j=0;
@@ -240,35 +240,35 @@ void OLED_ShowStringTurn(uint8_t x, uint8_t y, char *chr, uint8_t sizey)
 	}
 }
 
-//反显函数
+//Inverse display function
 void OLED_ColorTurn(uint8_t i)
 {
 	if(i==0)
 	{
-		oled_write_register(OLED_CMD, 0xA6); //正常显示
+		oled_write_register(OLED_CMD, 0xA6); //Normal display
 	}
 	if(i==1)
 	{
-		oled_write_register(OLED_CMD, 0xA7);//反色显示
+		oled_write_register(OLED_CMD, 0xA7);//Display in reverse color
 	}
 }
 
-//屏幕旋转180度
+//Screen rotation 180 degrees
 void OLED_DisplayTurn(uint8_t i)
 {
 	if(i==0)
 	{
-		oled_write_register(OLED_CMD, 0xC8);//正常显示
+		oled_write_register(OLED_CMD, 0xC8);//Normal display
 		oled_write_register(OLED_CMD, 0xA1);
 	}
 	if(i==1)
 	{
-		oled_write_register(OLED_CMD, 0xC0);//反转显示
+		oled_write_register(OLED_CMD, 0xC0);//Reverse display
 		oled_write_register(OLED_CMD, 0xA0);
 	}
 }
 
-//初始化				    
+//initialization				    
 void OLED_Init(void)
 {
 	// pinmap::set_pin_function("A19", "GPIOP19");
@@ -283,8 +283,8 @@ void OLED_Init(void)
 	oled_write_register(OLED_CMD, 0x40);//--set start line address  Set Mapping RAM Display Start Line (0x00~0x3F)
 	oled_write_register(OLED_CMD, 0x81);//--set contrast control register
 	oled_write_register(OLED_CMD, 0xCF);// Set SEG Output Current Brightness
-	oled_write_register(OLED_CMD, 0xA1);//--Set SEG/Column Mapping     0xa0左右反置 0xa1正常
-	oled_write_register(OLED_CMD, 0xC8);//Set COM/Row Scan Direction   0xc0上下反置 0xc8正常
+	oled_write_register(OLED_CMD, 0xA1);//--Set SEG/Column Mapping    0xa0 is inverted left and right, 0xa1 is normal
+	oled_write_register(OLED_CMD, 0xC8);//Set COM/Row Scan Direction  0xc0 is upside down, 0xc8 is normal
 	oled_write_register(OLED_CMD, 0xA6);//--set normal display
 	oled_write_register(OLED_CMD, 0xA8);//--set multiplex ratio(1 to 64)
 	oled_write_register(OLED_CMD, 0x3f);//--1/64 duty
@@ -322,18 +322,18 @@ void OLED_ShowStringtoend(uint8_t x, uint8_t y, char *chr, uint8_t sizey, uint8_
 void OLED_ROW(uint8_t _EN)
 {
     if(_EN){
-        oled_write_register(OLED_CMD, 0x2e);    //关闭滚动
-        oled_write_register(OLED_CMD, 0x27);    //水平向左或者右滚动 26/27
-        oled_write_register(OLED_CMD, 0x00);    //虚拟字节
-        oled_write_register(OLED_CMD, 0x00);    //起始页 0
-        oled_write_register(OLED_CMD, 0x07);    //滚动时间间隔
-        oled_write_register(OLED_CMD, 0x07);    //终止页 7
-        oled_write_register(OLED_CMD, 0x0f);    //虚拟字节
-        oled_write_register(OLED_CMD, 0x7f);    //虚拟字节
+        oled_write_register(OLED_CMD, 0x2e);    //Turn off scrolling
+        oled_write_register(OLED_CMD, 0x27);    //Scroll left or right horizontally 26/27
+        oled_write_register(OLED_CMD, 0x00);    //virtual bytes
+        oled_write_register(OLED_CMD, 0x00);    //start page 0
+        oled_write_register(OLED_CMD, 0x07);    //rolling time interval
+        oled_write_register(OLED_CMD, 0x07);    //Termination page 7
+        oled_write_register(OLED_CMD, 0x0f);    //virtual bytes
+        oled_write_register(OLED_CMD, 0x7f);    //virtual bytes
 
-        oled_write_register(OLED_CMD, 0x2f);    //开启滚动
+        oled_write_register(OLED_CMD, 0x2f);    //Turn on scrolling
     } else {
-        oled_write_register(OLED_CMD, 0x2e);    //关闭滚动
+        oled_write_register(OLED_CMD, 0x2e);    //Turn off scrolling
     }
 }
 

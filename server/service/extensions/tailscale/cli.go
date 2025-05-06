@@ -1,7 +1,7 @@
 package tailscale
 
 import (
-	"NanoKVM-Server/utils"
+	"MSPKVM-Server/utils"
 	"bufio"
 	"encoding/json"
 	"errors"

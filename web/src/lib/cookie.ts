@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 
-const COOKIE_TOKEN_KEY = 'nano-kvm-token';
+const COOKIE_TOKEN_KEY = 'msp-kvm-token';
 
 export function existToken() {
   const token = Cookies.get(COOKIE_TOKEN_KEY);

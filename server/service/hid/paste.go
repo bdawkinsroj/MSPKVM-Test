@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 
-	"NanoKVM-Server/proto"
+	"MSPKVM-Server/proto"
 )
 
 type Char struct {

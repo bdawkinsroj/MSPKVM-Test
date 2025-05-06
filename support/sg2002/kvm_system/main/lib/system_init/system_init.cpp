@@ -53,7 +53,7 @@ void Production_testing_patch(void)
 void new_app_init(void)
 {
 	// Update the necessary scripts
-	system("cp -f /kvmapp/system/update-nanokvm.py /etc/kvm/");
+	system("cp -f /kvmapp/system/update-mspkvm.py /etc/kvm/");
 	system("rm -f /etc/init.d/S02udisk");
 	system("cp -f /kvmapp/system/init.d/S00kmod /etc/init.d/");
 	system("cp -f /kvmapp/system/init.d/S01fs /etc/init.d/");
@@ -72,9 +72,9 @@ void new_app_init(void)
 	system("rm -f /mnt/system/ko/soph_saradc.ko");
 
 	// PCIe Patch
-	// system("cp /kvmapp/system/init.d/S95nanokvm /etc/init.d/");
+	// system("cp /kvmapp/system/init.d/S95mspkvm /etc/init.d/");
 	if(access("/kvmapp/jpg_stream/dl_lib/libmaixcam_lib.so", F_OK) != 0){
-		system("cp -f /kvmapp/system/init.d/S95nanokvm /etc/init.d/");
+		system("cp -f /kvmapp/system/init.d/S95mspkvm /etc/init.d/");
 	}
 
 	// Remove unnecessary components to speed up boot time
@@ -101,7 +101,7 @@ void new_app_init(void)
 
 	system("rm -f /kvmapp/kvm_new_app");
 	system("sync");
-	// system("/etc/init.d/S95nanokvm restart");
+	// system("/etc/init.d/S95mspkvm restart");
 
 	// update ko
 	FILE *fp;
@@ -146,7 +146,7 @@ void new_app_init(void)
 		} else {
 			system("sync");
 			system("/etc/init.d/S15kvmhwd start");
-			system("/etc/init.d/S95nanokvm restart");
+			system("/etc/init.d/S95mspkvm restart");
 		}
 	} else {
 		if((RW_Data_0[0] != '/') && (RW_Data_1[0] != '/')){
@@ -156,7 +156,7 @@ void new_app_init(void)
 		} else {
 			system("sync");
 			system("/etc/init.d/S15kvmhwd start");
-			system("/etc/init.d/S95nanokvm restart");
+			system("/etc/init.d/S95mspkvm restart");
 		}
 	}
 
@@ -165,10 +165,10 @@ void new_app_init(void)
 	}	
 	
 	system("sync");
-	system("killall NanoKVM-Server");
+	system("killall MSPKVM-Server");
 	system("rm -r /tmp/server");
 	system("cp -r /kvmapp/server /tmp/");
-	system("/tmp/server/NanoKVM-Server &");
+	system("/tmp/server/MSPKVM-Server &");
 }
 
 void build_complete_resolv(void)
@@ -176,8 +176,8 @@ void build_complete_resolv(void)
 	FILE *fp = NULL;
 	// fp = fopen("/boot/resolv.conf", "w+");
 	fp = fopen("/boot/resolv.conf", "w");
-	// 阿里: 223.5.5.5
-	// 腾讯: 119.29.29.29
+	// Ali: 223.5.5.5
+	// Tencent: 119.29.29.29
 	fprintf(fp, "nameserver 192.168.0.1\nnameserver 8.8.4.4\nnameserver 8.8.8.8\nnameserver 114.114.114.114\nnameserver 119.29.29.29\nnameserver 223.5.5.5");
 	fclose(fp);
 	system("rm -rf /etc/resolv.conf");

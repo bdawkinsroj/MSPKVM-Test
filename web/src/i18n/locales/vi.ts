@@ -29,20 +29,20 @@ const vi = {
       loginButtonText: 'Đăng nhập',
       tips: {
         reset1:
-          'To reset the passwords, pressing and holding the BOOT button on the NanoKVM for 10 seconds.',
+          'To reset the passwords, pressing and holding the BOOT button on the MSPKVM for 10 seconds.',
         reset2: 'For detailed steps, please consult this document:',
         reset3: 'Web default account:',
         reset4: 'SSH default account:',
         change1: 'Please note that this action will change the following passwords:',
         change2: 'Web login password',
         change3: 'System root password (SSH login password)',
-        change4: 'To reset the passwords, press and hold the BOOT button on the NanoKVM.'
+        change4: 'To reset the passwords, press and hold the BOOT button on the MSPKVM.'
       }
     },
     wifi: {
       title: 'Wi-Fi',
-      description: 'Configure Wi-Fi for NanoKVM',
-      success: 'Please check the network status of NanoKVM and visit the new IP address.',
+      description: 'Configure Wi-Fi for MSPKVM',
+      success: 'Please check the network status of MSPKVM and visit the new IP address.',
       failed: 'Operation failed, please try again.',
       confirmBtn: 'Ok',
       finishBtn: 'Finished'
@@ -95,18 +95,18 @@ const vi = {
       mountDesc: 'Trong một số hệ thống, cần phải eject đĩa ảo trên máy remote trước khi mount.',
       tips: {
         title: 'Cách tải lên',
-        usb1: 'Kết nối NanoKVM với máy tính của bạn qua USB.',
+        usb1: 'Kết nối MSPKVM với máy tính của bạn qua USB.',
         usb2: 'Đảm bảo rằng đĩa ảo đã được gắn kết (Cài đặt - Đĩa ảo).',
         usb3: 'Mở đĩa ảo trên máy tính của bạn và sao chép vào thư mục gốc của đĩa ảo.',
-        scp1: 'Đảm bảo NanoKVM và máy tính của bạn đang trên cùng một mạng nội bộ.',
-        scp2: 'Mở terminal trên máy tính và sử dụng lệnh SCP để tải đĩa ảo lên thư mục /data trên NanoKVM.',
-        scp3: 'Ví dụ: scp đường-dẫn-image root@ip-của-nanokvm:/data',
+        scp1: 'Đảm bảo MSPKVM và máy tính của bạn đang trên cùng một mạng nội bộ.',
+        scp2: 'Mở terminal trên máy tính và sử dụng lệnh SCP để tải đĩa ảo lên thư mục /data trên MSPKVM.',
+        scp3: 'Ví dụ: scp đường-dẫn-image root@ip-của-mspkvm:/data',
         tfCard: 'Thẻ TF',
         tf1: 'Phương pháp này được hỗ trợ trên hệ thống Linux',
-        tf2: 'Lấy thẻ TF từ NanoKVM (với phiên bản FULL, hãy tháo vỏ trước).',
+        tf2: 'Lấy thẻ TF từ MSPKVM (với phiên bản FULL, hãy tháo vỏ trước).',
         tf3: 'Chèn thẻ TF vào đầu đọc thẻ và kết nối với máy tính của bạn.',
         tf4: 'Sao chép tệp hình ảnh vào thư mục /data trên thẻ TF.',
-        tf5: 'Chèn thẻ TF vào NanoKVM.'
+        tf5: 'Chèn thẻ TF vào MSPKVM.'
       }
     },
     script: {
@@ -124,7 +124,7 @@ const vi = {
     },
     terminal: {
       title: 'Terminal',
-      nanokvm: 'Terminal NanoKVM',
+      mspkvm: 'Terminal MSPKVM',
       serial: 'Terminal Cổng Nối Tiếp',
       serialPort: 'Cổng Nối Tiếp',
       serialPortPlaceholder: 'Vui lòng nhập cổng nối tiếp',
@@ -148,14 +148,14 @@ const vi = {
     settings: {
       title: 'Settings',
       about: {
-        title: 'Giới thiệu về NanoKVM',
+        title: 'Giới thiệu về MSPKVM',
         information: 'Thông tin',
         ip: 'IP',
         mdns: 'mDNS',
         application: 'Phiên bản Ứng dụng',
-        applicationTip: 'NanoKVM web application version',
+        applicationTip: 'MSPKVM web application version',
         image: 'Phiên bản Hình ảnh',
-        imageTip: 'NanoKVM system image version',
+        imageTip: 'MSPKVM system image version',
         deviceKey: 'Khóa Thiết bị',
         community: 'Cộng đồng'
       },
@@ -210,8 +210,8 @@ const vi = {
         download: 'Tải xuống',
         package: 'gói cài đặt',
         unzip: 'và giải nén nó',
-        upTailscale: 'Tải tailscale lên thư mục /usr/bin/ của NanoKVM',
-        upTailscaled: 'Tải tailscaled lên thư mục /usr/sbin/ của NanoKVM',
+        upTailscale: 'Tải tailscale lên thư mục /usr/bin/ của MSPKVM',
+        upTailscaled: 'Tải tailscaled lên thư mục /usr/sbin/ của MSPKVM',
         refresh: 'Làm mới trang hiện tại',
         notLogin:
           'Thiết bị chưa được liên kết. Vui lòng đăng nhập và liên kết thiết bị này với tài khoản của bạn.',

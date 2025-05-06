@@ -81,7 +81,7 @@ void qrcode_to_oled(QRCode *qr)
 		for(int i = 0; i < 29; i++){
 			for(int j = 0; j < 29; j++){
 				if(qrIsBlacke(qr, i, j)){
-					// 敲黑点
+					// Knock on the black spots
 					uint16_t data_index = ((i+begin_y)/8)*33+(j+begin_x);
 					uint8_t mask = ~(0x01 << ((i+begin_y)%8));
 					p_oled_data[data_index] &= mask;
@@ -96,7 +96,7 @@ void qrcode_to_oled(QRCode *qr)
 
 int qrencode(char *string)
 {
-	// test: qrencode("WIFI:T:WPA2;S:NanoKVM;P:12345678;;");
+	// test: qrencode("WIFI:T:WPA2;S:MSPKVM;P:12345678;;");
 	int errcode = QR_ERR_NONE;
 	QRCode* p = qrInit(3, QR_EM_8BIT, 1, 4, &errcode);
 	if (p == NULL) {
@@ -383,7 +383,7 @@ void kvm_main_ui_disp(uint8_t first_disp, uint8_t subpage_changed)
 uint8_t show_which_page()
 {
 	static uint8_t run_count = 0xfe;
-	static uint8_t show_type = 0;	// 0 不动 1 QRcode; 2 text
+	static uint8_t show_type = 0;	// 0 Not moving 1 QRcode; 2 text
 	if(sta_connect_ap()){
 		if(ssid_pass_ok()){
 			// 
@@ -403,7 +403,7 @@ void show_text_wifi_config(char *ap_ssid)
 {
 	OLED_Clear();
 	OLED_ShowString(0, 0, "SSID:", 8);
-	OLED_ShowString_AlignRight(63, 1, "NanoKVM", 8);
+	OLED_ShowString_AlignRight(63, 1, "MSPKVM", 8);
 	OLED_ShowString(0, 2, "PASS:", 8);
 	OLED_ShowString_AlignRight(63, 3, ap_ssid, 8);
 }
@@ -444,15 +444,15 @@ void kvm_wifi_config_ui_disp(uint8_t first_disp, uint8_t subpage_changed)
 {
 	static char cmd[70];
 	// printf("[kvmd]kvm_wifi_config_ui_disp %d | %d\n", first_disp, subpage_changed);
-	if(first_disp) kvm_start_wifi_config_process(); // 略有不妥,就这样吧
+	if(first_disp) kvm_start_wifi_config_process(); // Slightly wrong, so be it
 	if(first_disp || subpage_changed){
 		switch(kvm_oled_state.sub_page){
 			case 0: // wifi ap is starting
 				show_wifi_starting();
 				break;
 			case 1: // QRcode
-				printf("WIFI:T:WPA2;S:NanoKVM;P:%s;;\n", kvm_sys_state.wifi_ap_pass);
-				sprintf(cmd, "WIFI:T:WPA2;S:NanoKVM;P:%s;;", kvm_sys_state.wifi_ap_pass);
+				printf("WIFI:T:WPA2;S:MSPKVM;P:%s;;\n", kvm_sys_state.wifi_ap_pass);
+				sprintf(cmd, "WIFI:T:WPA2;S:MSPKVM;P:%s;;", kvm_sys_state.wifi_ap_pass);
 				qrencode(cmd);
 				break;
 			case 2: // Textcode

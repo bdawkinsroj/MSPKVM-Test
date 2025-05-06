@@ -28,20 +28,20 @@ const ko = {
       loginButtonText: '로그인',
       tips: {
         reset1:
-          '비밀번호를 재설정하려면 NanoKVM의 BOOT 버튼을 10초 동안 누르고 계세요.',
+          '비밀번호를 재설정하려면 MSPKVM의 BOOT 버튼을 10초 동안 누르고 계세요.',
         reset2: '자세한 절차는 이 문서를 참조하세요:',
         reset3: '웹 기본 계정:',
         reset4: 'SSH 기본 계정:',
         change1: '이 작업을 수행하면 다음 비밀번호가 변경됩니다:',
         change2: '웹 로그인 비밀번호',
         change3: '시스템 루트 비밀번호 (SSH 로그인 비밀번호)',
-        change4: '비밀번호를 재설정하려면 NanoKVM의 BOOT 버튼을 길게 누르세요.'
+        change4: '비밀번호를 재설정하려면 MSPKVM의 BOOT 버튼을 길게 누르세요.'
       }
     },
     wifi: {
       title: 'Wi-Fi',
-      description: 'Wi-Fi 설정 for NanoKVM',
-      success: 'NanoKVM의 네트워크 상태를 확인하고 새 IP 주소로 접속하세요.',
+      description: 'Wi-Fi 설정 for MSPKVM',
+      success: 'MSPKVM의 네트워크 상태를 확인하고 새 IP 주소로 접속하세요.',
       failed: '작업이 실패했습니다. 다시 시도하세요.',
       confirmBtn: '확인',
       finishBtn: '완료'
@@ -96,18 +96,18 @@ const ko = {
       refresh: '이미지 목록 새로고침',
       tips: {
         title: '업로드 방법',
-        usb1: 'USB를 통해 NanoKVM을 컴퓨터에 연결하세요.',
+        usb1: 'USB를 통해 MSPKVM을 컴퓨터에 연결하세요.',
         usb2: '가상 디스크가 마운트되었는지 확인하세요. (설정 - 가상 디스크).',
         usb3: '컴퓨터에서 가상 디스크를 열고 이미지 파일을 가상 디스크의 루트 디렉토리로 복사하세요.',
-        scp1: 'NanoKVM과 컴퓨터가 동일한 로컬 네트워크에 있는지 확인하세요.',
-        scp2: '컴퓨터에서 터미널을 열고 SCP 명령을 사용하여 이미지 파일을 NanoKVM의 /data 디렉터리에 업로드하세요.',
-        scp3: '예시: scp [이미지 파일 경로] root@[NanoKVM IP 주소]:/data',
+        scp1: 'MSPKVM과 컴퓨터가 동일한 로컬 네트워크에 있는지 확인하세요.',
+        scp2: '컴퓨터에서 터미널을 열고 SCP 명령을 사용하여 이미지 파일을 MSPKVM의 /data 디렉터리에 업로드하세요.',
+        scp3: '예시: scp [이미지 파일 경로] root@[MSPKVM IP 주소]:/data',
         tfCard: 'TF 카드',
         tf1: '이 방법은 Linux 시스템에서 지원됩니다',
-        tf2: 'NanoKVM에서 TF 카드를 가져옵니다(전체 버전의 경우 먼저 케이스를 분해하세요).',
+        tf2: 'MSPKVM에서 TF 카드를 가져옵니다(전체 버전의 경우 먼저 케이스를 분해하세요).',
         tf3: 'TF 카드를 카드 리더기에 삽입하고 컴퓨터에 연결하세요.',
         tf4: '이미지 파일을 TF 카드의 /data 디렉터리에 복사하세요.',
-        tf5: 'TF 카드를 NanoKVM에 삽입하세요.'
+        tf5: 'TF 카드를 MSPKVM에 삽입하세요.'
       }
     },
     script: {
@@ -125,7 +125,7 @@ const ko = {
     },
     terminal: {
       title: '터미널',
-      nanokvm: 'NanoKVM 터미널',
+      mspkvm: 'MSPKVM 터미널',
       serial: '시리얼 포트 터미널',
       serialPort: '시리얼 포트',
       serialPortPlaceholder: '시리얼 포트를 입력하세요',
@@ -155,14 +155,14 @@ const ko = {
     settings: {
       title: '설정',
       about: {
-        title: 'NanoKVM 정보',
+        title: 'MSPKVM 정보',
         information: '정보',
         ip: 'IP',
         mdns: 'mDNS',
         application: '펌웨어 버전',
-        applicationTip: 'NanoKVM 웹 애플리케이션 버전',
+        applicationTip: 'MSPKVM 웹 애플리케이션 버전',
         image: '이미지 버전',
-        imageTip: 'NanoKVM 시스템 이미지 버전',
+        imageTip: 'MSPKVM 시스템 이미지 버전',
         deviceKey: '장치 키',
         community: '커뮤니티'
       },
@@ -221,8 +221,8 @@ const ko = {
         download: '다운로드 중 :',
         package: '패키지 설치',
         unzip: '압축 해제',
-        upTailscale: 'tailscale을 NanoKVM 의 다음 경로에 업로드 했습니다. : /usr/bin/',
-        upTailscaled: 'tailscaled을 NanoKVM 의 다음 경로에 업로드 했습니다. :  /usr/sbin/',
+        upTailscale: 'tailscale을 MSPKVM 의 다음 경로에 업로드 했습니다. : /usr/bin/',
+        upTailscaled: 'tailscaled을 MSPKVM 의 다음 경로에 업로드 했습니다. :  /usr/sbin/',
         refresh: '현재 페이지 새로고침',
         notLogin:
           '이 기기는 현재 연동 되지 않았습니다. 로그인해서 계정에 이 장치를 연동하세요.',

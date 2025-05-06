@@ -27,20 +27,20 @@ const zh = {
       cancel: '取消',
       loginButtonText: '登录',
       tips: {
-        reset1: '长按 NanoKVM 上的 BOOT 按键 10 秒钟来重置帐号。',
+        reset1: '长按 MSPKVM 上的 BOOT 按键 10 秒钟来重置帐号。',
         reset2: '详细操作步骤可参考此文档：',
         reset3: '网页默认帐号：',
         reset4: 'SSH 默认帐号：',
         change1: '请注意，此操作将同时更新以下密码：',
         change2: '网页的登录密码',
         change3: '系统 root 用户的密码（SSH 登录密码）',
-        change4: '如果您忘记了密码，需要长按 NanoKVM 上的 BOOT 按键来重置密码。'
+        change4: '如果您忘记了密码，需要长按 MSPKVM 上的 BOOT 按键来重置密码。'
       }
     },
     wifi: {
       title: 'Wi-Fi',
-      description: '配置 NanoKVM Wi-Fi 信息',
-      success: '请检查 NanoKVM 的网络状态，并访问新的 IP 地址。',
+      description: '配置 MSPKVM Wi-Fi 信息',
+      success: '请检查 MSPKVM 的网络状态，并访问新的 IP 地址。',
       failed: '操作失败，请重试。',
       confirmBtn: '确定',
       finishBtn: '完成'
@@ -87,10 +87,10 @@ const zh = {
       resetHid: '重置 HID',
       hidOnly: {
         title: 'HID-Only 模式',
-        desc: '若使用过程中遇到鼠标键盘无响应，且重置 HID 无效，可能是 NanoKVM 与您的设备存在兼容性问题。建议尝试启用 HID-Only 模式以提升兼容性。',
+        desc: '若使用过程中遇到鼠标键盘无响应，且重置 HID 无效，可能是 MSPKVM 与您的设备存在兼容性问题。建议尝试启用 HID-Only 模式以提升兼容性。',
         tip1: '启用该模式会禁用虚拟U盘和虚拟网卡',
         tip2: '该模式下无法使用镜像挂载功能',
-        tip3: '切换模式后将自动重启 NanoKVM',
+        tip3: '切换模式后将自动重启 MSPKVM',
         enable: '启用 HID-Only 模式',
         disable: '关闭 HID-Only 模式'
       }
@@ -104,18 +104,18 @@ const zh = {
       mountDesc: '在某些系统中，需要在远程主机中弹出虚拟硬盘后再挂载镜像。',
       tips: {
         title: '如何上传',
-        usb1: '将 NanoKVM 通过 USB 连接到你的电脑；',
+        usb1: '将 MSPKVM 通过 USB 连接到你的电脑；',
         usb2: '确保已经挂载了虚拟硬盘（设置 - 虚拟硬盘）；',
         usb3: '在电脑上打开虚拟硬盘，将镜像文件拷贝到虚拟硬盘的根目录下。',
-        scp1: '确保 NanoKVM 和你的电脑在同一个局域网内；',
-        scp2: '在电脑上打开终端软件，使用 SCP 命令将镜像文件上传到 NanoKVM 的 /data 目录。',
-        scp3: '示例：scp your-image-path root@your-nanokvm-ip:/data',
+        scp1: '确保 MSPKVM 和你的电脑在同一个局域网内；',
+        scp2: '在电脑上打开终端软件，使用 SCP 命令将镜像文件上传到 MSPKVM 的 /data 目录。',
+        scp3: '示例：scp your-image-path root@your-mspkvm-ip:/data',
         tfCard: 'TF 卡',
         tf1: '该方式适用于 Linux 系统',
-        tf2: '将 TF 卡从 NanoKVM 中取出（FULL 版本需要先拆开外壳）；',
+        tf2: '将 TF 卡从 MSPKVM 中取出（FULL 版本需要先拆开外壳）；',
         tf3: '将 TF 卡插入读卡器并连接到你的电脑；',
         tf4: '从电脑上拷贝镜像文件到 TF 卡的 /data 目录下；',
-        tf5: '将 TF 卡重新插入 NanoKVM。'
+        tf5: '将 TF 卡重新插入 MSPKVM'
       }
     },
     script: {
@@ -133,7 +133,7 @@ const zh = {
     },
     terminal: {
       title: '终端',
-      nanokvm: 'NanoKVM 终端',
+      mspkvm: 'MSPKVM 终端',
       serial: '串口终端',
       serialPort: '串口',
       serialPortPlaceholder: '请输入串口',
@@ -169,14 +169,14 @@ const zh = {
     settings: {
       title: '设置',
       about: {
-        title: '关于 NanoKVM',
+        title: '关于 MSPKVM',
         information: '信息',
         ip: 'IP',
         mdns: 'mDNS',
         application: '应用版本',
-        applicationTip: 'NanoKVM 网页应用版本',
+        applicationTip: 'MSPKVM 网页应用版本',
         image: '镜像版本',
-        imageTip: 'NanoKVM 系统镜像版本',
+        imageTip: 'MSPKVM 系统镜像版本',
         deviceKey: '设备码',
         community: '社区',
         hostname: '主机名',
@@ -274,7 +274,7 @@ const zh = {
         logoutDesc: '确定要退出吗？',
         uninstall: '卸载 Tailscale',
         reboot: '重启',
-        rebootDesc: '你确定要重启 NanoKVM 吗？',
+        rebootDesc: '你确定要重启 MSPKVM 吗？',
         okBtn: '确认',
         cancelBtn: '取消'
       },

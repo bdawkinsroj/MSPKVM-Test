@@ -6,11 +6,11 @@ export const Community = () => {
   const { t } = useTranslation();
 
   const communities = [
-    { name: 'Document', icon: <BookOpenIcon size={24} />, url: 'https://wiki.sipeed.com/nanokvm' },
+    { name: 'Document', icon: <BookOpenIcon size={24} />, url: 'https://wiki.sipeed.com/mspkvm' },
     {
       name: 'GitHub',
       icon: <GithubOutlined style={{ fontSize: '20px' }} width={24} height={24} />,
-      url: 'https://github.com/sipeed/NanoKVM'
+      url: 'https://github.com/sipeed/MSPKVM'
     },
     {
       name: 'X',
@@ -20,12 +20,12 @@ export const Community = () => {
     {
       name: 'Discussion',
       icon: <MessageSquareIcon size={24} />,
-      url: 'https://maixhub.com/discussion/nanokvm'
+      url: 'https://maixhub.com/discussion/mspkvm'
     },
     {
       name: 'FAQ',
       icon: <MessageCircleQuestionIcon size={24} />,
-      url: 'https://wiki.sipeed.com/hardware/en/kvm/NanoKVM/faq.html'
+      url: 'https://wiki.sipeed.com/hardware/en/kvm/MSPKVM/faq.html'
     }
   ];
 

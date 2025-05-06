@@ -1,8 +1,8 @@
 package mjpeg
 
 import (
-	"NanoKVM-Server/common"
-	"NanoKVM-Server/service/stream"
+	"MSPKVM-Server/common"
+	"MSPKVM-Server/service/stream"
 	"sync"
 	"time"
 

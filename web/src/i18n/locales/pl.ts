@@ -30,14 +30,14 @@ const pl = {
       loginButtonText: 'Zaloguj się',
       tips: {
         reset1:
-          'To reset the passwords, pressing and holding the BOOT button on the NanoKVM for 10 seconds.',
+          'To reset the passwords, pressing and holding the BOOT button on the MSPKVM for 10 seconds.',
         reset2: 'For detailed steps, please consult this document:',
         reset3: 'Web default account:',
         reset4: 'SSH default account:',
         change1: 'Please note that this action will change the following passwords:',
         change2: 'Web login password',
         change3: 'System root password (SSH login password)',
-        change4: 'To reset the passwords, press and hold the BOOT button on the NanoKVM.'
+        change4: 'To reset the passwords, press and hold the BOOT button on the MSPKVM.'
       }
     },
     screen: {
@@ -88,18 +88,18 @@ const pl = {
         'W niektórych systemach wymagane jest wyjęcie dysku wirtualnego na zdalnym hoście przed zamontowaniem obrazu.',
       tips: {
         title: 'Jak przesłać obrazy',
-        usb1: 'Podłącz urządzenie NanoKVM do komputera przez USB.',
+        usb1: 'Podłącz urządzenie MSPKVM do komputera przez USB.',
         usb2: 'Upewnij się, że dysk wirtualny jest zamontowany (Ustawienia - Dysk wirtualny).',
         usb3: 'Otwórz dysk wirtualny na swoim komputerze i skopiuj plik obrazu do katalogu głównego dysku wirtualnego.',
-        scp1: 'Upewnij się że NanoKVM i twój komputer są na tej samej sieci lokalnej.',
-        scp2: 'Otwórz terminal na komputerze i użyj komendę SCP aby przesłać obraz do katalogu /data na NanoKVM.',
-        scp3: 'Przykład: scp lokalizacja-zrodlowego-obrazu root@ip-twojego-nanokvm:/data',
+        scp1: 'Upewnij się że MSPKVM i twój komputer są na tej samej sieci lokalnej.',
+        scp2: 'Otwórz terminal na komputerze i użyj komendę SCP aby przesłać obraz do katalogu /data na MSPKVM.',
+        scp3: 'Przykład: scp lokalizacja-zrodlowego-obrazu root@ip-twojego-mspkvm:/data',
         tfCard: 'Karta SD',
         tf1: 'Ta metoda jest obsługiwana w systemie Linux',
-        tf2: 'Usuń kartę SD od NanoKVM (dla wersji FULL, rozbierz obudowę najpierw).',
+        tf2: 'Usuń kartę SD od MSPKVM (dla wersji FULL, rozbierz obudowę najpierw).',
         tf3: 'Włóż kartę SD do czytnika kart i podłącz do twojego komputera.',
         tf4: 'Kopjuj obraz do katalogu /data na karcie SD.',
-        tf5: 'Włóż kartę SD do NanoKVM.'
+        tf5: 'Włóż kartę SD do MSPKVM.'
       }
     },
     script: {
@@ -117,7 +117,7 @@ const pl = {
     },
     terminal: {
       title: 'Terminal',
-      nanokvm: 'Terminal NanoKVM',
+      mspkvm: 'Terminal MSPKVM',
       serial: 'Terminal portu szeregowego',
       serialPort: 'Port szeregowy',
       serialPortPlaceholder: 'Wprowadź port szeregowy',
@@ -151,14 +151,14 @@ const pl = {
     settings: {
       title: 'Settings',
       about: {
-        title: 'NanoKVM - informacje',
+        title: 'MSPKVM - informacje',
         information: 'Informacje o systemie',
         ip: 'IP',
         mdns: 'mDNS',
         application: 'Wersja oprogramowania',
-        applicationTip: 'NanoKVM web application version',
+        applicationTip: 'MSPKVM web application version',
         image: 'Wersja obrazu',
-        imageTip: 'NanoKVM system image version',
+        imageTip: 'MSPKVM system image version',
         deviceKey: 'Klucz urządzenia',
         community: 'Społeczność'
       },
@@ -213,8 +213,8 @@ const pl = {
         download: 'Pobierz',
         package: 'pakiet instalacyjny',
         unzip: 'i wypakuj pliki',
-        upTailscale: 'Prześlij tailscale do NanoKVM w katalogu /usr/bin/',
-        upTailscaled: 'Prześlij tailscaled do NanoKVM w katalogu /usr/sbin/',
+        upTailscale: 'Prześlij tailscale do MSPKVM w katalogu /usr/bin/',
+        upTailscaled: 'Prześlij tailscaled do MSPKVM w katalogu /usr/sbin/',
         refresh: 'Odśwież obecną stronę',
         notLogin:
           'Urządzenie nie zostało jeszcze powiązane. Zaloguj się i powiąż to urządzenie ze swoim kontem.',

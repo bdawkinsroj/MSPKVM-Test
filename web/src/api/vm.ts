@@ -1,6 +1,6 @@
 import { http } from '@/lib/http.ts';
 
-// get NanoKVM information
+// get MSPKVM information
 export function getInfo() {
   return http.get('/api/vm/info');
 }

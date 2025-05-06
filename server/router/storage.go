@@ -3,8 +3,8 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 
-	"NanoKVM-Server/middleware"
-	"NanoKVM-Server/service/storage"
+	"MSPKVM-Server/middleware"
+	"MSPKVM-Server/service/storage"
 )
 
 func storageRouter(r *gin.Engine) {

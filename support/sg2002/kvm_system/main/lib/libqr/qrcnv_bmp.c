@@ -92,7 +92,7 @@ qrBmpWriteHeader(qr_byte_t *bof, int size, int width, int height, int imagesize)
 /* {{{ qrSymbolToBMP() */
 
 /*
- * 生成されたQRコードシンボルをモノクロ2値の
+ * The generated QR code symbol is converted to monochrome binary
  * Windows Bitmap(BMP)に変換する
  */
 QR_API qr_byte_t *
@@ -108,7 +108,7 @@ qrSymbolToBMP(QRCode *qr, int sep, int mag, int *size)
 	QRCNV_GET_SIZE();
 
 	/*
-	 * 変換後のサイズを計算し、メモリを確保する
+	 * Calculate the size after conversion and allocate memory
 	 */
 	rsize = (imgdim + 7) / 8;
 	if ((rmod = (rsize % 4)) != 0) {
@@ -119,15 +119,15 @@ qrSymbolToBMP(QRCode *qr, int sep, int mag, int *size)
 	QRCNV_MALLOC(rsize, *size);
 
 	/*
-	 * ヘッダを書き込む
+	 * write header
 	 */
 	sptr = qrBmpWriteHeader(sbuf, *size, imgdim, imgdim, imgsize);
 
 	/*
-	 * シンボルを書き込む
+	 * write symbol
 	 */
 	sepskips = rsize * sepdim;
-	/* 分離パターン (下) */
+	/* Separation pattern (bottom) */
 	if (sepskips) {
 		memset(sptr, 0, (size_t)sepskips);
 		sptr += sepskips;
@@ -136,11 +136,11 @@ qrSymbolToBMP(QRCode *qr, int sep, int mag, int *size)
 		memset(rbuf, 0, (size_t)rsize);
 		pxshift = 7;
 		rptr = rbuf;
-		/* 分離パターン (左) */
+		/* Separation pattern (left) */
 		for (j = 0; j < sepdim; j++) {
 			qrBmpNextPixel();
 		}
-		/* シンボル本体 */
+		/* symbol body */
 		for (j = 0; j < dim; j++) {
 			if (qrIsBlack(qr, i, j)) {
 				for (jx = 0; jx < mag; jx++) {
@@ -153,13 +153,13 @@ qrSymbolToBMP(QRCode *qr, int sep, int mag, int *size)
 				}
 			}
 		}
-		/* 行をmag回繰り返し書き込む */
+		/* Write the line mag times */
 		for (ix = 0; ix < mag; ix++) {
 			memcpy(sptr, rbuf, (size_t)rsize);
 			sptr += rsize;
 		}
 	}
-	/* 分離パターン (上) */
+	/* Separation pattern (top) */
 	if (sepskips) {
 		memset(sptr, 0, (size_t)sepskips);
 		sptr += sepskips;
@@ -174,7 +174,7 @@ qrSymbolToBMP(QRCode *qr, int sep, int mag, int *size)
 /* {{{ qrsSymbolsToBMP() */
 
 /*
- * 構造的連接用qrSymbolToBMP()
+ * Construct the connection using qrSymbolToBMP()
  */
 QR_API qr_byte_t *
 qrsSymbolsToBMP(QRStructured *st, int sep, int mag, int order, int *size)
@@ -193,7 +193,7 @@ qrsSymbolsToBMP(QRStructured *st, int sep, int mag, int order, int *size)
 	QRCNV_SA_GET_SIZE();
 
 	/*
-	 * 変換後のサイズを計算し、メモリを確保する
+	 * Calculate the size after conversion and allocate memory
 	 */
 	rsize = (xdim + 7) / 8;
 	if ((rmod = (rsize % 4)) != 0) {
@@ -204,16 +204,16 @@ qrsSymbolsToBMP(QRStructured *st, int sep, int mag, int order, int *size)
 	QRCNV_MALLOC(rsize, *size);
 
 	/*
-	 * ヘッダを書き込む
+	 * write header
 	 */
 	sptr = qrBmpWriteHeader(sbuf, *size, xdim, ydim, imgsize);
 
 	/*
-	 * シンボルを書き込む
+	 * write symbol
 	 */
 	sepskips = rsize * sepdim;
 	for (k = rows - 1; k >= 0; k--) {
-		/* 分離パターン (下) */
+		/* Separation pattern (bottom) */
 		if (sepskips) {
 			memset(sptr, 0, (size_t)sepskips);
 			sptr += sepskips;
@@ -223,11 +223,11 @@ qrsSymbolsToBMP(QRStructured *st, int sep, int mag, int order, int *size)
 			pxshift = 7;
 			rptr = rbuf;
 			for (kx = 0; kx < cols; kx++) {
-				/* 分離パターン (左) */
+				/* Separation pattern (left) */
 				for (j = 0; j < sepdim; j++) {
 					qrBmpNextPixel();
 				}
-				/* シンボル本体 */
+				/* symbol body */
 				if (order < 0) {
 					pos = k + rows * kx;
 				} else {
@@ -249,14 +249,14 @@ qrsSymbolsToBMP(QRStructured *st, int sep, int mag, int order, int *size)
 					}
 				}
 			}
-			/* 行をmag回繰り返し書き込む */
+			/* Write the line mag times */
 			for (ix = 0; ix < mag; ix++) {
 				memcpy(sptr, rbuf, (size_t)rsize);
 				sptr += rsize;
 			}
 		}
 	}
-	/* 分離パターン (上) */
+	/* Separation pattern (top) */
 	if (sepskips) {
 		memset(sptr, 0, (size_t)sepskips);
 		sptr += sepskips;

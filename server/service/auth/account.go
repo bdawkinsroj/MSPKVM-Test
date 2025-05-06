@@ -1,7 +1,7 @@
 package auth
 
 import (
-	"NanoKVM-Server/utils"
+	"MSPKVM-Server/utils"
 	"encoding/json"
 	"errors"
 	"os"

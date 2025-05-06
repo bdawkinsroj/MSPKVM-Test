@@ -1,9 +1,9 @@
 package auth
 
 import (
-	"NanoKVM-Server/config"
-	"NanoKVM-Server/middleware"
-	"NanoKVM-Server/proto"
+	"MSPKVM-Server/config"
+	"MSPKVM-Server/middleware"
+	"MSPKVM-Server/proto"
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"

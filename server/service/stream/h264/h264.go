@@ -1,7 +1,7 @@
 package h264
 
 import (
-	"NanoKVM-Server/config"
+	"MSPKVM-Server/config"
 	"net/http"
 	"sync"
 	"time"

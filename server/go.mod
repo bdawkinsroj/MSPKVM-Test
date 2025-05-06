@@ -1,4 +1,4 @@
-module NanoKVM-Server
+module MSPKVM-Server
 
 go 1.23.0
 

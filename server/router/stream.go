@@ -1,9 +1,9 @@
 package router
 
 import (
-	"NanoKVM-Server/middleware"
-	"NanoKVM-Server/service/stream/h264"
-	"NanoKVM-Server/service/stream/mjpeg"
+	"MSPKVM-Server/middleware"
+	"MSPKVM-Server/service/stream/h264"
+	"MSPKVM-Server/service/stream/mjpeg"
 
 	"github.com/gin-gonic/gin"
 )

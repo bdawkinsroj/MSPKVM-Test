@@ -8,7 +8,7 @@ import (
 )
 
 // SecretKey is only used to prevent the data from being transmitted in plaintext.
-const SecretKey = "nanokvm-sipeed-2024"
+const SecretKey = "mspkvm-msppowertools-2025"
 
 func Decrypt(ciphertext string) (string, error) {
 	if ciphertext == "" {

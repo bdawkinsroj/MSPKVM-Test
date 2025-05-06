@@ -9,8 +9,8 @@ import (
 	"github.com/gorilla/websocket"
 	log "github.com/sirupsen/logrus"
 
-	"NanoKVM-Server/service/hid"
-	"NanoKVM-Server/service/vm/jiggler"
+	"MSPKVM-Server/service/hid"
+	"MSPKVM-Server/service/vm/jiggler"
 )
 
 const (

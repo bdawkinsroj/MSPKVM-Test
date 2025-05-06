@@ -16,13 +16,13 @@ start_usb_dev(){
     mkdir strings/0x409
     # echo '0' > strings/0x409/serialnumber
     echo 'sipeed' > strings/0x409/manufacturer
-    echo 'NanoKVM' > strings/0x409/product
+    echo 'MSPKVM' > strings/0x409/product
 
     mkdir configs/c.1
     echo 0xA0 > configs/c.1/bmAttributes
     echo 200 > configs/c.1/MaxPower
     mkdir configs/c.1/strings/0x409
-    echo "NanoKVM" >  configs/c.1/strings/0x409/configuration
+    echo "MSPKVM" >  configs/c.1/strings/0x409/configuration
 
     # keyboard
     mkdir functions/hid.GS0

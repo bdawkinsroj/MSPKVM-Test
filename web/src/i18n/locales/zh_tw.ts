@@ -27,20 +27,20 @@ const zh_tw = {
       cancel: '取消',
       loginButtonText: '登入',
       tips: {
-        reset1: '長按 NanoKVM 上的 BOOT 按鍵 10 秒鐘來重設帳號。',
+        reset1: '長按 MSPKVM 上的 BOOT 按鍵 10 秒鐘來重設帳號。',
         reset2: '詳細操作方法可參閱本文件：',
         reset3: '網頁預設帳號：',
         reset4: 'SSH 預設帳號：',
         change1: '請注意，此操作將同時更新下列密碼：',
         change2: '網頁登入密碼',
         change3: 'root user密碼 (SSH登入密碼)',
-        change4: '如果您忘記密碼，需要長按 NanoKVM 上的 BOOT 按鍵來重設密碼。'
+        change4: '如果您忘記密碼，需要長按 MSPKVM 上的 BOOT 按鍵來重設密碼。'
       }
     },
     wifi: {
       title: 'Wi-Fi',
-      description: '設定 NanoKVM WiFi',
-      success: '請檢查 NanoKVM 的網路狀態，並存取新的 IP 位址。',
+      description: '設定 MSPKVM WiFi',
+      success: '請檢查 MSPKVM 的網路狀態，並存取新的 IP 位址。',
       failed: '操作失敗，請重試。',
       confirmBtn: '確定',
       finishBtn: '完成'
@@ -92,18 +92,18 @@ const zh_tw = {
       mountDesc: '在某些系統中，在掛載映像之前需要中斷遠端主機上的虛擬磁碟。',
       tips: {
         title: '如何上傳',
-        usb1: '透過 USB 將 NanoKVM 連接到您的電腦。',
+        usb1: '透過 USB 將 MSPKVM 連接到您的電腦。',
         usb2: '確保已安裝虛擬磁碟（設定 - 虛擬磁碟）。',
         usb3: '開啟電腦上的虛擬磁碟，將映像檔案複製到虛擬磁碟的根目錄下。',
-        scp1: '確保 NanoKVM 和您的電腦位於同一區域網路。',
-        scp2: '開啟電腦上的終端機，使用 SCP 指令將映像檔案上傳到 NanoKVM 的 /data 目錄下。',
-        scp3: '範例：scp your-image-path root@your-nanokvm-ip:/data',
+        scp1: '確保 MSPKVM 和您的電腦位於同一區域網路。',
+        scp2: '開啟電腦上的終端機，使用 SCP 指令將映像檔案上傳到 MSPKVM 的 /data 目錄下。',
+        scp3: '範例：scp your-image-path root@your-mspkvm-ip:/data',
         tfCard: 'microSD 卡',
         tf1: '此方法適用於 Linux 系統',
-        tf2: '從 NanoKVM 取得 microSD 卡（FULL 版本請先拆開外殼）。',
+        tf2: '從 MSPKVM 取得 microSD 卡（FULL 版本請先拆開外殼）。',
         tf3: '將 microSD 卡插入讀卡機並連接至電腦。',
         tf4: '將映像檔案複製到 microSD 卡的 /data 目錄下。',
-        tf5: '將 microSD 卡重新插入 NanoKVM。'
+        tf5: '將 microSD 卡重新插入 MSPKVM'
       }
     },
     script: {
@@ -121,7 +121,7 @@ const zh_tw = {
     },
     terminal: {
       title: '終端機',
-      nanokvm: 'NanoKVM 終端機',
+      mspkvm: 'MSPKVM 終端機',
       serial: 'Serial Port 終端機',
       serialPort: 'Serial Port',
       serialPortPlaceholder: '請輸入 Serial Port',
@@ -151,14 +151,14 @@ const zh_tw = {
     settings: {
       title: '設定',
       about: {
-        title: '關於 NanoKVM',
+        title: '關於 MSPKVM',
         information: '資訊',
         ip: 'IP',
         mdns: 'mDNS',
         application: '應用程式版本',
-        applicationTip: 'NanoKVM 網頁程式版本',
+        applicationTip: 'MSPKVM 網頁程式版本',
         image: '映像版本',
-        imageTip: 'NanoKVM 系统镜像版本',
+        imageTip: 'MSPKVM 系统镜像版本',
         deviceKey: '設備序號',
         community: '社群'
       },
@@ -217,8 +217,8 @@ const zh_tw = {
         download: '下載',
         package: '安裝包',
         unzip: '並解壓縮它',
-        upTailscale: '將 Tailscale 上傳到 NanoKVM 目錄 /usr/bin/',
-        upTailscaled: '將 Tailscale 上傳到 NanoKVM 目錄 /usr/sbin/',
+        upTailscale: '將 Tailscale 上傳到 MSPKVM 目錄 /usr/bin/',
+        upTailscaled: '將 Tailscale 上傳到 MSPKVM 目錄 /usr/sbin/',
         refresh: '重新整理頁面',
         notLogin: '設備尚未綁定。請登入並將該裝置綁定到您的帳戶。',
         urlPeriod: '此網址有效期限為 10 分鐘',

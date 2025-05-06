@@ -13,7 +13,7 @@ export const WebTitle = () => {
   const setWebTitle = useSetAtom(webTitleAtom);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [title, setTitle] = useState('NanoKVM');
+  const [title, setTitle] = useState('MSPKVM');
 
   useEffect(() => {
     setIsLoading(true);
@@ -43,7 +43,7 @@ export const WebTitle = () => {
           return;
         }
 
-        setWebTitle(title === 'NanoKVM' ? '' : title);
+        setWebTitle(title === 'MSPKVM' ? '' : title);
       })
       .finally(() => {
         setIsLoading(false);
